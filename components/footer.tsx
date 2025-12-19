@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Linkedin, ArrowRight } from "lucide-react";
 
 const quickLinks = [
@@ -29,14 +30,14 @@ export default function Footer() {
       <div className="container-custom py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="space-y-6">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl font-heading">DH</span>
-              </div>
-              <div>
-                <h3 className="font-heading text-lg font-bold leading-tight">DREAM HOME</h3>
-                <p className="text-xs text-secondary font-medium tracking-wider">INFRASTRUCTURES</p>
-              </div>
+            <div>
+              <Image
+                src="/images/dreamhomelogo (2).png"
+                alt="Dream Home Infrastructures Logo"
+                width={150}
+                height={60}
+                className="object-contain"
+              />
             </div>
             <p className="text-white/60 text-sm leading-relaxed">Building your dreams into reality since 2012. We are a trusted construction and interior design company in Hyderabad.</p>
             <div className="flex items-center gap-2 text-sm text-secondary">

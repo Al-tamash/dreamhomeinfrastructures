@@ -79,7 +79,7 @@ export default function HomePage() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="section-padding" style={{ background: 'rgb(35, 35, 35)' }}>
+      <section className="section-padding" style={{ background: '#000000' }}>
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="relative">
@@ -113,7 +113,7 @@ export default function HomePage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-r from-primary/90 to-primary">
+      <section className="py-16 bg-black">
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[{ value: 500, suffix: "+", label: "Projects Completed" }, { value: 12, suffix: "+", label: "Years Experience" }, { value: 300, suffix: "+", label: "Happy Clients" }, { value: 50, suffix: "+", label: "Expert Team" }].map((stat, index) => (
@@ -140,7 +140,7 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="section-padding" style={{ background: 'rgb(35, 35, 35)' }}>
+      <section className="section-padding" style={{ background: '#000000' }}>
         <div className="container-custom">
           <SectionHeading title="What Our Clients Say" subtitle="Don't just take our word for it - hear from our satisfied clients" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -160,7 +160,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-secondary to-secondary/90 relative overflow-hidden">
+      <section className="py-20 bg-black relative overflow-hidden">
         <div className="container-custom relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="text-center max-w-3xl mx-auto">
             <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">Ready to Build Your Dream Home?</h2>

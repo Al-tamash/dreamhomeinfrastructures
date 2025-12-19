@@ -7,9 +7,9 @@
 :root {
   --primary: rgb(208, 14, 21);
   --secondary: rgb(39, 115, 143);
-  --tertiary: rgb(44, 44, 44);
-  --background: rgb(44, 44, 44);
-  --background-light: rgb(55, 55, 55);
+  --tertiary: rgb(0, 0, 0);
+  --background: rgb(0, 0, 0);
+  --background-light: rgb(15, 15, 15);
   --foreground: #ffffff;
 }
 
@@ -78,7 +78,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Slightly lighter dark section for contrast */
 .dark-section-alt {
-  background: rgb(55, 55, 55);
+  background: #000000;
 }
 
 /* Scrollbar Styling */
@@ -87,7 +87,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(30, 30, 30);
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {

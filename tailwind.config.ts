@@ -11,7 +11,7 @@ const config: Config = {
       colors: {
         primary: "rgb(208, 14, 21)",
         secondary: "rgb(39, 115, 143)",
-        tertiary: "rgb(44, 44, 44)",
+        tertiary: "#000000",
       },
       fontFamily: {
         heading: ['"Comic Sans MS"', 'cursive', 'sans-serif'],

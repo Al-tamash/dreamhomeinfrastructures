@@ -36,7 +36,7 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      <section className="section-padding" style={{ background: 'rgb(35, 35, 35)' }}>
+      <section className="section-padding" style={{ background: '#000000' }}>
         <div className="container-custom">
           <div className="flex flex-wrap justify-center gap-3 mb-12">
             {categories.map((category) => (
@@ -64,7 +64,7 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-r from-secondary to-secondary/90">
+      <section className="py-20 bg-black">
         <div className="container-custom text-center">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-6">Ready to Start Your Project?</h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

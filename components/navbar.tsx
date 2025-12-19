@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -43,14 +44,14 @@ export default function Navbar() {
       <nav className="bg-tertiary/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-white/10">
         <div className="container-custom">
           <div className="flex items-center justify-between h-20">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl font-heading">DH</span>
-              </div>
-              <div className="hidden sm:block">
-                <h1 className="font-heading text-lg font-bold text-white leading-tight">DREAM HOME</h1>
-                <p className="text-xs text-secondary font-medium tracking-wider">INFRASTRUCTURES</p>
-              </div>
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/images/dreamhomelogo(2).png"
+                alt="Dream Home Infrastructures Logo"
+                width={150}
+                height={60}
+                className="object-contain"
+              />
             </Link>
 
             <div className="hidden lg:flex items-center gap-1">

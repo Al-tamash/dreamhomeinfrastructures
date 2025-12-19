@@ -32,7 +32,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section-padding" style={{ background: 'rgb(35, 35, 35)' }}>
+      <section className="section-padding" style={{ background: '#000000' }}>
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="relative">
@@ -84,7 +84,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section-padding" style={{ background: 'rgb(35, 35, 35)' }}>
+      <section className="section-padding" style={{ background: '#000000' }}>
         <div className="container-custom">
           <SectionHeading title="Our Leadership" subtitle="Meet the visionaries behind Dream Home Infrastructures" />
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -127,7 +127,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section-padding bg-gradient-to-r from-primary to-primary/90">
+      <section className="section-padding bg-black">
         <div className="container-custom text-center">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-6">Ready to Start Your Project?</h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

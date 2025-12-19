@@ -9,9 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Building2, Home, Building, CheckCircle, ArrowRight, Phone } from "lucide-react";
 
 const subServices = [
-  { icon: Home, title: "Residential & Apartment Construction", description: "We build comfortable, modern homes and apartment complexes that cater to the needs of families.", features: ["Individual Houses & Villas", "Apartment Buildings", "Gated Communities", "Duplex & Triplex Homes"], image: "https://images.unsplash.com/photo-1448630360428-65456885c650?q=80&w=867" },
-  { icon: Building2, title: "Commercial Construction", description: "From office buildings to retail spaces, we deliver commercial projects that meet modern business demands.", features: ["Office Buildings", "Shopping Complexes", "Industrial Buildings", "Warehouses"], image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=870" },
-  { icon: Building, title: "Villa & Farm House Construction", description: "Create your dream retreat with our villa and farmhouse construction services featuring premium finishes.", features: ["Luxury Villas", "Farm Houses", "Weekend Homes", "Resort-style Properties"], image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=871" },
+  { icon: Home, title: "Residential & Apartment Construction", description: "We build comfortable, modern homes and apartment complexes that cater to the needs of families.", features: ["Individual Houses & Villas", "Apartment Buildings", "Gated Communities", "Duplex & Triplex Homes"], image: "https://images.unsplash.com/photo-1448630360428-65456885c650?q=80&w=867", href: "/services/building-construction/residential" },
+  { icon: Building2, title: "Commercial Construction", description: "From office buildings to retail spaces, we deliver commercial projects that meet modern business demands.", features: ["Office Buildings", "Shopping Complexes", "Industrial Buildings", "Warehouses"], image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=870", href: "/services/building-construction/commercial" },
+  { icon: Building, title: "Villa & Farm House Construction", description: "Create your dream retreat with our villa and farmhouse construction services featuring premium finishes.", features: ["Luxury Villas", "Farm Houses", "Weekend Homes", "Resort-style Properties"], image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=871", href: "/services/building-construction/villa" },
 ];
 
 const processSteps = [
@@ -55,7 +55,7 @@ export default function BuildingConstructionPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
                     {service.features.map((feature) => (<div key={feature} className="flex items-center gap-2 text-white/70"><CheckCircle size={16} className="text-secondary flex-shrink-0" /><span className="text-sm">{feature}</span></div>))}
                   </div>
-                  <Link href="/contact"><Button variant="outline" className="border-white/30 text-white hover:bg-white hover:text-tertiary">Learn More <ArrowRight size={16} className="ml-2" /></Button></Link>
+                  <Link href={service.href}><Button variant="outline" className="border-white/30 text-white hover:bg-white hover:text-tertiary">Learn More <ArrowRight size={16} className="ml-2" /></Button></Link>
                 </div>
               </motion.div>
             ))}
@@ -63,7 +63,7 @@ export default function BuildingConstructionPage() {
         </div>
       </section>
 
-      <section className="section-padding" style={{ background: 'rgb(35, 35, 35)' }}>
+      <section className="section-padding" style={{ background: '#000000' }}>
         <div className="container-custom">
           <SectionHeading title="Our Construction Process" subtitle="A systematic approach to delivering quality projects" />
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -80,7 +80,7 @@ export default function BuildingConstructionPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-r from-secondary to-secondary/90">
+      <section className="py-20 bg-black">
         <div className="container-custom text-center">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-6">Ready to Build Your Dream Structure?</h2>
           <Link href="/contact"><Button size="lg" className="bg-white text-secondary hover:bg-white/90">Get Started <ArrowRight size={18} className="ml-2" /></Button></Link>
