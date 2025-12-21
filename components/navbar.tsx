@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "@/components/theme-toggle";
 
 const services = [
   { 
@@ -103,7 +104,8 @@ export default function Navbar() {
               ))}
             </div>
 
-            <div className="hidden lg:block">
+            <div className="hidden lg:flex items-center gap-4">
+              <ThemeToggle />
               <Link href="/contact"><Button size="lg">Get Free Quote</Button></Link>
             </div>
 
@@ -145,8 +147,9 @@ export default function Navbar() {
                     )}
                   </div>
                 ))}
-                <div className="pt-4">
-                  <Link href="/contact" onClick={() => setMobileMenuOpen(false)}><Button className="w-full" size="lg">Get Free Quote</Button></Link>
+                <div className="pt-4 flex items-center gap-4">
+                  <ThemeToggle />
+                  <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="flex-1"><Button className="w-full" size="lg">Get Free Quote</Button></Link>
                 </div>
               </div>
             </motion.div>

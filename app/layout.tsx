@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import WhatsAppButton from "@/components/whatsapp-button";
+import { ThemeProvider } from "@/contexts/theme-context";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://dreamhomeinfrastructures.com'),
@@ -81,12 +82,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="font-body antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <WhatsAppButton />
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className="font-body antialiased bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
+        <ThemeProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <WhatsAppButton />
+        </ThemeProvider>
       </body>
     </html>
   );

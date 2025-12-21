@@ -158,9 +158,6 @@ export default function ResidentialConstructionPage() {
                 
                 {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                    <CheckCircle size={20} className="text-white" />
-                  </div>
                   <h3 className="font-heading text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">{feature.title}</h3>
                   <p className="text-white/70 text-sm line-clamp-2">{feature.description}</p>
                 </div>
@@ -176,7 +173,7 @@ export default function ResidentialConstructionPage() {
       </section>
 
       {/* Our Process Section */}
-      <section className="section-padding" className="section-padding bg-dark-200">
+      <section className="section-padding bg-dark-200">
         <div className="container-custom">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -260,7 +257,7 @@ export default function ResidentialConstructionPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="section-padding" className="section-padding bg-dark-200">
+      <section className="section-padding bg-dark-200">
         <div className="container-custom">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
