@@ -7,10 +7,20 @@
 :root {
   --primary: rgb(208, 14, 21);
   --secondary: rgb(39, 115, 143);
-  --tertiary: rgb(0, 0, 0);
-  --background: rgb(0, 0, 0);
-  --background-light: rgb(15, 15, 15);
+  --tertiary: #0a0a0a;
+  
+  /* Modern Dark Theme Palette */
+  --background: #0a0a0a;           /* Main background - soft black */
+  --background-elevated: #121212;   /* Cards, panels */
+  --background-surface: #1a1a1a;    /* Modals, dropdowns */
+  --background-hover: #1f1f1f;      /* Hover states */
+  --background-active: #262626;     /* Active/pressed states */
+  --background-border: #2a2a2a;     /* Subtle borders */
+  --background-light: #333333;      /* Light accents */
+  
   --foreground: #ffffff;
+  --foreground-muted: #a1a1a1;      /* Secondary text */
+  --foreground-subtle: #737373;     /* Disabled/hint text */
 }
 
 * {
@@ -76,9 +86,9 @@ h1, h2, h3, h4, h5, h6 {
   @apply bg-tertiary;
 }
 
-/* Slightly lighter dark section for contrast */
+/* Elevated dark section for contrast */
 .dark-section-alt {
-  background: #000000;
+  background: var(--background-elevated);
 }
 
 /* Scrollbar Styling */
@@ -87,7 +97,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {

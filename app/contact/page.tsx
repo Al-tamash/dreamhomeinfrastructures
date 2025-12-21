@@ -26,7 +26,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="section-padding" style={{ background: '#000000' }}>
+      <section className="section-padding bg-dark-200">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12">
             <div>

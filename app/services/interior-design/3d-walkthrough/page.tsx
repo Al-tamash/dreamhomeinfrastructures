@@ -9,12 +9,12 @@ import { Video, CheckCircle, ArrowRight, Phone, ArrowLeft, Star, Play, Rotate3D,
 import { useState } from "react";
 
 const features = [
-  { title: "Virtual Tours", description: "Interactive virtual tours that let viewers explore every corner at their own pace", icon: Compass },
-  { title: "Animated Walkthroughs", description: "Cinematic video tours with smooth camera movements through your space", icon: Video },
-  { title: "Interactive Presentations", description: "Clickable hotspots for detailed information about design elements", icon: Monitor },
-  { title: "360° Views", description: "Panoramic views from every room for complete spatial understanding", icon: Rotate3D },
-  { title: "Fly-through Videos", description: "Aerial views and dramatic fly-through sequences of your property", icon: Play },
-  { title: "VR Ready Experiences", description: "Walkthroughs compatible with VR headsets for immersive experience", icon: Eye },
+  { title: "Virtual Tours", description: "Interactive virtual tours that let viewers explore every corner at their own pace", icon: Compass, image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=870" },
+  { title: "Animated Walkthroughs", description: "Cinematic video tours with smooth camera movements through your space", icon: Video, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=870" },
+  { title: "Interactive Presentations", description: "Clickable hotspots for detailed information about design elements", icon: Monitor, image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=869" },
+  { title: "360° Views", description: "Panoramic views from every room for complete spatial understanding", icon: Rotate3D, image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=870" },
+  { title: "Fly-through Videos", description: "Aerial views and dramatic fly-through sequences of your property", icon: Play, image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=871" },
+  { title: "VR Ready Experiences", description: "Walkthroughs compatible with VR headsets for immersive experience", icon: Eye, image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=870" },
 ];
 
 const processSteps = [
@@ -156,13 +156,32 @@ export default function WalkthroughPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-secondary/50 transition-all duration-300 hover:-translate-y-1"
+                className="group relative h-[280px] rounded-2xl overflow-hidden border border-white/10 hover:border-secondary/50 transition-all duration-300"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-secondary to-secondary/50 rounded-xl flex items-center justify-center mb-4">
-                  <feature.icon size={24} className="text-white" />
+                {/* Background Image */}
+                <Image
+                  src={feature.image}
+                  alt={feature.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/70 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
+                
+                {/* Content */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                  <div className="w-10 h-10 bg-gradient-to-br from-secondary to-primary rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <feature.icon size={20} className="text-white" />
+                  </div>
+                  <h3 className="font-heading text-xl font-bold text-white mb-2 group-hover:text-secondary transition-colors">{feature.title}</h3>
+                  <p className="text-white/70 text-sm line-clamp-2">{feature.description}</p>
                 </div>
-                <h3 className="font-heading text-lg font-bold text-white mb-2">{feature.title}</h3>
-                <p className="text-white/60 text-sm">{feature.description}</p>
+                
+                {/* Hover Glow */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-secondary/20 rounded-full blur-3xl" />
+                </div>
               </motion.div>
             ))}
           </div>
@@ -170,7 +189,7 @@ export default function WalkthroughPage() {
       </section>
 
       {/* Use Cases */}
-      <section className="section-padding" style={{ background: '#000000' }}>
+      <section className="section-padding" className="section-padding bg-dark-200">
         <div className="container-custom">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -253,7 +272,7 @@ export default function WalkthroughPage() {
       </section>
 
       {/* Our Process */}
-      <section className="section-padding" style={{ background: '#000000' }}>
+      <section className="section-padding" className="section-padding bg-dark-200">
         <div className="container-custom">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -335,7 +354,7 @@ export default function WalkthroughPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="section-padding" style={{ background: '#000000' }}>
+      <section className="section-padding" className="section-padding bg-dark-200">
         <div className="container-custom">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -416,7 +435,7 @@ export default function WalkthroughPage() {
 
       {/* CTA Section */}
       <section className="py-24 bg-gradient-to-r from-secondary/20 to-primary/20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-dark/50" />
         <div className="container-custom relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -9,12 +9,12 @@ import { PenTool, CheckCircle, ArrowRight, Phone, ArrowLeft, Star, FileText, Rul
 import { useState } from "react";
 
 const features = [
-  { title: "Floor Plans & Layouts", description: "Detailed floor plans showing room dimensions, furniture placement, and traffic flow", icon: Grid },
-  { title: "Elevation Drawings", description: "Front, side, and rear views of your building design", icon: Layers },
-  { title: "Section Drawings", description: "Cross-sectional views revealing interior details", icon: FileText },
-  { title: "Electrical Plans", description: "Complete electrical layout including switches, outlets, and fixtures", icon: Lightbulb },
-  { title: "Plumbing Plans", description: "Water supply and drainage system layouts", icon: PenTool },
-  { title: "Structural Drawings", description: "Beam, column, and foundation details for construction", icon: Ruler },
+  { title: "Floor Plans & Layouts", description: "Detailed floor plans showing room dimensions, furniture placement, and traffic flow", icon: Grid, image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=831" },
+  { title: "Elevation Drawings", description: "Front, side, and rear views of your building design", icon: Layers, image: "https://images.unsplash.com/photo-1486718448742-163732cd1544?q=80&w=818" },
+  { title: "Section Drawings", description: "Cross-sectional views revealing interior details", icon: FileText, image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=831" },
+  { title: "Electrical Plans", description: "Complete electrical layout including switches, outlets, and fixtures", icon: Lightbulb, image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=869" },
+  { title: "Plumbing Plans", description: "Water supply and drainage system layouts", icon: PenTool, image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=876" },
+  { title: "Structural Drawings", description: "Beam, column, and foundation details for construction", icon: Ruler, image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=870" },
 ];
 
 const processSteps = [
@@ -53,7 +53,7 @@ const faqs = [
 
 const samples = [
   { title: "Residential Floor Plan", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=831", type: "Floor Plan" },
-  { title: "Commercial Layout", image: "https://images.unsplash.com/photo-1574359411659-15573a27ed14?q=80&w=870", type: "Layout" },
+  { title: "Commercial Layout", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=869", type: "Layout" },
   { title: "Elevation Drawing", image: "https://images.unsplash.com/photo-1486718448742-163732cd1544?q=80&w=818", type: "Elevation" },
   { title: "Section Details", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=870", type: "Section" },
 ];
@@ -149,13 +149,32 @@ export default function Design2DPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-secondary/50 transition-all duration-300 hover:-translate-y-1"
+                className="group relative h-[280px] rounded-2xl overflow-hidden border border-white/10 hover:border-secondary/50 transition-all duration-300"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-secondary to-secondary/50 rounded-xl flex items-center justify-center mb-4">
-                  <feature.icon size={24} className="text-white" />
+                {/* Background Image */}
+                <Image
+                  src={feature.image}
+                  alt={feature.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/70 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
+                
+                {/* Content */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                  <div className="w-10 h-10 bg-gradient-to-br from-secondary to-primary rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <feature.icon size={20} className="text-white" />
+                  </div>
+                  <h3 className="font-heading text-xl font-bold text-white mb-2 group-hover:text-secondary transition-colors">{feature.title}</h3>
+                  <p className="text-white/70 text-sm line-clamp-2">{feature.description}</p>
                 </div>
-                <h3 className="font-heading text-lg font-bold text-white mb-2">{feature.title}</h3>
-                <p className="text-white/60 text-sm">{feature.description}</p>
+                
+                {/* Hover Glow */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-secondary/20 rounded-full blur-3xl" />
+                </div>
               </motion.div>
             ))}
           </div>
@@ -163,7 +182,7 @@ export default function Design2DPage() {
       </section>
 
       {/* Our Process */}
-      <section className="section-padding" style={{ background: '#000000' }}>
+      <section className="section-padding" className="section-padding bg-dark-200">
         <div className="container-custom">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -232,7 +251,7 @@ export default function Design2DPage() {
       </section>
 
       {/* Pricing */}
-      <section className="section-padding" style={{ background: '#000000' }}>
+      <section className="section-padding" className="section-padding bg-dark-200">
         <div className="container-custom">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -321,7 +340,7 @@ export default function Design2DPage() {
       </section>
 
       {/* FAQs */}
-      <section className="section-padding" style={{ background: '#000000' }}>
+      <section className="section-padding" className="section-padding bg-dark-200">
         <div className="container-custom">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -363,7 +382,7 @@ export default function Design2DPage() {
 
       {/* CTA Section */}
       <section className="py-24 bg-gradient-to-r from-secondary/20 to-primary/20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-dark/50" />
         <div className="container-custom relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

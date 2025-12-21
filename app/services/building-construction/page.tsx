@@ -63,14 +63,14 @@ export default function BuildingConstructionPage() {
         </div>
       </section>
 
-      <section className="section-padding" style={{ background: '#000000' }}>
+      <section className="section-padding bg-dark-200">
         <div className="container-custom">
           <SectionHeading title="Our Construction Process" subtitle="A systematic approach to delivering quality projects" />
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {processSteps.map((step, index) => (
               <motion.div key={step.step} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }} viewport={{ once: true }} className="relative">
                 <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 h-full">
-                  <div className="font-heading text-4xl font-bold text-primary/30 mb-3">{step.step}</div>
+                  <div className="font-heading text-4xl font-bold text-primary mb-3">{step.step}</div>
                   <h4 className="font-heading font-bold text-white mb-2">{step.title}</h4>
                   <p className="text-sm text-white/60">{step.description}</p>
                 </div>
@@ -80,7 +80,7 @@ export default function BuildingConstructionPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-dark">
         <div className="container-custom text-center">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-6">Ready to Build Your Dream Structure?</h2>
           <Link href="/contact"><Button size="lg" className="bg-white text-secondary hover:bg-white/90">Get Started <ArrowRight size={18} className="ml-2" /></Button></Link>

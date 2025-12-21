@@ -62,7 +62,7 @@ export default function InteriorDesignPage() {
         </div>
       </section>
 
-      <section className="section-padding" style={{ background: '#000000' }}>
+      <section className="section-padding bg-dark-200">
         <div className="container-custom">
           <SectionHeading title="Why Choose Our Design Services?" subtitle="Benefits of professional interior design" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -77,7 +77,7 @@ export default function InteriorDesignPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-dark">
         <div className="container-custom text-center">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-6">Ready to Design Your Perfect Space?</h2>
           <Link href="/contact"><Button size="lg" className="bg-white text-primary hover:bg-white/90">Get Started <ArrowRight size={18} className="ml-2" /></Button></Link>

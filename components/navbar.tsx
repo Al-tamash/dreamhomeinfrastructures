@@ -8,8 +8,24 @@ import { Menu, X, ChevronDown, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const services = [
-  { title: "Building Construction", href: "/services/building-construction", items: ["Residential & Apartment Construction", "Commercial Construction", "Villa & Farm House Construction"] },
-  { title: "Interior Design", href: "/services/interior-design", items: ["2D Design", "3D Design", "3D Walkthrough"] },
+  { 
+    title: "Building Construction", 
+    href: "/services/building-construction", 
+    items: [
+      { name: "Residential & Apartment", href: "/services/building-construction/residential" },
+      { name: "Commercial Construction", href: "/services/building-construction/commercial" },
+      { name: "Villa & Farm House", href: "/services/building-construction/villa" }
+    ] 
+  },
+  { 
+    title: "Interior Design", 
+    href: "/services/interior-design", 
+    items: [
+      { name: "2D Design", href: "/services/interior-design/2d-design" },
+      { name: "3D Design", href: "/services/interior-design/3d-design" },
+      { name: "3D Walkthrough", href: "/services/interior-design/3d-walkthrough" }
+    ] 
+  },
 ];
 
 const navLinks = [
@@ -27,7 +43,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="bg-black/50 text-white py-2 hidden md:block border-b border-white/10">
+      <div className="bg-dark/50 text-white py-2 hidden md:block border-b border-white/10">
         <div className="container-custom flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
             <a href="tel:+918008044008" className="flex items-center gap-2 hover:text-secondary transition-colors">
@@ -46,7 +62,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-20">
             <Link href="/" className="flex items-center">
               <Image
-                src="/images/dreamhomelogo(2).png"
+                src="/images/dreamhomelogo (5).png"
                 alt="Dream Home Infrastructures Logo"
                 width={150}
                 height={60}
@@ -71,7 +87,7 @@ export default function Navbar() {
                                 <Link href={service.href} className="block px-4 py-2 font-heading font-bold text-white hover:text-primary hover:bg-white/5 rounded-lg transition-colors">{service.title}</Link>
                                 <div className="ml-4 border-l-2 border-secondary/30 pl-3 py-1">
                                   {service.items.map((item) => (
-                                    <Link key={item} href={service.href} className="block px-3 py-1.5 text-sm text-white/70 hover:text-secondary transition-colors">{item}</Link>
+                                    <Link key={item.name} href={item.href} className="block px-3 py-1.5 text-sm text-white/70 hover:text-secondary transition-colors">{item.name}</Link>
                                   ))}
                                 </div>
                               </div>
@@ -116,7 +132,7 @@ export default function Navbar() {
                                 <div key={service.title} className="py-2">
                                   <Link href={service.href} className="block px-4 py-2 font-heading font-bold text-secondary" onClick={() => setMobileMenuOpen(false)}>{service.title}</Link>
                                   {service.items.map((item) => (
-                                    <Link key={item} href={service.href} className="block px-6 py-1.5 text-sm text-white/60" onClick={() => setMobileMenuOpen(false)}>{item}</Link>
+                                    <Link key={item.name} href={item.href} className="block px-6 py-1.5 text-sm text-white/60" onClick={() => setMobileMenuOpen(false)}>{item.name}</Link>
                                   ))}
                                 </div>
                               ))}

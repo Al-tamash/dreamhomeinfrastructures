@@ -9,12 +9,12 @@ import { Building2, CheckCircle, ArrowRight, Phone, ArrowLeft, Star, Clock, Shie
 import { useState } from "react";
 
 const features = [
-  { title: "Office Buildings", description: "Modern corporate offices with smart building technology and efficient layouts" },
-  { title: "Shopping Complexes", description: "Retail spaces designed to maximize footfall and customer experience" },
-  { title: "Industrial Buildings", description: "Heavy-duty construction for manufacturing and industrial operations" },
-  { title: "Warehouses", description: "Large-scale storage facilities with logistics optimization" },
-  { title: "Showrooms & Retail", description: "Eye-catching retail spaces that showcase your products" },
-  { title: "Hotels & Restaurants", description: "Hospitality spaces designed for guest comfort and operational efficiency" },
+  { title: "Office Buildings", description: "Modern corporate offices with smart building technology and efficient layouts", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=870" },
+  { title: "Shopping Complexes", description: "Retail spaces designed to maximize footfall and customer experience", image: "https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?q=80&w=870" },
+  { title: "Industrial Buildings", description: "Heavy-duty construction for manufacturing and industrial operations", image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=870" },
+  { title: "Warehouses", description: "Large-scale storage facilities with logistics optimization", image: "https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=870" },
+  { title: "Showrooms & Retail", description: "Eye-catching retail spaces that showcase your products", image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=870" },
+  { title: "Hotels & Restaurants", description: "Hospitality spaces designed for guest comfort and operational efficiency", image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=870" },
 ];
 
 const processSteps = [
@@ -27,7 +27,7 @@ const processSteps = [
 
 const projects = [
   { title: "Corporate Office - HITEC City", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=870", sqft: "75,000", type: "Office" },
-  { title: "Shopping Mall - Gachibowli", image: "https://images.unsplash.com/photo-1567449303078-57ad995bd329?q=80&w=874", sqft: "1,50,000", type: "Retail" },
+  { title: "Shopping Mall - Gachibowli", image: "https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?q=80&w=870", sqft: "1,50,000", type: "Retail" },
   { title: "Industrial Warehouse", image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=870", sqft: "2,00,000", type: "Warehouse" },
   { title: "Hotel Building - Banjara Hills", image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=870", sqft: "45,000", type: "Hotel" },
 ];
@@ -150,13 +150,32 @@ export default function CommercialConstructionPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-secondary/50 transition-all duration-300 hover:-translate-y-1"
+                className="group relative h-[280px] rounded-2xl overflow-hidden border border-white/10 hover:border-secondary/50 transition-all duration-300"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-secondary to-secondary/50 rounded-xl flex items-center justify-center mb-4">
-                  <CheckCircle size={24} className="text-white" />
+                {/* Background Image */}
+                <Image
+                  src={feature.image}
+                  alt={feature.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/70 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
+                
+                {/* Content */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                  <div className="w-10 h-10 bg-gradient-to-br from-secondary to-primary rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <CheckCircle size={20} className="text-white" />
+                  </div>
+                  <h3 className="font-heading text-xl font-bold text-white mb-2 group-hover:text-secondary transition-colors">{feature.title}</h3>
+                  <p className="text-white/70 text-sm line-clamp-2">{feature.description}</p>
                 </div>
-                <h3 className="font-heading text-lg font-bold text-white mb-2">{feature.title}</h3>
-                <p className="text-white/60 text-sm">{feature.description}</p>
+                
+                {/* Hover Glow */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-secondary/20 rounded-full blur-3xl" />
+                </div>
               </motion.div>
             ))}
           </div>
@@ -164,7 +183,7 @@ export default function CommercialConstructionPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="section-padding" style={{ background: '#000000' }}>
+      <section className="section-padding" className="section-padding bg-dark-200">
         <div className="container-custom">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -236,7 +255,7 @@ export default function CommercialConstructionPage() {
       </section>
 
       {/* Project Gallery */}
-      <section className="section-padding" style={{ background: '#000000' }}>
+      <section className="section-padding" className="section-padding bg-dark-200">
         <div className="container-custom">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -320,7 +339,7 @@ export default function CommercialConstructionPage() {
       </section>
 
       {/* FAQs */}
-      <section className="section-padding" style={{ background: '#000000' }}>
+      <section className="section-padding" className="section-padding bg-dark-200">
         <div className="container-custom">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -362,7 +381,7 @@ export default function CommercialConstructionPage() {
 
       {/* CTA Section */}
       <section className="py-24 bg-gradient-to-r from-secondary/20 to-primary/20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-dark/50" />
         <div className="container-custom relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

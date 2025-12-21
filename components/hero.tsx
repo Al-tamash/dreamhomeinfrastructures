@@ -1,117 +1,216 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight, Phone, Building2, Home, Paintbrush, ChevronDown } from "lucide-react";
+
+const heroSlides = [
+  {
+    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070",
+    title: "Building Excellence",
+    subtitle: "Since 2012",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2071",
+    title: "Crafting Dreams",
+    subtitle: "Into Reality",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=870",
+    title: "Premium Quality",
+    subtitle: "Guaranteed",
+  },
+];
+
+const services = [
+  { icon: Building2, label: "Commercial", count: "150+" },
+  { icon: Home, label: "Residential", count: "300+" },
+  { icon: Paintbrush, label: "Interior", count: "200+" },
+];
 
 export default function Hero() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070"
-          alt="Construction site with modern building"
-          fill
-          className="object-cover"
-          priority
-        />
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-tertiary/95 via-tertiary/80 to-tertiary/40" />
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-dark">
+      {/* Background Slides */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentSlide}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5 }}
+          className="absolute inset-0 z-0"
+        >
+          <Image
+            src={heroSlides[currentSlide].image}
+            alt="Construction project"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Premium Dark Overlay with Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/90 to-dark/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-dark/30" />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Animated Grid Pattern Overlay */}
+      <div className="absolute inset-0 z-[1] opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }} />
       </div>
 
-      {/* Content */}
+      {/* Floating Decorative Elements */}
+      <motion.div
+        animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-20 right-[15%] w-32 h-32 bg-primary/10 rounded-full blur-3xl z-[1]"
+      />
+      <motion.div
+        animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-40 right-[25%] w-48 h-48 bg-secondary/10 rounded-full blur-3xl z-[1]"
+      />
+
+      {/* Main Content */}
       <div className="container-custom relative z-10 py-20">
-        <div className="max-w-3xl">
-          {/* Badge */}
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Trust Badge with Animation */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-secondary/20 border border-secondary/30 rounded-full px-4 py-2 mb-6"
+            transition={{ duration: 0.8 }}
+            className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-5 py-2.5 mb-8"
           >
-            <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
-            <span className="text-secondary text-sm font-medium">
-              Trusted Since 2012 • GHMC Licensed
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+            </span>
+            <span className="text-white/80 text-sm font-medium tracking-wide">
+              GHMC Licensed Since 2012 • BL/2149/2012
             </span>
           </motion.div>
 
-          {/* Main Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+          {/* Bold Statement Headline - Centered */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
+            transition={{ duration: 0.8, delay: 0.1 }}
           >
-            Building Your{" "}
-            <span className="text-primary">Dream Home</span>{" "}
-            Into Reality
-          </motion.h1>
+            <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 leading-[1.1]">
+              <span className="block">We Don&apos;t Just</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-secondary">
+                Build Homes
+              </span>
+              <span className="block text-white/90">We Build Dreams</span>
+            </h1>
+          </motion.div>
 
-          {/* Description */}
+          {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-lg md:text-xl text-white/60 mb-10 max-w-2xl mx-auto leading-relaxed"
           >
-            Hyderabad&apos;s premier construction and interior design company.
-            We transform your vision into stunning structures with unmatched
-            quality and craftsmanship.
+            Hyderabad&apos;s most trusted construction and interior design company.
+            Transforming visions into architectural masterpieces since 2012.
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - Centered */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4"
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
           >
             <Link href="/contact">
-              <Button size="lg" className="group">
-                Get Free Quote
-                <ArrowRight
-                  size={18}
-                  className="ml-2 group-hover:translate-x-1 transition-transform"
-                />
+              <Button size="lg" className="group bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg rounded-xl shadow-lg shadow-primary/25">
+                Start Your Project
+                <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             <a href="tel:+918008044008">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-tertiary">
-                <Phone size={18} className="mr-2" />
-                Call Now
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-white/20 bg-white/5 backdrop-blur-sm text-white hover:bg-white hover:text-dark px-8 py-6 text-lg rounded-xl"
+              >
+                <Phone size={20} className="mr-2" />
+                +91 8008 044 008
               </Button>
             </a>
           </motion.div>
 
-          {/* Stats */}
+          {/* Service Quick Stats - Centered */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid grid-cols-3 gap-6 mt-12 pt-12 border-t border-white/20"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex flex-wrap gap-4 md:gap-6 justify-center"
           >
-            {[
-              { value: "500+", label: "Projects Completed" },
-              { value: "12+", label: "Years Experience" },
-              { value: "300+", label: "Happy Clients" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center sm:text-left">
-                <div className="font-heading text-3xl md:text-4xl font-bold text-primary">
-                  {stat.value}
+            {services.map((service, index) => (
+              <motion.div
+                key={service.label}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl px-5 py-3 hover:bg-white/10 transition-all cursor-pointer group"
+              >
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <service.icon size={20} className="text-primary" />
                 </div>
-                <div className="text-sm text-white/70">{stat.label}</div>
-              </div>
+                <div className="text-left">
+                  <div className="font-bold text-white">{service.count}</div>
+                  <div className="text-xs text-white/50">{service.label}</div>
+                </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-10" />
+      {/* Slide Indicators */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+        {heroSlides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              index === currentSlide ? "w-8 bg-primary" : "w-2 bg-white/30 hover:bg-white/50"
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-8 right-8 z-10 hidden md:flex flex-col items-center gap-2 text-white/50"
+      >
+        <span className="text-xs tracking-widest uppercase">Scroll</span>
+        <ChevronDown size={20} />
+      </motion.div>
+
+      {/* Bottom Gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark to-transparent z-5" />
     </section>
   );
 }

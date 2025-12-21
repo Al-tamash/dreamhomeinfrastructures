@@ -9,12 +9,12 @@ import { Home, CheckCircle, ArrowRight, Phone, ArrowLeft, Star, Clock, Shield, A
 import { useState } from "react";
 
 const features = [
-  { title: "Individual Houses & Villas", description: "Custom-designed homes built to your specifications with premium materials" },
-  { title: "Apartment Buildings", description: "Multi-story residential complexes with modern amenities" },
-  { title: "Gated Communities", description: "Secure, well-planned townships with all facilities" },
-  { title: "Duplex & Triplex Homes", description: "Multi-level homes maximizing space and privacy" },
-  { title: "Multi-story Residential", description: "High-rise apartments with contemporary designs" },
-  { title: "Housing Societies", description: "Large-scale housing projects with community spaces" },
+  { title: "Individual Houses & Villas", description: "Custom-designed homes built to your specifications with premium materials", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=870" },
+  { title: "Apartment Buildings", description: "Multi-story residential complexes with modern amenities", image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=870" },
+  { title: "Gated Communities", description: "Secure, well-planned townships with all facilities", image: "https://images.unsplash.com/photo-1448630360428-65456885c650?q=80&w=870" },
+  { title: "Duplex & Triplex Homes", description: "Multi-level homes maximizing space and privacy", image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=875" },
+  { title: "Multi-story Residential", description: "High-rise apartments with contemporary designs", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=870" },
+  { title: "Housing Societies", description: "Large-scale housing projects with community spaces", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=870" },
 ];
 
 const processSteps = [
@@ -143,13 +143,32 @@ export default function ResidentialConstructionPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1"
+                className="group relative h-[280px] rounded-2xl overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-300"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/50 rounded-xl flex items-center justify-center mb-4">
-                  <CheckCircle size={24} className="text-white" />
+                {/* Background Image */}
+                <Image
+                  src={feature.image}
+                  alt={feature.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/70 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
+                
+                {/* Content */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                  <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                    <CheckCircle size={20} className="text-white" />
+                  </div>
+                  <h3 className="font-heading text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">{feature.title}</h3>
+                  <p className="text-white/70 text-sm line-clamp-2">{feature.description}</p>
                 </div>
-                <h3 className="font-heading text-lg font-bold text-white mb-2">{feature.title}</h3>
-                <p className="text-white/60 text-sm">{feature.description}</p>
+                
+                {/* Hover Glow */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-primary/20 rounded-full blur-3xl" />
+                </div>
               </motion.div>
             ))}
           </div>
@@ -157,7 +176,7 @@ export default function ResidentialConstructionPage() {
       </section>
 
       {/* Our Process Section */}
-      <section className="section-padding" style={{ background: '#000000' }}>
+      <section className="section-padding" className="section-padding bg-dark-200">
         <div className="container-custom">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -241,7 +260,7 @@ export default function ResidentialConstructionPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="section-padding" style={{ background: '#000000' }}>
+      <section className="section-padding" className="section-padding bg-dark-200">
         <div className="container-custom">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -322,7 +341,7 @@ export default function ResidentialConstructionPage() {
 
       {/* CTA Section */}
       <section className="py-24 bg-gradient-to-r from-primary/20 to-secondary/20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-dark/50" />
         <div className="container-custom relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
