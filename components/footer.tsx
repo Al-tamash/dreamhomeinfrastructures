@@ -13,8 +13,8 @@ const quickLinks = [
 const services = [
   { title: "Building Construction", href: "/services/building-construction" },
   { title: "Interior Design", href: "/services/interior-design" },
-  { title: "Residential Construction", href: "/services/building-construction" },
-  { title: "Commercial Construction", href: "/services/building-construction" },
+  { title: "Architectural Planning", href: "/services/interior-design/architectural-planning" },
+  { title: "3D Perspective", href: "/services/interior-design/3d-perspective" },
 ];
 
 const socialLinks = [

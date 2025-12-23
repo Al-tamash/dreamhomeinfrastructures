@@ -6,11 +6,11 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/section-heading";
 import { Button } from "@/components/ui/button";
-import { Paintbrush, PenTool, Box, Video, CheckCircle, ArrowRight, Phone } from "lucide-react";
+import { Paintbrush, Compass, Box, Video, CheckCircle, ArrowRight, Phone } from "lucide-react";
 
 const subServices = [
-  { icon: PenTool, title: "2D Design", description: "Our 2D design services include detailed floor plans, elevations, and sections that help you visualize space.", features: ["Floor Plans & Layouts", "Elevation Drawings", "Section Drawings", "Electrical & Plumbing Plans"], image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=831", href: "/services/interior-design/2d-design" },
-  { icon: Box, title: "3D Design", description: "See your dream space come to life with our realistic 3D visualizations before construction begins.", features: ["Realistic 3D Rendering", "Interior Visualization", "Exterior Visualization", "Material Mapping"], image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800", href: "/services/interior-design/3d-design" },
+  { icon: Compass, title: "Architectural Planning", description: "Professional architectural planning with detailed floor plans, elevations, structural designs, and GHMC-compliant drawings for building approvals.", features: ["Floor Plans & Layouts", "Elevation Drawings", "Structural Design", "GHMC Approval Drawings"], image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=831", href: "/services/interior-design/architectural-planning" },
+  { icon: Box, title: "3D Perspective", description: "Stunning photorealistic 3D perspective views to visualize your building before construction begins.", features: ["Exterior 3D Views", "Interior Perspectives", "Day & Night Renders", "Material Visualization"], image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=871", href: "/services/interior-design/3d-perspective" },
   { icon: Video, title: "3D Walkthrough", description: "Experience your future space before construction with our immersive 3D walkthrough videos.", features: ["Virtual Tours", "Animated Walkthroughs", "Interactive Presentations", "360° Views"], image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=870", href: "/services/interior-design/3d-walkthrough" },
 ];
 

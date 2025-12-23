@@ -22,8 +22,8 @@ const services = [
     title: "Interior Design", 
     href: "/services/interior-design", 
     items: [
-      { name: "2D Design", href: "/services/interior-design/2d-design" },
-      { name: "3D Design", href: "/services/interior-design/3d-design" },
+      { name: "Architectural Planning", href: "/services/interior-design/architectural-planning" },
+      { name: "3D Perspective", href: "/services/interior-design/3d-perspective" },
       { name: "3D Walkthrough", href: "/services/interior-design/3d-walkthrough" }
     ] 
   },

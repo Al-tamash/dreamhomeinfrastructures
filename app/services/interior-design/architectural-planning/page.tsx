@@ -5,67 +5,61 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Box, CheckCircle, ArrowRight, Phone, ArrowLeft, Star, Eye, Palette, Zap, ChevronDown, Sun, Home } from "lucide-react";
+import { Compass, CheckCircle, ArrowRight, Phone, ArrowLeft, Star, FileText, Ruler, Building, Shield, ChevronDown, Home, PenTool } from "lucide-react";
 import { useState } from "react";
 
 const features = [
-  { title: "Photorealistic 3D Rendering", description: "Ultra-realistic visuals that look like actual photographs of your space", icon: Eye, image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800" },
-  { title: "Interior Visualization", description: "See every room with furniture, lighting, and decorations in 3D", icon: Home, image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=880" },
-  { title: "Exterior Visualization", description: "View your building from all angles with surrounding landscaping", icon: Sun, image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=871" },
-  { title: "Material Mapping", description: "Visualize different materials, textures, and finishes before selection", icon: Palette, image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=870" },
-  { title: "Lighting Simulation", description: "See how natural and artificial light affects your space", icon: Zap, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=870" },
-  { title: "Multiple Angle Views", description: "Explore your design from every perspective and corner", icon: Box, image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=875" },
+  { title: "Site Analysis & Survey", description: "Comprehensive land survey with topographical mapping and soil testing", icon: Compass, image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=831" },
+  { title: "Floor Plan Design", description: "Detailed 2D floor plans optimized for space utilization and flow", icon: FileText, image: "https://images.unsplash.com/photo-1574359411659-15573a27fd0c?q=80&w=870" },
+  { title: "Elevation Design", description: "Beautiful front, side, and rear elevation drawings for your building", icon: Building, image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=870" },
+  { title: "Structural Planning", description: "RCC structural design with column, beam, and foundation layouts", icon: Ruler, image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=876" },
+  { title: "MEP Planning", description: "Electrical, plumbing, and HVAC system layouts and specifications", icon: PenTool, image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=870" },
+  { title: "Approval Drawings", description: "GHMC/HMDA compliant drawings for building permissions", icon: Shield, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=870" },
 ];
 
 const processSteps = [
-  { step: "01", title: "2D Plans Review", description: "Analyzing your floor plans" },
-  { step: "02", title: "3D Modeling", description: "Creating the base 3D model" },
-  { step: "03", title: "Material & Texture", description: "Applying finishes and textures" },
-  { step: "04", title: "Lighting Setup", description: "Setting up realistic lighting" },
-  { step: "05", title: "Final Render", description: "High-resolution output" },
+  { step: "01", title: "Consultation", description: "Understanding your requirements" },
+  { step: "02", title: "Site Visit", description: "Land survey and analysis" },
+  { step: "03", title: "Concept Design", description: "Initial layout and ideas" },
+  { step: "04", title: "Documentation", description: "Detailed drawings & plans" },
+  { step: "05", title: "Approval", description: "Help with permissions" },
 ];
 
 const stats = [
-  { value: "1000+", label: "Renders Delivered" },
-  { value: "4K", label: "Resolution Quality" },
-  { value: "3-5", label: "Days Turnaround" },
-  { value: "100%", label: "Satisfaction Rate" },
-];
-
-const pricing = [
-  { title: "Basic Render", price: "₹2,500", unit: "per view", features: ["Single View Render", "Standard Resolution", "Basic Lighting", "1 Revision"], popular: false },
-  { title: "Room Package", price: "₹8,000", unit: "per room", features: ["3 View Renders", "4K Resolution", "Advanced Lighting", "Material Options", "2 Revisions"], popular: true },
-  { title: "Complete Home", price: "₹25,000", unit: "onwards", features: ["All Rooms Covered", "Exterior Views", "Multiple Angles", "Premium Quality", "Unlimited Revisions"], popular: false },
+  { value: "500+", label: "Plans Designed" },
+  { value: "100%", label: "Approval Rate" },
+  { value: "12+", label: "Years Experience" },
+  { value: "GHMC", label: "Licensed" },
 ];
 
 const samples = [
-  { title: "Modern Living Room", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800", type: "Interior" },
-  { title: "Luxury Bedroom", image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=880", type: "Interior" },
-  { title: "Kitchen Design", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=870", type: "Interior" },
-  { title: "Villa Exterior", image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=871", type: "Exterior" },
+  { title: "Residential Floor Plan", image: "https://images.unsplash.com/photo-1574359411659-15573a27fd0c?q=80&w=870", type: "Floor Plan" },
+  { title: "Villa Elevation", image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=871", type: "Elevation" },
+  { title: "Commercial Layout", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=870", type: "Commercial" },
+  { title: "Structural Drawing", image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=876", type: "Structural" },
 ];
 
 const testimonials = [
-  { name: "Suresh Babu", role: "Homeowner, HITEC City", rating: 5, text: "The 3D renders were so realistic that I could make design decisions with complete confidence. It was like seeing my future home before construction!" },
-  { name: "Priyanka", role: "Real Estate Developer", rating: 5, text: "We use Dream Home's 3D visualization for all our projects. It helps us pre-sell apartments and makes client presentations powerful." },
+  { name: "Rajesh Kumar", role: "Homeowner, Madhapur", rating: 5, text: "Their architectural planning was exceptional. Every detail was considered, and the approval process was smooth thanks to their GHMC-compliant drawings." },
+  { name: "Sunita Reddy", role: "Builder, LB Nagar", rating: 5, text: "We've worked with Dream Home on multiple projects. Their structural planning and documentation quality is unmatched in Hyderabad." },
 ];
 
 const faqs = [
-  { question: "How realistic are the 3D renders?", answer: "Our renders are photorealistic quality using industry-leading software like 3ds Max and V-Ray. Most clients cannot distinguish our renders from actual photographs." },
-  { question: "What do I need to provide for 3D design?", answer: "We need your 2D floor plans, elevation drawings, and your preferences for materials, colors, and furniture styles. Reference images help too." },
-  { question: "How long does 3D visualization take?", answer: "A single room takes 3-5 working days. Complete home visualization with multiple views takes 7-14 days depending on complexity." },
-  { question: "Can I make changes after seeing the 3D design?", answer: "Absolutely! Our packages include revisions. You can change materials, furniture, colors, and layouts until you're satisfied." },
-  { question: "What formats do you deliver?", answer: "We deliver high-resolution JPEG and PNG images. We also provide PDF presentations for easy sharing with family or contractors." },
+  { question: "What is included in architectural planning?", answer: "Our architectural planning includes site analysis, floor plans, elevation designs, section drawings, structural layouts, electrical and plumbing plans, and all documentation needed for building approvals." },
+  { question: "How long does the planning process take?", answer: "Typically 2-4 weeks for residential projects and 4-8 weeks for commercial projects, depending on complexity and revision requirements." },
+  { question: "Do you help with GHMC/HMDA approvals?", answer: "Yes! We prepare all drawings as per GHMC/HMDA guidelines and assist you through the entire approval process. Our approval success rate is 100%." },
+  { question: "Can I make changes to the plans?", answer: "Absolutely! We include multiple revision rounds in our packages. We work closely with you until you're completely satisfied with the design." },
+  { question: "Do you provide structural design as well?", answer: "Yes, we provide complete structural design including RCC design, foundation details, column-beam layouts, and all structural calculations certified by licensed engineers." },
 ];
 
 const benefits = [
-  { title: "Avoid Costly Mistakes", description: "See potential issues before construction begins" },
-  { title: "Easy Material Selection", description: "Compare different finishes side by side" },
-  { title: "Better Communication", description: "Show contractors exactly what you want" },
-  { title: "Impress Stakeholders", description: "Professional presentations for approvals" },
+  { title: "Save Money", description: "Proper planning prevents costly construction mistakes" },
+  { title: "Faster Approvals", description: "GHMC-compliant drawings mean quick permissions" },
+  { title: "Better Space Usage", description: "Optimized layouts maximize your built-up area" },
+  { title: "Future Ready", description: "Plans consider future expansion possibilities" },
 ];
 
-export default function Design3DPage() {
+export default function ArchitecturalPlanningPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
@@ -74,8 +68,8 @@ export default function Design3DPage() {
       <section className="relative py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800"
-            alt="3D Design Services"
+            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=831"
+            alt="Architectural Planning Services"
             fill
             className="object-cover"
             priority
@@ -89,19 +83,19 @@ export default function Design3DPage() {
           </Link>
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary/30 rounded-full px-4 py-2 mb-6">
-              <Box size={18} className="text-primary" />
-              <span className="text-primary text-sm font-medium">3D Visualization</span>
+              <Compass size={18} className="text-primary" />
+              <span className="text-primary text-sm font-medium">Professional Planning</span>
             </div>
             <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Stunning <span className="text-primary">3D</span> Visualization
+              Expert <span className="text-primary">Architectural</span> Planning
             </h1>
             <p className="text-xl text-white/80 mb-8 leading-relaxed">
-              See your dream space come to life with photorealistic 3D renderings. Experience every detail before construction begins and make design decisions with confidence.
+              Transform your vision into detailed architectural plans. From floor layouts to GHMC approvals, we handle every aspect of building planning with precision and expertise.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/contact">
                 <Button size="lg" className="bg-primary hover:bg-primary/90">
-                  Get 3D Quote <ArrowRight size={18} className="ml-2" />
+                  Get Planning Quote <ArrowRight size={18} className="ml-2" />
                 </Button>
               </Link>
               <a href="tel:+918008044008">
@@ -145,8 +139,8 @@ export default function Design3DPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Our 3D Design Services</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">Comprehensive 3D visualization for interior and exterior spaces</p>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Our Planning Services</h2>
+            <p className="text-white/70 max-w-2xl mx-auto">Comprehensive architectural planning for residential and commercial projects</p>
           </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, index) => (
@@ -158,24 +152,17 @@ export default function Design3DPage() {
                 viewport={{ once: true }}
                 className="group relative h-[280px] rounded-2xl overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-300"
               >
-                {/* Background Image */}
                 <Image
                   src={feature.image}
                   alt={feature.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                
-                {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/70 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
-                
-                {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
                   <h3 className="font-heading text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">{feature.title}</h3>
                   <p className="text-white/70 text-sm line-clamp-2">{feature.description}</p>
                 </div>
-                
-                {/* Hover Glow */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-primary/20 rounded-full blur-3xl" />
                 </div>
@@ -195,8 +182,8 @@ export default function Design3DPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Why 3D Visualization Matters</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">The advantages of seeing your space before building</p>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Why Professional Planning Matters</h2>
+            <p className="text-white/70 max-w-2xl mx-auto">The foundation of every successful construction project</p>
           </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit, index) => (
@@ -229,8 +216,8 @@ export default function Design3DPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Our 3D Portfolio</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">Photorealistic renders from our recent projects</p>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Our Planning Portfolio</h2>
+            <p className="text-white/70 max-w-2xl mx-auto">Sample architectural plans and designs from our projects</p>
           </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {samples.map((sample, index) => (
@@ -256,7 +243,7 @@ export default function Design3DPage() {
           <div className="text-center mt-10">
             <Link href="/projects">
               <Button variant="outline" className="border-white/30 text-white hover:bg-white hover:text-black">
-                View Full Portfolio <ArrowRight size={16} className="ml-2" />
+                View All Projects <ArrowRight size={16} className="ml-2" />
               </Button>
             </Link>
           </div>
@@ -273,8 +260,8 @@ export default function Design3DPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Our 3D Design Process</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">From 2D plans to stunning 3D visualization</p>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Our Planning Process</h2>
+            <p className="text-white/70 max-w-2xl mx-auto">A systematic approach to architectural planning</p>
           </motion.div>
           <div className="flex flex-wrap justify-center gap-4">
             {processSteps.map((step, index) => (
@@ -295,7 +282,7 @@ export default function Design3DPage() {
         </div>
       </section>
 
-      {/* Pricing */}
+      {/* Testimonials */}
       <section className="section-padding bg-tertiary">
         <div className="container-custom">
           <motion.div 
@@ -305,58 +292,8 @@ export default function Design3DPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Affordable 3D Pricing</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">Transparent pricing for every budget</p>
-          </motion.div>
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {pricing.map((plan, index) => (
-              <motion.div
-                key={plan.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className={`relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 border ${plan.popular ? 'border-primary' : 'border-white/10'}`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full">Best Value</div>
-                )}
-                <h3 className="font-heading text-xl font-bold text-white mb-2">{plan.title}</h3>
-                <div className="mb-4">
-                  <span className="font-heading text-4xl font-bold text-primary">{plan.price}</span>
-                  <span className="text-white/60 text-sm"> {plan.unit}</span>
-                </div>
-                <ul className="space-y-3 mb-6">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2 text-sm text-white/70">
-                      <CheckCircle size={16} className="text-primary flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/contact">
-                  <Button className={`w-full ${plan.popular ? 'bg-primary hover:bg-primary/90' : ''}`} variant={plan.popular ? 'default' : 'outline'}>
-                    Get Started
-                  </Button>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="section-padding bg-dark-200">
-        <div className="container-custom">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Client Testimonials</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">What our clients say about our 3D design services</p>
+            <p className="text-white/70 max-w-2xl mx-auto">What our clients say about our planning services</p>
           </motion.div>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {testimonials.map((testimonial, index) => (
@@ -385,7 +322,7 @@ export default function Design3DPage() {
       </section>
 
       {/* FAQs */}
-      <section className="section-padding bg-tertiary">
+      <section className="section-padding bg-dark-200">
         <div className="container-custom">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -395,7 +332,7 @@ export default function Design3DPage() {
             className="text-center mb-12"
           >
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Frequently Asked Questions</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">Common questions about 3D visualization</p>
+            <p className="text-white/70 max-w-2xl mx-auto">Common questions about architectural planning</p>
           </motion.div>
           <div className="max-w-3xl mx-auto space-y-4">
             {faqs.map((faq, index) => (
@@ -435,14 +372,14 @@ export default function Design3DPage() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">Ready to Visualize Your Dream Space?</h2>
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">Ready to Plan Your Dream Project?</h2>
             <p className="text-white/80 mb-8 max-w-2xl mx-auto text-lg">
-              Get stunning 3D renders that bring your vision to life. Contact us for a free consultation.
+              Get professional architectural plans that bring your vision to life. Book a free consultation today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
                 <Button size="lg" className="bg-primary hover:bg-primary/90">
-                  Get Free Quote <ArrowRight size={18} className="ml-2" />
+                  Get Free Consultation <ArrowRight size={18} className="ml-2" />
                 </Button>
               </Link>
               <a href="tel:+918008044008">
