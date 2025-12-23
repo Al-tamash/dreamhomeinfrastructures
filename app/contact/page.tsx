@@ -8,7 +8,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 const contactInfo = [
   { icon: Phone, title: "Phone", details: ["+91 8008044008", "+91 7799977792"], href: "tel:+918008044008" },
-  { icon: Mail, title: "Email", details: ["dreamhomeinfrastructures@yahoo.com"], href: "mailto:dreamhomeinfrastructures@yahoo.com" },
+  { icon: Mail, title: "Email", details: ["dreamhomeinfrastructures@gmail.com"], href: "mailto:dreamhomeinfrastructures@gmail.com" },
   { icon: MapPin, title: "Address", details: ["H.No:12-2-260/2, Mehdipatnam,", "Hyderabad, Telangana"], href: "https://maps.google.com/?q=Mehdipatnam,Hyderabad" },
   { icon: Clock, title: "Working Hours", details: ["Mon - Sat: 9:00 AM - 7:00 PM", "Sunday: Closed"], href: null },
 ];

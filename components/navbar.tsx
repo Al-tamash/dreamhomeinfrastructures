@@ -50,8 +50,8 @@ export default function Navbar() {
             <a href="tel:+918008044008" className="flex items-center gap-2 hover:text-secondary transition-colors">
               <Phone size={14} />+91 8008044008
             </a>
-            <a href="mailto:dreamhomeinfrastructures@yahoo.com" className="flex items-center gap-2 hover:text-secondary transition-colors">
-              <Mail size={14} />dreamhomeinfrastructures@yahoo.com
+            <a href="mailto:dreamhomeinfrastructures@gmail.com" className="flex items-center gap-2 hover:text-secondary transition-colors">
+              <Mail size={14} />dreamhomeinfrastructures@gmail.com
             </a>
           </div>
           <div className="text-white/50">GHMC License No: BL/2149/2012</div>

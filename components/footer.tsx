@@ -103,9 +103,9 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:dreamhomeinfrastructures@yahoo.com" className="flex items-center gap-3 text-white/60 hover:text-secondary transition-colors">
+                <a href="mailto:dreamhomeinfrastructures@gmail.com" className="flex items-center gap-3 text-white/60 hover:text-secondary transition-colors">
                   <Mail size={18} className="flex-shrink-0 text-primary" />
-                  <span className="text-sm break-all">dreamhomeinfrastructures@yahoo.com</span>
+                  <span className="text-sm break-all">dreamhomeinfrastructures@gmail.com</span>
                 </a>
               </li>
             </ul>
