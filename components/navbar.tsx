@@ -13,8 +13,8 @@ const services = [
     title: "Building Construction", 
     href: "/services/building-construction", 
     items: [
-      { name: "Residential & Apartment", href: "/services/building-construction/residential" },
-      { name: "Commercial Construction", href: "/services/building-construction/commercial" },
+      { name: "Residential ", href: "/services/building-construction/residential" },
+      { name: "Commercial", href: "/services/building-construction/commercial" },
       { name: "Villa & Farm House", href: "/services/building-construction/villa" }
     ] 
   },

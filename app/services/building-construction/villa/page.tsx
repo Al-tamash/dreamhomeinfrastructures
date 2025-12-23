@@ -12,7 +12,7 @@ const features = [
   { title: "Luxury Villas", description: "Spacious, elegant villas with premium finishes and modern amenities", image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=871" },
   { title: "Farm Houses", description: "Rustic elegance combined with modern comforts for countryside living", image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=870" },
   { title: "Weekend Homes", description: "Perfect getaway homes designed for relaxation and rejuvenation", image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=875" },
-  { title: "Resort-style Properties", description: "Vacation-home experience right at your doorstep", image: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=870" },
+  { title: "Bungalows", description: "Single-story luxury homes with spacious layouts and gardens", image: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=870" },
   { title: "Country Estates", description: "Sprawling properties with expansive outdoor spaces", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=870" },
   { title: "Garden Homes", description: "Homes designed around beautiful landscaping and gardens", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=870" },
 ];

@@ -32,11 +32,6 @@ const stats = [
   { value: "VR", label: "Ready Output" },
 ];
 
-const pricing = [
-  { title: "Basic Walkthrough", price: "₹15,000", unit: "per project", features: ["2-3 Minute Video", "1080p Quality", "Background Music", "Standard Transitions"], popular: false },
-  { title: "Premium Walkthrough", price: "₹30,000", unit: "per project", features: ["3-5 Minute Video", "4K Ultra HD", "Custom Music", "Day & Night Scenes", "2 Revisions"], popular: true },
-  { title: "Complete Experience", price: "₹50,000", unit: "per project", features: ["5+ Minute Video", "8K Quality", "VR Compatible", "360° Panoramas", "Unlimited Revisions"], popular: false },
-];
 
 const samples = [
   { title: "Luxury Villa Tour", image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=870", type: "Villa" },
@@ -300,55 +295,6 @@ export default function WalkthroughPage() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="section-padding bg-tertiary">
-        <div className="container-custom">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Walkthrough Packages</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">Professional walkthrough videos at competitive prices</p>
-          </motion.div>
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {pricing.map((plan, index) => (
-              <motion.div
-                key={plan.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className={`relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 border ${plan.popular ? 'border-secondary' : 'border-white/10'}`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-secondary text-white text-xs font-bold px-4 py-1 rounded-full">Most Popular</div>
-                )}
-                <h3 className="font-heading text-xl font-bold text-white mb-2">{plan.title}</h3>
-                <div className="mb-4">
-                  <span className="font-heading text-4xl font-bold text-secondary">{plan.price}</span>
-                  <span className="text-white/60 text-sm"> {plan.unit}</span>
-                </div>
-                <ul className="space-y-3 mb-6">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2 text-sm text-white/70">
-                      <CheckCircle size={16} className="text-secondary flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/contact">
-                  <Button className={`w-full ${plan.popular ? 'bg-secondary hover:bg-secondary/90' : ''}`} variant={plan.popular ? 'default' : 'outline'}>
-                    Get Started
-                  </Button>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Testimonials */}
       <section className="section-padding bg-dark-200">

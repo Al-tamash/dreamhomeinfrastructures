@@ -26,7 +26,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        heading: ['"Comic Sans MS"', 'cursive', 'sans-serif'],
+        heading: ['Montserrat', 'sans-serif'],
         body: ['Ubuntu', 'sans-serif'],
       },
     },

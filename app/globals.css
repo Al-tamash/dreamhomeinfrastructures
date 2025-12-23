@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Ubuntu:wght@300;400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -60,7 +60,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -142,31 +142,36 @@ html.light .bg-\[var\(--background\)\] {
 /* Keep CTA sections dark */
 html.light section.bg-dark.py-20,
 html.light section.bg-dark.py-16,
+html.light section.bg-dark.section-padding,
 html.light .bg-gradient-to-br.from-secondary.to-primary,
 html.light .bg-gradient-to-r.from-secondary.to-primary {
   background-color: #2c2c2c !important;
 }
 
 html.light section.bg-dark.py-20 *:not(button):not(a),
-html.light section.bg-dark.py-16 *:not(button):not(a) {
+html.light section.bg-dark.py-16 *:not(button):not(a),
+html.light section.bg-dark.section-padding *:not(button):not(a) {
   color: #ffffff !important;
 }
 
 /* CTA section buttons - normal state */
 html.light section.bg-dark.py-20 button,
-html.light section.bg-dark.py-16 button {
+html.light section.bg-dark.py-16 button,
+html.light section.bg-dark.section-padding button {
   border-color: #ffffff !important;
   color: #ffffff !important;
 }
 
 html.light section.bg-dark.py-20 button svg,
-html.light section.bg-dark.py-16 button svg {
+html.light section.bg-dark.py-16 button svg,
+html.light section.bg-dark.section-padding button svg {
   color: #ffffff !important;
 }
 
 /* CTA section buttons - hover state */
 html.light section.bg-dark.py-20 button:hover,
-html.light section.bg-dark.py-16 button:hover {
+html.light section.bg-dark.py-16 button:hover,
+html.light section.bg-dark.section-padding button:hover {
   background-color: #ffffff !important;
   border-color: #ffffff !important;
   color: var(--secondary) !important;
@@ -373,6 +378,12 @@ html.light .bg-secondary {
   color: #ffffff !important;
 }
 
+/* Ensure all content inside primary/secondary backgrounds stays white */
+html.light .bg-primary *,
+html.light .bg-secondary * {
+  color: #ffffff !important;
+}
+
 /* WhatsApp button */
 html.light .bg-green-500,
 html.light .bg-\[\#25D366\] {
@@ -479,7 +490,27 @@ html.light .border.rounded-2xl .text-3xl {
 
 /* Testimonial cards */
 html.light .italic {
-  color: #5f6368 !important;
+  color: #333333 !important;
+}
+
+/* Testimonial card backgrounds and text */
+html.light .bg-white\/5.backdrop-blur-sm.rounded-2xl.p-8 {
+  background-color: #ffffff !important;
+  border-color: #e0e0e0 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+html.light .bg-white\/5.backdrop-blur-sm.rounded-2xl.p-8 .text-white {
+  color: #1a1a1a !important;
+}
+
+html.light .bg-white\/5.backdrop-blur-sm.rounded-2xl.p-8 .text-white\/70 {
+  color: #333333 !important;
+}
+
+/* Quote icon in testimonials */
+html.light .text-secondary\/20 {
+  color: rgba(39, 115, 143, 0.25) !important;
 }
 
 /* Process step cards */
