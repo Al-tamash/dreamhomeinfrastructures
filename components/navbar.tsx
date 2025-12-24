@@ -27,6 +27,15 @@ const services = [
       { name: "3D Walkthrough", href: "/services/interior-design/3d-walkthrough" }
     ] 
   },
+  { 
+    title: "Plotting & Venture", 
+    href: "/services/plotting-venture", 
+    items: [
+      { name: "HMDA Plots", href: "/services/plotting-venture/hmda" },
+      { name: "DTCP Plots", href: "/services/plotting-venture/dtcp" },
+      { name: "Farm Plots", href: "/services/plotting-venture/farm-plots" }
+    ] 
+  },
 ];
 
 const navLinks = [
@@ -62,13 +71,15 @@ export default function Navbar() {
         <div className="container-custom">
           <div className="flex items-center justify-between h-20">
             <Link href="/" className="flex items-center">
-              <Image
-                src="/images/dreamhomelogo (5).png"
-                alt="Dream Home Infrastructures Logo"
-                width={150}
-                height={60}
-                className="object-contain"
-              />
+              <div className="dark:bg-white dark:rounded-md dark:px-2 dark:py-1">
+                <Image
+                  src="/images/dreamhomelogo (5).png"
+                  alt="Dream Home Infrastructures Logo"
+                  width={130}
+                  height={50}
+                  className="object-contain"
+                />
+              </div>
             </Link>
 
             <div className="hidden lg:flex items-center gap-1">

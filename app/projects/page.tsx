@@ -26,8 +26,22 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <section className="relative py-20 md:py-28 bg-tertiary">
-        <div className="absolute inset-0 opacity-20"><Image src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070" alt="Projects" fill className="object-cover" /></div>
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/videos/Indian_Luxury_Real_Estate_Video.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-transparent dark:from-dark/70 dark:via-dark/50 dark:to-dark/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent dark:from-dark/60 dark:via-transparent dark:to-dark/20" />
+        </div>
         <div className="container-custom relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
             <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">Our <span className="text-primary">Projects</span></h1>

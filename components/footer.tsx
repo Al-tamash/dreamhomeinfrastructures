@@ -31,13 +31,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="space-y-6">
             <div>
-              <Image
-                src="/images/dreamhomelogo (5).png"
-                alt="Dream Home Infrastructures Logo"
-                width={150}
-                height={60}
-                className="object-contain "
-              />
+              <div className="bg-white rounded-md px-2 py-1 inline-block">
+                <Image
+                  src="/images/dreamhomelogo (5).png"
+                  alt="Dream Home Infrastructures Logo"
+                  width={130}
+                  height={50}
+                  className="object-contain"
+                />
+              </div>
             </div>
             <p className="text-white/60 text-sm leading-relaxed">Building your dreams into reality since 2012. We are a trusted construction and interior design company in Hyderabad.</p>                   
             <div className="flex items-center gap-2 text-sm text-secondary">

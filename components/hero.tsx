@@ -1,29 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone, Building2, Home, Paintbrush, ChevronDown } from "lucide-react";
-
-const heroSlides = [
-  {
-    image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070",
-    title: "Building Excellence",
-    subtitle: "Since 2012",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2071",
-    title: "Crafting Dreams",
-    subtitle: "Into Reality",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=870",
-    title: "Premium Quality",
-    subtitle: "Guaranteed",
-  },
-];
+import { useTheme } from "@/contexts/theme-context";
 
 const services = [
   { icon: Building2, label: "Commercial", count: "150+" },
@@ -31,41 +13,41 @@ const services = [
   { icon: Paintbrush, label: "Interior", count: "200+" },
 ];
 
+// Free stock construction/building video from Coverr (reliable CDN)
+const heroVideoUrl = "https://cdn.coverr.co/videos/coverr-aerial-view-of-a-construction-site-2269/1080p.mp4";
+
 export default function Hero() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
-    return () => clearInterval(timer);
+    // Ensure video plays on mount
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {
+        // Autoplay might be blocked, video will still show first frame
+      });
+    }
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-dark">
-      {/* Background Slides */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentSlide}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.5 }}
-          className="absolute inset-0 z-0"
+    <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0">
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover"
         >
-          <Image
-            src={heroSlides[currentSlide].image}
-            alt="Construction project"
-            fill
-            className="object-cover"
-            priority
-          />
-          {/* Premium Dark Overlay with Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/90 to-dark/50" />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-dark/30" />
-        </motion.div>
-      </AnimatePresence>
+          <source src="/videos/Indian_Luxury_Real_Estate_Video.mp4" type="video/mp4" />
+        </video>
+        {/* Overlay - Light theme: minimal overlay, Dark theme: darker for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-transparent dark:from-dark/70 dark:via-dark/50 dark:to-dark/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent dark:from-dark/60 dark:via-transparent dark:to-dark/20" />
+      </div>
 
       {/* Animated Grid Pattern Overlay */}
       <div className="absolute inset-0 z-[1] opacity-10">
@@ -186,18 +168,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex gap-2">
-        {heroSlides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              index === currentSlide ? "w-8 bg-primary" : "w-2 bg-white/30 hover:bg-white/50"
-            }`}
-          />
-        ))}
-      </div>
+
 
       {/* Scroll Indicator */}
       <motion.div

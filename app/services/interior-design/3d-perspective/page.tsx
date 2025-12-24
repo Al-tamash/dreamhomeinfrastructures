@@ -66,15 +66,13 @@ export default function Perspective3DPage() {
     <>
       {/* Hero Section */}
       <section className="relative py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=871"
-            alt="3D Perspective Services"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/70" />
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video autoPlay loop muted playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover">
+            <source src="/videos/Indian_Luxury_Real_Estate_Video.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-transparent dark:from-dark/70 dark:via-dark/50 dark:to-dark/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent dark:from-dark/60 dark:via-transparent dark:to-dark/20" />
         </div>
         <div className="container-custom relative z-10">
           <Link href="/services/interior-design" className="inline-flex items-center gap-2 text-secondary hover:text-white mb-6 transition-colors group">

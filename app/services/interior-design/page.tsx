@@ -25,7 +25,14 @@ export default function InteriorDesignPage() {
   return (
     <>
       <section className="relative py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0"><Image src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800" alt="Interior design" fill className="object-cover" /><div className="absolute inset-0 bg-gradient-to-r from-tertiary/95 via-tertiary/80 to-tertiary/60" /></div>
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video autoPlay loop muted playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover">
+            <source src="/videos/Indian_Luxury_Real_Estate_Video.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-transparent dark:from-dark/70 dark:via-dark/50 dark:to-dark/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent dark:from-dark/60 dark:via-transparent dark:to-dark/20" />
+        </div>
         <div className="container-custom relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-secondary/20 border border-secondary/30 rounded-full px-4 py-2 mb-6"><Paintbrush size={18} className="text-secondary" /><span className="text-secondary text-sm font-medium">Interior Design Services</span></div>

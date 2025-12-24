@@ -9,7 +9,7 @@ import SectionHeading from "@/components/section-heading";
 import ServiceCard from "@/components/service-card";
 import ProjectCard from "@/components/project-card";
 import { Button } from "@/components/ui/button";
-import { Building2, Home, Building, PenTool, Box, Video, CheckCircle, Users, Award, Clock, Star, Quote, ArrowRight, Phone } from "lucide-react";
+import { Building2, Home, Building, PenTool, Box, Video, CheckCircle, Users, Award, Clock, Star, Quote, ArrowRight, Phone, MapPin, TreePine, FileCheck } from "lucide-react";
 
 const services = [
   { title: "Residential Construction", description: "Transform your dream home into reality with our expert residential construction services.", icon: Home, href: "/services/building-construction/residential", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=870" },
@@ -18,6 +18,9 @@ const services = [
   { title: "Architectural Planning", description: "Professional architectural planning with detailed floor plans, elevations, and structural designs.", icon: PenTool, href: "/services/interior-design/architectural-planning", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=831" },
   { title: "3D Perspective", description: "Photorealistic 3D perspective views to visualize your project before construction begins.", icon: Box, href: "/services/interior-design/3d-perspective", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800" },
   { title: "3D Walkthrough", description: "Immersive virtual tours of your future space with cutting-edge technology.", icon: Video, href: "/services/interior-design/3d-walkthrough", image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=870" },
+  { title: "HMDA Plots", description: "Government approved HMDA plots with 100% legal titles and bank loan eligibility.", icon: MapPin, href: "/services/plotting-venture/hmda", image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=870" },
+  { title: "DTCP Plots", description: "Affordable DTCP approved plots in emerging locations with high appreciation potential.", icon: FileCheck, href: "/services/plotting-venture/dtcp", image: "https://images.unsplash.com/photo-1628624747186-a941c476b7ef?q=80&w=870" },
+  { title: "Farm Plots", description: "Premium farm land near Hyderabad for weekend getaways and long-term investment.", icon: TreePine, href: "/services/plotting-venture/farm-plots", image: "https://images.unsplash.com/photo-1500076656116-558758c991c1?q=80&w=871" },
 ];
 
 const whyChooseUs = [

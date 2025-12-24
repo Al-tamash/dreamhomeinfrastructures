@@ -305,27 +305,8 @@ html.light footer .bg-white\/10 {
   background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
-/* Hero sections - Keep dark gradient overlay for readability */
-html.light section.relative .bg-gradient-to-r {
-  opacity: 1 !important;
-}
-
-html.light .bg-gradient-to-r.from-tertiary\/95,
-html.light .bg-gradient-to-r.from-tertiary\/90,
-html.light .bg-gradient-to-r.from-tertiary\/80 {
-  background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.7), rgba(0,0,0,0.5)) !important;
-}
-
-/* Hero overlay - make darker */
-html.light section.relative .absolute.inset-0.bg-gradient-to-r,
-html.light section.relative > div.absolute.inset-0 {
-  background: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.6), rgba(0,0,0,0.4)) !important;
-}
-
-/* Gradient overlays on images */
-html.light .from-tertiary\/95.via-tertiary\/80.to-tertiary\/60 {
-  background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.75), rgba(0,0,0,0.5)) !important;
-}
+/* Hero section text - keep white on image backgrounds */
+/* NOTE: Hero overlay rules removed to allow video visibility in light theme */
 
 /* Stats and badges */
 html.light .bg-primary\/20,

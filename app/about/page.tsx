@@ -20,9 +20,22 @@ const values = ["Customer-first approach", "Transparent pricing", "Premium quali
 export default function AboutPage() {
   return (
     <>
-      <section className="relative py-20 md:py-28 bg-tertiary overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <Image src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2071" alt="Construction" fill className="object-cover" />
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/videos/Indian_Luxury_Real_Estate_Video.mp4" type="video/mp4" />
+          </video>
+          {/* Overlay - Light theme: minimal, Dark theme: darker */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-transparent dark:from-dark/70 dark:via-dark/50 dark:to-dark/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent dark:from-dark/60 dark:via-transparent dark:to-dark/20" />
         </div>
         <div className="container-custom relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
@@ -89,8 +102,8 @@ export default function AboutPage() {
           <SectionHeading title="Our Leadership" subtitle="Meet the visionaries behind Dream Home Infrastructures" />
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} viewport={{ once: true }} className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10">
-              <div className="relative aspect-[4/3] bg-gradient-to-br from-tertiary to-secondary/20 flex items-center justify-center">
-                <div className="w-32 h-32 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center"><span className="text-white font-heading text-4xl font-bold">SA</span></div>
+              <div className="relative aspect-square">
+                <Image src="/images/drsarfarajahmed.jpeg" alt="Dr. Sarfaraz Ahmed" fill className="object-cover object-center" />
               </div>
               <div className="p-6 text-center">
                 <h3 className="font-heading text-xl font-bold text-white mb-1">Dr. Sarfaraz Ahmed</h3>
