@@ -37,10 +37,14 @@ const testimonials = [
 ];
 
 const projectsPreview = [
-  { title: "Modern Apartment Complex", category: "Residential", image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=735" },
-  { title: "Luxury Villa Banjara Hills", category: "Villa", image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=871" },
-  { title: "Commercial Office Space", category: "Commercial", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=870" },
-  { title: "Contemporary Home Interior", category: "Interior", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800" },
+  { image: "/porject-images/e1.png" },
+  { image: "/porject-images/e2.png" },
+  { image: "/porject-images/e3.png" },
+  { image: "/porject-images/e4.png" },
+  { image: "/porject-images/e5.png" },
+  { image: "/porject-images/e6.png" },
+  { image: "/porject-images/e7.png" },
+  { image: "/porject-images/e8.png" },
 ];
 
 function AnimatedCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
@@ -133,8 +137,26 @@ export default function HomePage() {
       <section className="section-padding bg-tertiary">
         <div className="container-custom">
           <SectionHeading title="Our Projects" subtitle="Explore our recently completed construction and interior projects" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {projectsPreview.map((project, index) => (<ProjectCard key={project.title} {...project} index={index} />))}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {projectsPreview.map((project, index) => (
+              <motion.div 
+                key={index} 
+                initial={{ opacity: 0, scale: 0.9 }} 
+                whileInView={{ opacity: 1, scale: 1 }} 
+                transition={{ duration: 0.4, delay: index * 0.05 }} 
+                viewport={{ once: true }}
+                className="group relative overflow-hidden rounded-2xl border border-white/10"
+              >
+                <div className="relative aspect-[4/3]">
+                  <Image 
+                    src={project.image} 
+                    alt={`Project ${index + 1}`} 
+                    fill 
+                    className="object-cover transition-transform duration-500 group-hover:scale-110" 
+                  />
+                </div>
+              </motion.div>
+            ))}
           </div>
           <div className="text-center mt-12">
             <Link href="/projects"><Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white hover:text-tertiary">View All Projects <ArrowRight size={18} className="ml-2" /></Button></Link>
