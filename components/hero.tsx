@@ -85,7 +85,7 @@ export default function Hero() {
               <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
             </span>
             <span className="text-white/80 text-sm font-medium tracking-wide">
-              GHMC Licensed Since 2012 • BL/2149/2012
+              GHMC Licensed Since 2009 • BL/2149/2009
             </span>
           </motion.div>
 
@@ -112,7 +112,7 @@ export default function Hero() {
             className="text-lg md:text-xl text-white/60 mb-10 max-w-2xl mx-auto leading-relaxed"
           >
             Hyderabad&apos;s most trusted construction and interior design company.
-            Transforming visions into architectural masterpieces since 2012.
+            Transforming visions into architectural masterpieces since 2009.
           </motion.p>
 
           {/* CTA Buttons - Centered */}

@@ -66,7 +66,7 @@ export default function ContactPage() {
 
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} viewport={{ once: true }} className="bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl p-6 border border-white/10">
                 <h4 className="font-heading font-bold text-white mb-2">GHMC Licensed Contractor</h4>
-                <p className="text-white/60">License No: <span className="font-semibold text-secondary">BL/2149/2012</span></p>
+                <p className="text-white/60">License No: <span className="font-semibold text-secondary">BL/2149/2009</span></p>
               </motion.div>
             </div>
 

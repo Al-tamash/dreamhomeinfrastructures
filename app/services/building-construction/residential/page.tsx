@@ -34,7 +34,7 @@ const projects = [
 
 const stats = [
   { value: "200+", label: "Homes Built" },
-  { value: "12+", label: "Years Experience" },
+  { value: `${new Date().getFullYear() - 2009}+`, label: "Years Experience" },
   { value: "100%", label: "Client Satisfaction" },
   { value: "50+", label: "Expert Team" },
 ];

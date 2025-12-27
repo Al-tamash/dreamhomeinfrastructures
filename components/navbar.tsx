@@ -63,7 +63,7 @@ export default function Navbar() {
               <Mail size={14} />dreamhomeinfrastructures@gmail.com
             </a>
           </div>
-          <div className="text-white/50">GHMC License No: BL/2149/2012</div>
+          <div className="text-white/50">GHMC License No: BL/2149/2009</div>
         </div>
       </div>
 

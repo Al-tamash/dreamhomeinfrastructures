@@ -7,8 +7,8 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone } from "lucide-react";
 
-// Generate image paths (e1.png to e27.png)
-const projectImages = Array.from({ length: 27 }, (_, i) => `/porject-images/e${i + 1}.png`);
+// Generate image paths (e1.png to e27.png, excluding e4.png)
+const projectImages = Array.from({ length: 27 }, (_, i) => `/porject-images/e${i + 1}.png`).filter(img => img !== '/porject-images/e8.png');
 
 // Video paths (v1.mp4 to v5.mp4)
 const projectVideos = Array.from({ length: 5 }, (_, i) => `/project-videos/v${i + 1}.mp4`);

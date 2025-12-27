@@ -28,7 +28,7 @@ const processSteps = [
 const stats = [
   { value: "500+", label: "Plans Designed" },
   { value: "100%", label: "Approval Rate" },
-  { value: "12+", label: "Years Experience" },
+  { value: `${new Date().getFullYear() - 2009}+`, label: "Years Experience" },
   { value: "GHMC", label: "Licensed" },
 ];
 

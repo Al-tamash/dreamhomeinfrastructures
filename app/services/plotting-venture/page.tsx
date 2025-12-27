@@ -60,7 +60,7 @@ const amenities = [
 ];
 
 const stats = [
-  { value: "12+", label: "Years Experience" },
+  { value: `${new Date().getFullYear() - 2009}+`, label: "Years Experience" },
   { value: "5000+", label: "Plots Sold" },
   { value: "100+", label: "Projects Delivered" },
   { value: "₹500Cr+", label: "Property Transacted" },
@@ -148,9 +148,9 @@ export default function PlottingVenturePage() {
                 <div className="space-y-4">
                   {[
                     { icon: Shield, text: "HMDA & DTCP Approved Layouts" },
-                    { icon: BadgeCheck, text: "GHMC Licensed (BL/2149/2012)" },
+                    { icon: BadgeCheck, text: "GHMC Licensed (BL/2149/2009)" },
                     { icon: Landmark, text: "All Major Bank Loan Approved" },
-                    { icon: Award, text: "12+ Years in Real Estate" },
+                    { icon: Award, text: `${new Date().getFullYear() - 2009}+ Years in Real Estate` },
                     { icon: Users, text: "5000+ Happy Customers" },
                   ].map((item, index) => (
                     <motion.div key={item.text} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }} className="flex items-center gap-3 bg-white/5 rounded-xl p-3">

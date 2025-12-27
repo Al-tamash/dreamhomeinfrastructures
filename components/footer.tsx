@@ -39,10 +39,10 @@ export default function Footer() {
                 className="object-contain"
               />
             </div>
-            <p className="text-white/60 text-sm leading-relaxed">Building your dreams into reality since 2012. We are a trusted construction and interior design company in Hyderabad.</p>                   
+            <p className="text-white/60 text-sm leading-relaxed">Building your dreams into reality since 2009. We are a trusted construction and interior design company in Hyderabad.</p>                   
             <div className="flex items-center gap-2 text-sm text-secondary">
               <span className="font-semibold">GHMC License:</span>
-              <span>BL/2149/2012</span>
+              <span>BL/2149/2009</span>
             </div>
             <div className="flex gap-3">
               {socialLinks.map((social) => (

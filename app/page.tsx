@@ -12,19 +12,19 @@ import { Button } from "@/components/ui/button";
 import { Building2, Home, Building, PenTool, Box, Video, CheckCircle, Users, Award, Clock, Star, Quote, ArrowRight, Phone, MapPin, TreePine, FileCheck } from "lucide-react";
 
 const services = [
-  { title: "Residential Construction", description: "Transform your dream home into reality with our expert residential construction services.", icon: Home, href: "/services/building-construction/residential", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=870" },
-  { title: "Commercial Construction", description: "Professional commercial building solutions for offices, retail spaces, and industrial facilities.", icon: Building2, href: "/services/building-construction/commercial", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=870" },
-  { title: "Villa & Farm House", description: "Luxurious villa and farmhouse construction with premium materials and contemporary designs.", icon: Building, href: "/services/building-construction/villa", image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=871" },
-  { title: "Architectural Planning", description: "Professional architectural planning with detailed floor plans, elevations, and structural designs.", icon: PenTool, href: "/services/interior-design/architectural-planning", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=831" },
-  { title: "3D Perspective", description: "Photorealistic 3D perspective views to visualize your project before construction begins.", icon: Box, href: "/services/interior-design/3d-perspective", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800" },
-  { title: "3D Walkthrough", description: "Immersive virtual tours of your future space with cutting-edge technology.", icon: Video, href: "/services/interior-design/3d-walkthrough", image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=870" },
-  { title: "HMDA Plots", description: "Government approved HMDA plots with 100% legal titles and bank loan eligibility.", icon: MapPin, href: "/services/plotting-venture/hmda", image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=870" },
-  { title: "DTCP Plots", description: "Affordable DTCP approved plots in emerging locations with high appreciation potential.", icon: FileCheck, href: "/services/plotting-venture/dtcp", image: "https://images.unsplash.com/photo-1628624747186-a941c476b7ef?q=80&w=870" },
-  { title: "Farm Plots", description: "Premium farm land near Hyderabad for weekend getaways and long-term investment.", icon: TreePine, href: "/services/plotting-venture/farm-plots", image: "https://images.unsplash.com/photo-1500076656116-558758c991c1?q=80&w=871" },
+  { title: "Residential Construction", description: "Transform your dream home into reality with our expert residential construction services.", icon: Home, href: "/services/building-construction/residential", image: "/services-image/residentialconstruction.png" },
+  { title: "Commercial Construction", description: "Professional commercial building solutions for offices, retail spaces, and industrial facilities.", icon: Building2, href: "/services/building-construction/commercial", image: "/services-image/commercialconstruction.png" },
+  { title: "Villa & Farm House", description: "Luxurious villa and farmhouse construction with premium materials and contemporary designs.", icon: Building, href: "/services/building-construction/villa", image: "/services-image/villafarmhouse.png" },
+  { title: "Architectural Planning", description: "Professional architectural planning with detailed floor plans, elevations, and structural designs.", icon: PenTool, href: "/services/interior-design/architectural-planning", image: "/services-image/Architecturalplanning.png" },
+  { title: "3D Perspective", description: "Photorealistic 3D perspective views to visualize your project before construction begins.", icon: Box, href: "/services/interior-design/3d-perspective", image: "/services-image/3DPerspective.png" },
+  { title: "3D Walkthrough", description: "Immersive virtual tours of your future space with cutting-edge technology.", icon: Video, href: "/services/interior-design/3d-walkthrough", image: "/services-image/3DWalkthrough.png" },
+  { title: "HMDA Plots", description: "Government approved HMDA plots with 100% legal titles and bank loan eligibility.", icon: MapPin, href: "/services/plotting-venture/hmda", image: "/services-image/HMDAPlots.png" },
+  { title: "DTCP Plots", description: "Affordable DTCP approved plots in emerging locations with high appreciation potential.", icon: FileCheck, href: "/services/plotting-venture/dtcp", image: "/services-image/DTCPPlots.png" },
+  { title: "Farm Plots", description: "Premium farm land near Hyderabad for weekend getaways and long-term investment.", icon: TreePine, href: "/services/plotting-venture/farm-plots", image: "/services-image/FarmPlots.png" },
 ];
 
 const whyChooseUs = [
-  { icon: Award, title: "GHMC Licensed", description: "Fully licensed and government approved contractor since 2012" },
+  { icon: Award, title: "GHMC Licensed", description: "Fully licensed and government approved contractor since 2009" },
   { icon: Clock, title: "Timely Delivery", description: "We complete projects on time without compromising quality" },
   { icon: Users, title: "Expert Team", description: "Skilled architects, engineers, and craftsmen at your service" },
   { icon: CheckCircle, title: "Quality Assured", description: "Premium materials and rigorous quality checks on all projects" },
@@ -44,7 +44,7 @@ const projectsPreview = [
   { image: "/porject-images/e5.png" },
   { image: "/porject-images/e6.png" },
   { image: "/porject-images/e7.png" },
-  { image: "/porject-images/e8.png" },
+  { image: "/porject-images/e9.png" },
 ];
 
 function AnimatedCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
@@ -94,7 +94,7 @@ export default function HomePage() {
                 <Image src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=876" alt="Construction team" fill className="object-cover" />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-primary text-white p-6 rounded-2xl shadow-xl">
-                <div className="font-heading text-4xl font-bold">12+</div>
+                <div className="font-heading text-4xl font-bold">{new Date().getFullYear() - 2009}+</div>
                 <div className="text-sm">Years Experience</div>
               </div>
             </motion.div>
@@ -123,7 +123,7 @@ export default function HomePage() {
       <section className="py-16 bg-dark">
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[{ value: 500, suffix: "+", label: "Projects Completed" }, { value: 12, suffix: "+", label: "Years Experience" }, { value: 300, suffix: "+", label: "Happy Clients" }, { value: 50, suffix: "+", label: "Expert Team" }].map((stat, index) => (
+            {[{ value: 50, suffix: "+", label: "Projects Completed" }, { value: new Date().getFullYear() - 2009, suffix: "+", label: "Years Experience" }, { value: 300, suffix: "+", label: "Happy Clients" }, { value: 50, suffix: "+", label: "Expert Team" }].map((stat, index) => (
               <motion.div key={stat.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }} viewport={{ once: true }} className="text-center">
                 <div className="font-heading text-4xl md:text-5xl font-bold text-white mb-2"><AnimatedCounter value={stat.value} suffix={stat.suffix} /></div>
                 <div className="text-white/80">{stat.label}</div>
@@ -220,12 +220,12 @@ export default function HomePage() {
             {/* Trust Stats */}
             <div className="flex items-center gap-8 md:gap-12">
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary">500+</div>
+                <div className="text-3xl md:text-4xl font-bold text-primary">50+</div>
                 <div className="text-white/60 text-sm">Happy Clients</div>
               </div>
               <div className="w-px h-12 bg-white/20" />
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary">12+</div>
+                <div className="text-3xl md:text-4xl font-bold text-primary">{new Date().getFullYear() - 2009}+</div>
                 <div className="text-white/60 text-sm">Years Experience</div>
               </div>
               <div className="w-px h-12 bg-white/20" />

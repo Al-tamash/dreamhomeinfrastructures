@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dream Home Infrastructures | Construction & Interior Design",
     description:
-      "Building your dreams into reality. Trusted construction and interior design company in Hyderabad since 2012. GHMC Licensed.",
+      "Building your dreams into reality. Trusted construction and interior design company in Hyderabad since 2009. GHMC Licensed.",
     type: "website",
     locale: "en_IN",
     url: "https://dreamhomeinfrastructures.com",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Dream Home Infrastructures | Hyderabad Construction Company",
-    description: "Building your dreams into reality since 2012. Residential, Commercial & Villa Construction.",
+    description: "Building your dreams into reality since 2009. Residential, Commercial & Villa Construction.",
     images: ["/images/og-image.jpg"],
   },
   robots: {

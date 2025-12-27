@@ -9,9 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Target, Eye, Award, Shield, Clock, Users, CheckCircle, ArrowRight, Phone } from "lucide-react";
 
 const trustBadges = [
-  { icon: Award, title: "GHMC Licensed", value: "BL/2149/2012", description: "Government approved contractor" },
-  { icon: Clock, title: "Experience", value: "12+ Years", description: "Industry experience since 2012" },
-  { icon: Users, title: "Projects", value: "500+", description: "Successfully completed projects" },
+  { icon: Award, title: "GHMC Licensed", value: "BL/2149/2009", description: "Government approved contractor" },
+  { icon: Clock, title: "Experience", value: `${new Date().getFullYear() - 2009}+ Years`, description: "Industry experience since 2009" },
+  { icon: Users, title: "Projects", value: "50+", description: "Successfully completed projects" },
   { icon: Shield, title: "Quality", value: "100%", description: "Quality assurance guaranteed" },
 ];
 
@@ -40,7 +40,7 @@ export default function AboutPage() {
         <div className="container-custom relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
             <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">About <span className="text-primary">Dream Home</span> Infrastructures</h1>
-            <p className="text-xl text-white/70">Building dreams into reality since 2012. We are Hyderabad&apos;s trusted construction and interior design company.</p>
+            <p className="text-xl text-white/70">Building dreams into reality since 2009. We are Hyderabad&apos;s trusted construction and interior design company.</p>
           </motion.div>
         </div>
       </section>
@@ -55,7 +55,7 @@ export default function AboutPage() {
               <div className="absolute -bottom-8 -right-8 bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 hidden md:block">
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center"><Award size={28} className="text-white" /></div>
-                  <div><div className="font-heading text-2xl font-bold text-white">12+ Years</div><div className="text-white/60">Of Excellence</div></div>
+                  <div><div className="font-heading text-2xl font-bold text-white">{new Date().getFullYear() - 2009}+ Years</div><div className="text-white/60">Of Excellence</div></div>
                 </div>
               </div>
             </motion.div>
@@ -63,9 +63,9 @@ export default function AboutPage() {
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
               <SectionHeading title="Who We Are" subtitle="Your trusted partner in construction and interior design" centered={false} />
               <div className="space-y-4 text-white/70">
-                <p><strong className="text-white">Dream Home Infrastructures</strong> is a leading construction and interior design company in Hyderabad, established in 2012.</p>
-                <p>We have completed over 500 projects, from residential apartments to commercial complexes and luxurious villas.</p>
-                <p>We hold GHMC license (BL/2149/2012), ensuring highest standards of safety and quality.</p>
+                <p><strong className="text-white">Dream Home Infrastructures</strong> is a leading construction and interior design company in Hyderabad, established in 2009.</p>
+                <p>We have completed over 50 projects, from residential apartments to commercial complexes and luxurious villas.</p>
+                <p>We hold GHMC license (BL/2149/2009), ensuring highest standards of safety and quality.</p>
               </div>
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {values.map((value, index) => (
