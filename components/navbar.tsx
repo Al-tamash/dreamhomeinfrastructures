@@ -72,7 +72,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-20">
             <Link href="/" className="flex items-center">
               <Image
-                src="/images/dreamhomelogo (5).png"
+                src="/images/whiteaddedlogo.png"
                 alt="Dream Home Infrastructures Logo"
                 width={130}
                 height={50}
