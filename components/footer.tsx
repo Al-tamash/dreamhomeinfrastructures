@@ -32,7 +32,7 @@ export default function Footer() {
           <div className="space-y-6">
             <div>
               <Image
-                src="/images/DHIlogo.png"
+                src="/images/finalDHI-logo.png"
                 alt="Dream Home Infrastructures Logo"
                 width={130}
                 height={50}

@@ -71,13 +71,22 @@ export default function Navbar() {
         <div className="container-custom">
           <div className="flex items-center justify-between h-20">
             <Link href="/" className="flex items-center">
-              <Image
-                src="/images/DHIlogo.png"
-                alt="Dream Home Infrastructures Logo"
-                width={130}
-                height={50}
-                className="object-contain"
-              />
+                {/* Dark Mode Logo (Visible by default, hidden in light mode) */}
+                <Image
+                  src="/images/finalDHI-logo.png"
+                  alt="Dream Home Infrastructures Logo"
+                  width={130}
+                  height={50}
+                  className="object-contain [.light_&]:hidden"
+                />
+                {/* Light Mode Logo (Hidden by default, visible in light mode) */}
+                <Image
+                  src="/images/lightthemeDHI-logo.png"
+                  alt="Dream Home Infrastructures Logo"
+                  width={130}
+                  height={50}
+                  className="object-contain hidden [.light_&]:block"
+                />
             </Link>
 
             <div className="hidden lg:flex items-center gap-1">
