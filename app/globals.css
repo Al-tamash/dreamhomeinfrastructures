@@ -110,6 +110,136 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--background-elevated);
 }
 
+/* ========================================
+   GLOBAL DESIGN SYSTEM - Brand Consistency
+   ======================================== */
+
+/* Global Heading Styles with Hover Effect */
+.heading-primary {
+  @apply font-heading font-bold text-white transition-colors duration-200;
+}
+.heading-primary:hover {
+  color: var(--primary);
+}
+
+.heading-secondary {
+  @apply font-heading font-bold text-white/90 transition-colors duration-200;
+}
+.heading-secondary:hover {
+  color: var(--secondary);
+}
+
+/* Section Heading with Accent Line */
+.section-title {
+  @apply font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white relative;
+}
+.section-title::after {
+  content: '';
+  @apply block w-20 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mt-4 mx-auto;
+}
+.section-title.text-left::after {
+  @apply mx-0;
+}
+
+/* Global Button Styles - Primary */
+.btn-global-primary {
+  @apply px-8 py-4 rounded-xl font-semibold text-white transition-all duration-200;
+  background: var(--primary);
+}
+.btn-global-primary:hover {
+  background: rgb(180, 12, 18);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(208, 14, 21, 0.3);
+}
+
+/* Global Button Styles - Secondary */
+.btn-global-secondary {
+  @apply px-8 py-4 rounded-xl font-semibold text-white transition-all duration-200;
+  background: var(--secondary);
+}
+.btn-global-secondary:hover {
+  background: rgb(30, 95, 120);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(39, 115, 143, 0.3);
+}
+
+/* Global Button Styles - Outline */
+.btn-global-outline {
+  @apply px-8 py-4 rounded-xl font-semibold transition-all duration-200 border-2;
+  border-color: var(--secondary);
+  color: var(--secondary);
+  background: transparent;
+}
+.btn-global-outline:hover {
+  background: var(--secondary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Global Card Hover Effect */
+.card-global {
+  @apply rounded-2xl transition-all duration-300 border border-white/10;
+  background: var(--background-elevated);
+}
+.card-global:hover {
+  border-color: var(--primary);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Card with Glow Effect */
+.card-glow {
+  @apply rounded-2xl transition-all duration-300 border border-white/10 relative overflow-hidden;
+}
+.card-glow::before {
+  content: '';
+  @apply absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full opacity-0 transition-opacity duration-500 pointer-events-none;
+  background: radial-gradient(circle, rgba(208, 14, 21, 0.3) 0%, transparent 70%);
+}
+.card-glow:hover::before {
+  @apply opacity-100;
+}
+.card-glow:hover {
+  border-color: var(--primary);
+  transform: translateY(-6px);
+}
+
+/* Trust Badge Style */
+.trust-badge {
+  @apply inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/20 transition-all duration-200;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+.trust-badge:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--primary);
+}
+
+/* Stat Card Style */
+.stat-card {
+  @apply text-center p-6 rounded-2xl transition-all duration-300;
+  background: var(--background-elevated);
+}
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+.stat-number {
+  @apply font-heading text-4xl md:text-5xl font-bold mb-2;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section Spacing */
+.section-gap {
+  @apply py-20 md:py-28;
+}
+.section-gap-sm {
+  @apply py-12 md:py-16;
+}
+
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 8px;

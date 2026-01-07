@@ -1,62 +1,222 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Building2, CheckCircle, ArrowRight, Phone, ArrowLeft, Star, Clock, Shield, Award, Users, ChevronDown, Briefcase } from "lucide-react";
-import { useState } from "react";
+import SectionHeading from "@/components/section-heading";
+import StatCard from "@/components/stat-card";
+import TestimonialCard from "@/components/testimonial-card";
+import { 
+  Building2, 
+  CheckCircle, 
+  ArrowRight, 
+  Phone, 
+  ArrowLeft, 
+  Clock, 
+  Shield, 
+  Award, 
+  Users, 
+  ChevronDown,
+  Briefcase,
+  Hammer,
+  FileCheck,
+  Wallet,
+  Wrench,
+  HardHat
+} from "lucide-react";
 
-const features = [
-  { title: "Office Buildings", description: "Modern corporate offices with smart building technology and efficient layouts", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=870" },
-  { title: "Shopping Complexes", description: "Retail spaces designed to maximize footfall and customer experience", image: "https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?q=80&w=870" },
-  { title: "Industrial Buildings", description: "Heavy-duty construction for manufacturing and industrial operations", image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=870" },
-  { title: "Warehouses", description: "Large-scale storage facilities with logistics optimization", image: "https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=870" },
-  { title: "Showrooms & Retail", description: "Eye-catching retail spaces that showcase your products", image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=870" },
-  { title: "Hotels & Restaurants", description: "Hospitality spaces designed for guest comfort and operational efficiency", image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=870" },
+// Types of commercial construction
+const commercialTypes = [
+  { 
+    title: "Corporate Office Buildings", 
+    description: "Modern workspaces with smart building technology, efficient floor plans, and employee-centric design.", 
+    image: "/commercial/OfficeBuildings.jpg" 
+  },
+  { 
+    title: "Shopping Malls & Retail", 
+    description: "High-footfall retail spaces designed to maximize customer experience and tenant visibility.", 
+    image: "/commercial/ShoppingComplexes.png" 
+  },
+  { 
+    title: "Industrial & Manufacturing", 
+    description: "Heavy-duty construction for factories, production units, and industrial operations.", 
+    image: "/commercial/ModernindustrialwarehouseinHyderabad.png" 
+  },
+  { 
+    title: "Warehouses & Logistics", 
+    description: "Large-scale storage facilities optimized for inventory management and distribution.", 
+    image: "/commercial/WarehouseinteriorinHyderabadwarehouse.png" 
+  },
+  { 
+    title: "Showrooms & Brand Stores", 
+    description: "Premium retail spaces that showcase your products and elevate brand experience.", 
+    image: "/commercial/LuxuriousretailshowroominHyderabad.png" 
+  },
+  { 
+    title: "Hotels & Hospitality", 
+    description: "Guest-focused spaces designed for comfort, efficiency, and memorable experiences.", 
+    image: "/commercial/TwilightataluxuriousHyderabadrestaurant.png" 
+  },
 ];
 
+// Why choose us for commercial construction
+const whyChooseUs = [
+  { 
+    icon: Shield, 
+    title: "GHMC & Fire NOC Licensed", 
+    description: "Fully compliant with all building regulations, fire safety codes, and accessibility standards." 
+  },
+  { 
+    icon: Clock, 
+    title: "On-Time Project Delivery", 
+    description: "100% track record of meeting deadlines. Penalties clause included in our contracts." 
+  },
+  { 
+    icon: Wallet, 
+    title: "Fixed-Price Contracts", 
+    description: "Detailed BOQ with itemized costs. No hidden charges or escalation clauses." 
+  },
+  { 
+    icon: HardHat, 
+    title: "ISO-Certified Quality", 
+    description: "Rigorous quality management with third-party inspections at every milestone." 
+  },
+  { 
+    icon: Wrench, 
+    title: "Turnkey Solutions", 
+    description: "Complete design-build service including MEP, interiors, and facility setup." 
+  },
+  { 
+    icon: Users, 
+    title: "Dedicated Project Team", 
+    description: "Experienced project manager with weekly progress reports and site meetings." 
+  },
+];
+
+// Construction process steps
 const processSteps = [
-  { step: "01", title: "Project Analysis", description: "Feasibility study and requirement analysis", icon: Briefcase },
-  { step: "02", title: "Design Development", description: "Architectural and structural design", icon: Building2 },
-  { step: "03", title: "Regulatory Approval", description: "Building permits and clearances", icon: Shield },
-  { step: "04", title: "Construction", description: "Quality construction with timeline tracking", icon: Clock },
-  { step: "05", title: "Handover", description: "Commissioning and documentation", icon: Award },
+  { 
+    step: "01", 
+    title: "Feasibility Analysis", 
+    description: "Site evaluation, zoning compliance, and project viability assessment.", 
+    icon: Briefcase 
+  },
+  { 
+    step: "02", 
+    title: "Design & Engineering", 
+    description: "Architectural, structural, and MEP design with 3D visualization.", 
+    icon: Building2 
+  },
+  { 
+    step: "03", 
+    title: "Permits & Approvals", 
+    description: "GHMC, Fire NOC, environmental clearances, and all regulatory approvals.", 
+    icon: FileCheck 
+  },
+  { 
+    step: "04", 
+    title: "Construction", 
+    description: "Quality construction with milestone tracking and regular client updates.", 
+    icon: Hammer 
+  },
+  { 
+    step: "05", 
+    title: "Commissioning", 
+    description: "Final inspection, testing, documentation, and handover with warranty.", 
+    icon: Award 
+  },
 ];
 
+// Completed projects
 const projects = [
-  { title: "Corporate Office - HITEC City", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=870", sqft: "75,000", type: "Office" },
-  { title: "Shopping Mall - Gachibowli", image: "https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?q=80&w=870", sqft: "1,50,000", type: "Retail" },
-  { title: "Industrial Warehouse", image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=870", sqft: "2,00,000", type: "Warehouse" },
-  { title: "Hotel Building - Banjara Hills", image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=870", sqft: "45,000", type: "Hotel" },
+  { 
+    title: "Corporate Tech Park", 
+    image: "/commercial/OfficeBuildings.jpg", 
+    sqft: "75,000", 
+    type: "Office",
+    location: "HITEC City"
+  },
+  { 
+    title: "Retail Mall & Multiplex", 
+    image: "/commercial/ShoppingComplexes.png", 
+    sqft: "1,50,000", 
+    type: "Retail",
+    location: "Gachibowli"
+  },
+  { 
+    title: "Logistics Warehouse", 
+    image: "/commercial/WarehouseinteriorinHyderabadwarehouse.png", 
+    sqft: "2,00,000", 
+    type: "Warehouse",
+    location: "Shamshabad"
+  },
+  { 
+    title: "Boutique Hotel", 
+    image: "/commercial/TwilightataluxuriousHyderabadrestaurant.png", 
+    sqft: "45,000", 
+    type: "Hotel",
+    location: "Banjara Hills"
+  },
 ];
 
+// Stats data (using numeric values for StatCard component)
 const stats = [
-  { value: "150+", label: "Commercial Projects" },
-  { value: "50L+", label: "Sq.Ft Constructed" },
-  { value: "100%", label: "On-Time Delivery" },
-  { value: "30+", label: "Corporate Clients" },
+  { value: 150, suffix: "+", label: "Commercial Projects" },
+  { value: 50, suffix: "L+", label: "Sq.Ft Constructed" },
+  { value: 100, suffix: "%", label: "On-Time Delivery" },
+  { value: 30, suffix: "+", label: "Corporate Clients" },
 ];
 
+// Testimonials
 const testimonials = [
-  { name: "Arun Reddy", role: "CEO, TechCorp Solutions", rating: 5, text: "Dream Home Infrastructures delivered our new office building ahead of schedule. The quality of construction and attention to our specific requirements was exceptional." },
-  { name: "Sunita Patel", role: "Director, Retail Ventures", rating: 5, text: "Our shopping complex was a massive project, and they handled it with utmost professionalism. Every deadline was met without compromising on quality." },
+  { 
+    name: "Arun Reddy", 
+    role: "CEO, TechCorp Solutions", 
+    rating: 5, 
+    content: "Dream Home Infrastructures delivered our 75,000 sq.ft office building ahead of schedule. The quality of construction and attention to our corporate requirements was exceptional. They handled everything from approvals to final fit-out." 
+  },
+  { 
+    name: "Sunita Patel", 
+    role: "Director, Retail Ventures Pvt Ltd", 
+    rating: 5, 
+    content: "Our shopping complex was a massive 1.5 lakh sq.ft project with multiple stakeholders. They managed it with utmost professionalism, meeting every milestone without compromising on quality." 
+  },
+  { 
+    name: "Mohammed Imran", 
+    role: "MD, Logistics Hub India", 
+    rating: 5, 
+    content: "We needed a 2 lakh sq.ft warehouse delivered in 18 months. They delivered in 16 months with zero defects. Their project management is world-class and their team truly understands commercial construction." 
+  },
 ];
 
+// FAQs with SEO-optimized content
 const faqs = [
-  { question: "What types of commercial projects do you handle?", answer: "We handle all types of commercial construction including office buildings, shopping malls, warehouses, industrial facilities, hotels, hospitals, and educational institutions." },
-  { question: "How do you ensure project timelines are met?", answer: "We use advanced project management tools, maintain buffer stocks of materials, and have dedicated teams for each project phase to ensure timely completion." },
-  { question: "Do you handle turnkey commercial projects?", answer: "Yes, we offer complete turnkey solutions including design, construction, MEP works, interior fit-out, and facility management setup." },
-  { question: "What safety standards do you follow?", answer: "We strictly adhere to IS codes, NBC guidelines, and international safety standards. Our sites are regularly audited for safety compliance." },
-  { question: "Can you work with our preferred architects?", answer: "Absolutely. We collaborate with your architects and consultants while providing our construction expertise to bring their designs to life." },
-];
-
-const whyChoose = [
-  { icon: Shield, title: "GHMC Licensed", description: "Fully licensed and compliant with all building regulations" },
-  { icon: Clock, title: "On-Time Delivery", description: "Proven track record of meeting project deadlines" },
-  { icon: Award, title: "Quality Assured", description: "ISO-certified quality management processes" },
-  { icon: Users, title: "Expert Team", description: "Experienced engineers, architects, and project managers" },
+  { 
+    question: "What types of commercial construction projects do you handle?", 
+    answer: "We handle all types of commercial construction including corporate office buildings, shopping malls, retail stores, industrial facilities, warehouses, hotels, hospitals, educational institutions, and mixed-use developments. Our portfolio includes projects ranging from 10,000 sq.ft showrooms to 5 lakh sq.ft industrial facilities." 
+  },
+  { 
+    question: "What is the cost of commercial construction in Hyderabad?", 
+    answer: "Commercial construction costs in Hyderabad range from ₹2,500 to ₹5,000 per sq.ft depending on the building type, specifications, and finishes. Office buildings typically cost ₹3,000-4,000/sq.ft, warehouses ₹2,500-3,000/sq.ft, and premium retail spaces ₹4,000-5,000/sq.ft. We provide detailed BOQ with transparent pricing." 
+  },
+  { 
+    question: "How do you ensure commercial projects are completed on time?", 
+    answer: "We use advanced project management tools with milestone tracking, maintain buffer stocks of critical materials, and have dedicated teams for each project phase. We also include penalty clauses in our contracts for any delays on our end, demonstrating our commitment to timely delivery." 
+  },
+  { 
+    question: "Do you offer turnkey commercial construction services?", 
+    answer: "Yes, we offer complete turnkey solutions including architectural design, structural engineering, MEP (mechanical, electrical, plumbing), interior fit-out, landscaping, and facility management setup. This single-point responsibility ensures better coordination and faster project completion." 
+  },
+  { 
+    question: "What safety and quality standards do you follow?", 
+    answer: "We strictly adhere to IS codes, National Building Code (NBC), and OSHA safety standards. Our sites undergo weekly safety audits and quality inspections at every milestone. We use only branded materials from approved vendors and provide third-party test reports for all critical components." 
+  },
+  { 
+    question: "Can you work with our architects and consultants?", 
+    answer: "Absolutely. We regularly collaborate with client-appointed architects, structural consultants, and MEP consultants. Our project management team ensures smooth coordination between all stakeholders while bringing our construction expertise to execute their designs efficiently." 
+  },
 ];
 
 export default function CommercialConstructionPage() {
@@ -65,95 +225,135 @@ export default function CommercialConstructionPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
         {/* Video Background */}
         <div className="absolute inset-0 z-0">
-          <video autoPlay loop muted playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            preload="auto" 
+            className="absolute inset-0 w-full h-full object-cover"
+          >
             <source src="/videos/Indian_Luxury_Real_Estate_Video.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-transparent dark:from-dark/70 dark:via-dark/50 dark:to-dark/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent dark:from-dark/60 dark:via-transparent dark:to-dark/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-dark/80 via-dark/60 to-dark/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-dark/30" />
         </div>
-        <div className="container-custom relative z-10">
-          <Link href="/services/building-construction" className="inline-flex items-center gap-2 text-secondary hover:text-white mb-6 transition-colors group">
-            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+
+        <div className="container-custom relative z-10 py-20">
+          {/* Breadcrumb */}
+          <Link 
+            href="/services/building-construction" 
+            className="inline-flex items-center gap-2 text-secondary hover:text-primary mb-6 transition-colors duration-200 group"
+          >
+            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform duration-200" />
             <span>Back to Building Construction</span>
           </Link>
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-secondary/20 border border-secondary/30 rounded-full px-4 py-2 mb-6">
-              <Building2 size={18} className="text-secondary" />
-              <span className="text-secondary text-sm font-medium">Commercial Construction</span>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.6 }} 
+            className="max-w-3xl"
+          >
+            {/* Service Badge */}
+            <div className="trust-badge mb-6">
+              <Building2 size={18} className="text-primary" />
+              <span className="text-white text-sm font-medium">Commercial Construction in Hyderabad</span>
             </div>
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Build Your <span className="text-primary">Business</span> Infrastructure
+
+            {/* Main Headline - SEO Optimized */}
+            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              Commercial <span className="text-primary">Construction</span> That Builds Your Business
             </h1>
+
+            {/* Subheadline */}
             <p className="text-xl text-white/80 mb-8 leading-relaxed">
-              From corporate offices to industrial facilities, we deliver commercial projects that meet modern business demands with innovative design and quality construction.
+              GHMC-licensed commercial contractors with 15+ years experience building offices, 
+              malls, warehouses, and industrial facilities across Hyderabad. 
+              On-time delivery with fixed-price contracts.
             </p>
+
+            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/contact">
-                <Button size="lg" className="bg-primary hover:bg-primary/90">
-                  Get Project Quote <ArrowRight size={18} className="ml-2" />
+                <Button size="lg" className="btn-global-primary">
+                  Get Project Quote 
+                  <ArrowRight size={18} className="ml-2" />
                 </Button>
               </Link>
               <a href="tel:+918008044008">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black">
-                  <Phone size={18} className="mr-2" />+91 8008044008
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-white/30 text-white hover:bg-white hover:text-dark"
+                >
+                  <Phone size={18} className="mr-2" />
+                  +91 8008 044 008
                 </Button>
               </a>
+            </div>
+
+            {/* Trust Indicators */}
+            <div className="flex flex-wrap gap-6 mt-10">
+              <div className="flex items-center gap-2 text-white/70">
+                <CheckCircle size={18} className="text-primary" />
+                <span className="text-sm">GHMC Licensed</span>
+              </div>
+              <div className="flex items-center gap-2 text-white/70">
+                <CheckCircle size={18} className="text-primary" />
+                <span className="text-sm">ISO Certified</span>
+              </div>
+              <div className="flex items-center gap-2 text-white/70">
+                <CheckCircle size={18} className="text-primary" />
+                <span className="text-sm">150+ Commercial Projects</span>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 bg-secondary/10 border-y border-white/10">
+      <section className="section-gap-sm bg-dark-300 border-y border-white/5">
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center"
-              >
-                <div className="font-heading text-4xl md:text-5xl font-bold text-secondary mb-2">{stat.value}</div>
-                <div className="text-white/70 text-sm">{stat.label}</div>
-              </motion.div>
+              <StatCard 
+                key={stat.label} 
+                value={stat.value} 
+                suffix={stat.suffix} 
+                label={stat.label} 
+                index={index} 
+              />
             ))}
           </div>
         </div>
       </section>
 
-      {/* What We Build Section */}
-      <section className="section-padding bg-tertiary">
+      {/* Commercial Spaces We Build */}
+      <section className="section-gap bg-tertiary">
         <div className="container-custom">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Commercial Spaces We Build</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">Comprehensive commercial construction solutions for businesses of all sizes</p>
-          </motion.div>
+          <SectionHeading 
+            eyebrow="Our Expertise"
+            title="Types of Commercial Construction We Deliver" 
+            subtitle="From corporate offices to industrial facilities, we build commercial spaces that drive business success" 
+          />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, index) => (
+            {commercialTypes.map((item, index) => (
               <motion.div
-                key={feature.title}
+                key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative h-[280px] rounded-2xl overflow-hidden border border-white/10 hover:border-secondary/50 transition-all duration-300"
+                className="group relative h-[280px] rounded-2xl overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-300"
               >
                 {/* Background Image */}
                 <Image
-                  src={feature.image}
-                  alt={feature.title}
+                  src={item.image}
+                  alt={item.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
@@ -163,13 +363,17 @@ export default function CommercialConstructionPage() {
                 
                 {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                  <h3 className="font-heading text-xl font-bold text-white mb-2 group-hover:text-secondary transition-colors">{feature.title}</h3>
-                  <p className="text-white/70 text-sm line-clamp-2">{feature.description}</p>
+                  <h3 className="font-heading text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors duration-200">
+                    {item.title}
+                  </h3>
+                  <p className="text-white/70 text-sm line-clamp-2 group-hover:text-white/90 transition-colors duration-300">
+                    {item.description}
+                  </p>
                 </div>
                 
                 {/* Hover Glow */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-secondary/20 rounded-full blur-3xl" />
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-primary/20 rounded-full blur-3xl" />
                 </div>
               </motion.div>
             ))}
@@ -177,55 +381,50 @@ export default function CommercialConstructionPage() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="section-padding bg-dark-200">
+      {/* Why Choose Us Section */}
+      <section className="section-gap bg-dark-200">
         <div className="container-custom">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Why Choose Us for Commercial Projects</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">Experience excellence in commercial construction</p>
-          </motion.div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {whyChoose.map((item, index) => (
+          <SectionHeading 
+            eyebrow="Why Dream Home"
+            title="Why Businesses Choose Us for Commercial Construction" 
+            subtitle="150+ commercial projects delivered with 100% on-time completion. Here's what sets us apart." 
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {whyChooseUs.map((item, index) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center"
+                className="card-global p-6 group"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <item.icon size={28} className="text-secondary" />
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                  <item.icon size={28} className="text-primary" />
                 </div>
-                <h4 className="font-heading font-bold text-white mb-2">{item.title}</h4>
-                <p className="text-sm text-white/60">{item.description}</p>
+                <h3 className="font-heading text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors duration-200">
+                  {item.title}
+                </h3>
+                <p className="text-white/60 text-sm leading-relaxed group-hover:text-white/80 transition-colors duration-300">
+                  {item.description}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Our Process Section */}
-      <section className="section-padding bg-tertiary">
+      {/* Construction Process Section */}
+      <section className="section-gap bg-tertiary">
         <div className="container-custom">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Our Construction Process</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">A systematic approach to delivering quality commercial projects</p>
-          </motion.div>
+          <SectionHeading 
+            eyebrow="Our Process"
+            title="Commercial Construction Process - From Concept to Handover" 
+            subtitle="A systematic, transparent approach to delivering quality commercial projects on time" 
+          />
           <div className="relative">
-            <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-secondary via-primary to-secondary transform -translate-y-1/2" />
+            {/* Connection Line */}
+            <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-secondary to-primary transform -translate-y-1/2" />
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
               {processSteps.map((step, index) => (
                 <motion.div
@@ -234,14 +433,18 @@ export default function CommercialConstructionPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center"
+                  className="card-global p-6 text-center group"
                 >
-                  <div className="w-16 h-16 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center mx-auto mb-4 relative z-10">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300">
                     <step.icon size={28} className="text-white" />
                   </div>
-                  <div className="font-heading text-3xl font-bold text-secondary/30 mb-2">{step.step}</div>
-                  <h4 className="font-heading font-bold text-white mb-2">{step.title}</h4>
-                  <p className="text-sm text-white/60">{step.description}</p>
+                  <div className="font-heading text-3xl font-bold text-primary/30 mb-2">{step.step}</div>
+                  <h4 className="font-heading font-bold text-white mb-2 group-hover:text-primary transition-colors duration-200">
+                    {step.title}
+                  </h4>
+                  <p className="text-sm text-white/60 group-hover:text-white/80 transition-colors duration-300">
+                    {step.description}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -250,18 +453,13 @@ export default function CommercialConstructionPage() {
       </section>
 
       {/* Project Gallery */}
-      <section className="section-padding bg-dark-200">
+      <section className="section-gap bg-dark-200">
         <div className="container-custom">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Featured Commercial Projects</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">Explore our portfolio of completed commercial projects</p>
-          </motion.div>
+          <SectionHeading 
+            eyebrow="Our Portfolio"
+            title="Commercial Projects We've Delivered in Hyderabad" 
+            subtitle="Explore our portfolio of successfully completed offices, malls, and industrial facilities" 
+          />
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {projects.map((project, index) => (
               <motion.div
@@ -270,15 +468,22 @@ export default function CommercialConstructionPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative rounded-2xl overflow-hidden border border-white/10"
+                className="group relative rounded-2xl overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-300"
               >
                 <div className="relative aspect-[4/3]">
-                  <Image src={project.image} alt={project.title} fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <Image 
+                    src={project.image} 
+                    alt={`${project.title} - ${project.location}`} 
+                    fill 
+                    className="object-cover transition-transform duration-500 group-hover:scale-110" 
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                  <div className="absolute top-4 right-4 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full">{project.type}</div>
+                  <div className="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
+                    {project.type}
+                  </div>
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <h3 className="font-heading text-lg font-bold text-white mb-1">{project.title}</h3>
-                    <p className="text-secondary text-sm">{project.sqft} sq.ft</p>
+                    <p className="text-secondary text-sm">{project.sqft} sq.ft • {project.location}</p>
                   </div>
                 </div>
               </motion.div>
@@ -286,8 +491,12 @@ export default function CommercialConstructionPage() {
           </div>
           <div className="text-center mt-10">
             <Link href="/projects">
-              <Button variant="outline" className="border-white/30 text-white hover:bg-white hover:text-black">
-                View All Projects <ArrowRight size={16} className="ml-2" />
+              <Button 
+                variant="outline" 
+                className="border-white/30 text-white hover:bg-primary hover:border-primary hover:text-white"
+              >
+                View All Projects 
+                <ArrowRight size={16} className="ml-2" />
               </Button>
             </Link>
           </div>
@@ -295,57 +504,29 @@ export default function CommercialConstructionPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="section-padding bg-tertiary">
+      <section className="section-gap bg-tertiary">
         <div className="container-custom">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Client Testimonials</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">What business owners say about working with us</p>
-          </motion.div>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <SectionHeading 
+            eyebrow="Client Success Stories"
+            title="What Business Owners Say About Our Work" 
+            subtitle="Real feedback from companies who trusted us to build their commercial spaces" 
+          />
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
-              >
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} size={18} className="fill-secondary text-secondary" />
-                  ))}
-                </div>
-                <p className="text-white/80 mb-6 italic">&quot;{testimonial.text}&quot;</p>
-                <div>
-                  <div className="font-heading font-bold text-white">{testimonial.name}</div>
-                  <div className="text-secondary text-sm">{testimonial.role}</div>
-                </div>
-              </motion.div>
+              <TestimonialCard key={testimonial.name} {...testimonial} index={index} />
             ))}
           </div>
         </div>
       </section>
 
       {/* FAQs */}
-      <section className="section-padding bg-dark-200">
+      <section className="section-gap bg-dark-200">
         <div className="container-custom">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Frequently Asked Questions</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">Common questions about commercial construction</p>
-          </motion.div>
+          <SectionHeading 
+            eyebrow="Common Questions"
+            title="Commercial Construction FAQs" 
+            subtitle="Answers to frequently asked questions about commercial building construction in Hyderabad" 
+          />
           <div className="max-w-3xl mx-auto space-y-4">
             {faqs.map((faq, index) => (
               <motion.div
@@ -354,20 +535,33 @@ export default function CommercialConstructionPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 overflow-hidden"
+                className="card-global overflow-hidden"
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full flex items-center justify-between p-6 text-left"
+                  className="w-full flex items-center justify-between p-6 text-left group"
                 >
-                  <span className="font-heading font-bold text-white pr-4">{faq.question}</span>
-                  <ChevronDown size={20} className={`text-secondary flex-shrink-0 transition-transform ${openFaq === index ? 'rotate-180' : ''}`} />
+                  <span className="font-heading font-bold text-white pr-4 group-hover:text-primary transition-colors duration-200">
+                    {faq.question}
+                  </span>
+                  <ChevronDown 
+                    size={20} 
+                    className={`text-secondary flex-shrink-0 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`} 
+                  />
                 </button>
-                {openFaq === index && (
-                  <div className="px-6 pb-6 text-white/70">
+                <motion.div
+                  initial={false}
+                  animate={{ 
+                    height: openFaq === index ? "auto" : 0,
+                    opacity: openFaq === index ? 1 : 0
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className="overflow-hidden"
+                >
+                  <div className="px-6 pb-6 text-white/70 leading-relaxed">
                     {faq.answer}
                   </div>
-                )}
+                </motion.div>
               </motion.div>
             ))}
           </div>
@@ -375,8 +569,13 @@ export default function CommercialConstructionPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-secondary/20 to-primary/20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-dark/50" />
+      <section className="py-24 bg-gradient-to-br from-dark via-dark-200 to-dark relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-secondary rounded-full blur-3xl" />
+        </div>
+        
         <div className="container-custom relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -384,22 +583,45 @@ export default function CommercialConstructionPage() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">Ready to Build Your Commercial Space?</h2>
+            <span className="inline-block text-primary font-semibold text-sm tracking-wider uppercase mb-4">
+              Let's Build Together
+            </span>
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+              Ready to Build Your Commercial Space in Hyderabad?
+            </h2>
             <p className="text-white/80 mb-8 max-w-2xl mx-auto text-lg">
-              Partner with us for your next commercial construction project. We deliver quality, on time, every time.
+              Get a detailed project quote with transparent pricing. 
+              <span className="block mt-2 text-primary font-semibold">Free site visit. No hidden costs.</span>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
-                <Button size="lg" className="bg-primary hover:bg-primary/90">
-                  Request Project Quote <ArrowRight size={18} className="ml-2" />
+                <Button size="lg" className="btn-global-primary text-lg">
+                  Request Project Quote 
+                  <ArrowRight size={18} className="ml-2" />
                 </Button>
               </Link>
               <a href="tel:+918008044008">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black">
-                  <Phone size={18} className="mr-2" />Call: +91 8008044008
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-white/30 text-white hover:bg-white hover:text-dark text-lg"
+                >
+                  <Phone size={18} className="mr-2" />
+                  Call: +91 8008 044 008
                 </Button>
               </a>
             </div>
+            
+            {/* Urgency element */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="mt-8 text-white/60 text-sm"
+            >
+              🏢 Currently accepting new commercial projects for Q2 2026. Book your consultation today.
+            </motion.p>
           </motion.div>
         </div>
       </section>

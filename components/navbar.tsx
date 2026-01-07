@@ -81,7 +81,7 @@ export default function Navbar() {
                 />
                 {/* Light Mode Logo (Hidden by default, visible in light mode) */}
                 <Image
-                  src="/images/lightthemeDHI-logo.png"
+                  src="/images/finaldhilogo.png"
                   alt="Dream Home Infrastructures Logo"
                   width={130}
                   height={50}

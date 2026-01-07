@@ -1,104 +1,257 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Landmark, CheckCircle, ArrowRight, Phone, ArrowLeft, Star, Shield, FileCheck, MapPin, ChevronDown, Building, TrendingUp, Users, Award, Banknote, Home, Car, Droplets, Zap, TreePine, BadgeCheck, IndianRupee, Calendar, Clock } from "lucide-react";
-import { useState } from "react";
+import SectionHeading from "@/components/section-heading";
+import StatCard from "@/components/stat-card";
+import TestimonialCard from "@/components/testimonial-card";
+import { 
+  Landmark, 
+  CheckCircle, 
+  ArrowRight, 
+  Phone, 
+  ArrowLeft, 
+  ChevronDown,
+  Shield,
+  FileCheck,
+  MapPin,
+  Building,
+  TrendingUp,
+  Users,
+  Award,
+  Home,
+  Car,
+  Droplets,
+  Zap,
+  TreePine,
+  Clock,
+  Ruler,
+  FileText,
+  Hammer,
+  ClipboardCheck,
+  Lightbulb,
+  Target
+} from "lucide-react";
 
-const plotCategories = [
+// HMDA Layout Development Services
+const services = [
   { 
-    title: "Residential Plots", 
-    description: "Premium gated community plots for building your dream home with world-class amenities", 
-    size: "150 - 500 Sq. Yds",
-    price: "₹15,000 - ₹25,000/sq.yd",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=870" 
+    title: "HMDA Layout Approval", 
+    description: "Complete assistance in obtaining HMDA layout sanctions for your land with proper documentation and compliance.",
+    icon: Landmark,
+    image: "/hmda-development/hmda_layout_approval.png"
   },
   { 
-    title: "Villa Plots", 
-    description: "Spacious plots for independent villas with premium specifications in prime localities", 
-    size: "300 - 1000 Sq. Yds",
-    price: "₹20,000 - ₹35,000/sq.yd",
-    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=871" 
+    title: "Land Survey & Planning", 
+    description: "Professional land survey, plot demarcation, road planning, and layout design as per HMDA norms and regulations.",
+    icon: Ruler,
+    image: "/hmda-development/land_survey_planning.png"
   },
   { 
-    title: "Commercial Plots", 
-    description: "Strategic commercial plots on main roads for shops, offices, and business spaces", 
-    size: "100 - 500 Sq. Yds",
-    price: "₹25,000 - ₹50,000/sq.yd",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=870" 
+    title: "Infrastructure Development", 
+    description: "Complete infrastructure including roads, drainage, water lines, electricity, and street lighting as per HMDA standards.",
+    icon: Building,
+    image: "/hmda-development/infrastructure_development.png"
   },
   { 
-    title: "Township Plots", 
-    description: "Affordable plots in upcoming integrated township developments with all amenities", 
-    size: "100 - 300 Sq. Yds",
-    price: "₹12,000 - ₹20,000/sq.yd",
-    image: "https://images.unsplash.com/photo-1448630360428-65456885c650?q=80&w=870" 
+    title: "Document Processing", 
+    description: "Expert handling of all legal documentation, LP number registration, and government approvals for your layout.",
+    icon: FileText,
+    image: "/hmda-development/document_processing.png"
+  },
+  { 
+    title: "Plot Demarcation", 
+    description: "Precise plot marking with boundary stones, access roads, and clear measurements for individual plots.",
+    icon: MapPin,
+    image: "/hmda-development/plot_demarcation.png"
+  },
+  { 
+    title: "Turnkey Development", 
+    description: "End-to-end layout development from raw land to HMDA-approved, infrastructure-ready plots.",
+    icon: Award,
+    image: "/hmda-development/turnkey_development.png"
   },
 ];
 
+// Why Choose Us for HMDA Development
+const benefits = [
+  { 
+    icon: Shield, 
+    title: "15+ Years HMDA Experience", 
+    description: "Deep expertise in navigating HMDA regulations, approvals, and compliance requirements in Hyderabad." 
+  },
+  { 
+    icon: Clock, 
+    title: "Fast-Track Approvals", 
+    description: "Strong relationships with authorities help expedite layout sanctions and minimize delays." 
+  },
+  { 
+    icon: FileCheck, 
+    title: "100% Compliance Guaranteed", 
+    description: "All layouts developed strictly as per HMDA norms, ensuring hassle-free approvals and documentation." 
+  },
+  { 
+    icon: Hammer, 
+    title: "Quality Infrastructure", 
+    description: "Premium quality roads, drainage, and utilities that exceed HMDA minimum standards." 
+  },
+  { 
+    icon: TrendingUp, 
+    title: "Maximize Land Value", 
+    description: "Professional development increases your land value by 3-5x compared to raw land sale." 
+  },
+  { 
+    icon: Users, 
+    title: "End-to-End Support", 
+    description: "From initial consultation to final handover, we handle everything so you don't have to worry." 
+  },
+];
+
+// Development Process
+const processSteps = [
+  { 
+    step: "01", 
+    title: "Site Inspection", 
+    description: "We visit your land, assess feasibility, and provide development recommendations.",
+    icon: MapPin
+  },
+  { 
+    step: "02", 
+    title: "Layout Planning", 
+    description: "Professional architects design the layout with roads, plots, and open spaces.",
+    icon: Ruler
+  },
+  { 
+    step: "03", 
+    title: "HMDA Submission", 
+    description: "Complete documentation and application submission to HMDA for layout approval.",
+    icon: FileText
+  },
+  { 
+    step: "04", 
+    title: "Approval & LP Number", 
+    description: "Obtain HMDA sanction, LP number, and all necessary government approvals.",
+    icon: ClipboardCheck
+  },
+  { 
+    step: "05", 
+    title: "Infrastructure Work", 
+    description: "Roads, drainage, water, electricity, and boundary construction as per plan.",
+    icon: Hammer
+  },
+  { 
+    step: "06", 
+    title: "Handover", 
+    description: "Complete developed layout handover with all documents and registrations.",
+    icon: Award
+  },
+];
+
+// Stats data
 const stats = [
-  { value: "50+", label: "HMDA Projects", icon: Building },
-  { value: "2000+", label: "Plots Delivered", icon: Home },
-  { value: "100%", label: "Clear Titles", icon: Shield },
-  { value: "₹200Cr+", label: "Transactions", icon: IndianRupee },
+  { value: 50, suffix: "+", label: "HMDA Layouts Developed" },
+  { value: 500, suffix: "+", label: "Acres Developed" },
+  { value: 15, suffix: "+", label: "Years Experience" },
+  { value: 100, suffix: "%", label: "Approval Success" },
 ];
 
-const locations = [
-  { name: "Shadnagar", distance: "45 km", plots: "200+", price: "₹15K-25K", hot: true },
-  { name: "Maheshwaram", distance: "35 km", plots: "150+", price: "₹18K-30K", hot: true },
-  { name: "Adibatla", distance: "30 km", plots: "100+", price: "₹20K-35K", hot: false },
-  { name: "Patancheru", distance: "35 km", plots: "120+", price: "₹17K-28K", hot: true },
-  { name: "Kompally", distance: "25 km", plots: "80+", price: "₹22K-38K", hot: false },
-  { name: "Shamirpet", distance: "40 km", plots: "150+", price: "₹14K-22K", hot: false },
-  { name: "Gandipet", distance: "20 km", plots: "60+", price: "₹28K-45K", hot: true },
-  { name: "Mokila", distance: "30 km", plots: "100+", price: "₹16K-26K", hot: false },
-];
-
-const hmdaBenefits = [
-  { icon: Shield, title: "100% Legal Security", description: "HMDA approval means government-verified legal status. Your investment is protected by law." },
-  { icon: Landmark, title: "Bank Loan Ready", description: "All major banks including SBI, HDFC, ICICI approve loans instantly for HMDA plots." },
-  { icon: TrendingUp, title: "High Appreciation", description: "HMDA plots appreciate 15-25% annually. Proven track record of wealth creation." },
-  { icon: FileCheck, title: "Easy Registration", description: "Clear documentation and smooth registration process. No legal hassles." },
-  { icon: Building, title: "Developed Infrastructure", description: "Ready roads, drainage, water, electricity, and street lighting as per HMDA norms." },
-  { icon: BadgeCheck, title: "Quality Assurance", description: "HMDA monitors layout development ensuring quality construction standards." },
-];
-
-const amenities = [
-  { icon: Car, name: "40ft & 30ft Roads" },
+// What We Develop (Infrastructure)
+const infrastructure = [
+  { icon: Car, name: "40ft & 30ft BT Roads" },
   { icon: Droplets, name: "Underground Drainage" },
-  { icon: Zap, name: "Electricity Supply" },
+  { icon: Zap, name: "Electricity Lines" },
   { icon: TreePine, name: "Avenue Plantation" },
-  { icon: Home, name: "Gated Security" },
-  { icon: MapPin, name: "Children's Park" },
+  { icon: Home, name: "Compound Wall" },
+  { icon: MapPin, name: "Parks & Open Spaces" },
 ];
 
+// Documents We Handle
 const documents = [
-  "Registered Sale Deed",
-  "HMDA Approval Copy",
-  "LP Number Certificate",
-  "Layout Sanction Plan",
-  "Non-Encumbrance Certificate",
-  "Patta & Passbook Transfer",
-  "Mutation Certificate",
-  "Tax Receipts",
+  "HMDA Layout Application",
+  "LP Number Registration",
+  "Sanction Plan Approval",
+  "NOCs from Departments",
+  "Mutation & Pattadar Passbook",
+  "Road Cutting Permission",
+  "Water & Electricity Connection",
+  "Environmental Clearance",
 ];
 
-const faqs = [
-  { question: "What is HMDA approval and why is it important?", answer: "HMDA (Hyderabad Metropolitan Development Authority) approval certifies that the layout complies with all government regulations, zoning laws, and development norms. It ensures legal sanctity, enables bank loans, and guarantees developed infrastructure. Never buy a plot without HMDA approval in Hyderabad Metropolitan area." },
-  { question: "What documents will I receive?", answer: "You will receive: Registered Sale Deed, HMDA Approval Copy, LP Number Certificate, Layout Sanction Plan, Non-Encumbrance Certificate (EC), Patta/Passbook Transfer, Mutation Certificate, and Tax Receipts. All documents are verified by our legal team." },
-  { question: "Are HMDA plots eligible for bank loans?", answer: "Yes, 100%! All our HMDA approved plots are pre-approved by major banks including SBI, HDFC, ICICI, Axis Bank, LIC Housing Finance, and others. We also provide loan assistance for quick approval." },
-  { question: "How long does the registration process take?", answer: "Once you book the plot and complete payment, registration happens within 15-30 days. Our team handles all paperwork including slot booking, documentation, and registration. You just need to visit the sub-registrar office for biometrics." },
-  { question: "Can NRIs buy HMDA plots?", answer: "Yes! NRIs can buy residential and commercial plots in India. We handle all NRI-specific documentation including Power of Attorney, RBI compliance, and FEMA regulations. Many of our happy customers are NRIs." },
-  { question: "What is the appreciation potential?", answer: "HMDA plots in outskirts of Hyderabad have shown consistent appreciation of 15-25% annually over the past decade. With ORR expansion, IT corridor growth, and Pharma City development, prices are expected to rise significantly." },
+// Use Cases - Who Benefits
+const useCases = [
+  { 
+    icon: Users, 
+    title: "Land Owners", 
+    description: "Convert your agricultural or vacant land into valuable HMDA-approved residential plots." 
+  },
+  { 
+    icon: Building, 
+    title: "Real Estate Developers", 
+    description: "Partner with us for layout development while you focus on sales and marketing." 
+  },
+  { 
+    icon: Target, 
+    title: "Investors & NRIs", 
+    description: "Develop your land holdings professionally without being physically present in Hyderabad." 
+  },
+  { 
+    icon: Lightbulb, 
+    title: "Joint Ventures", 
+    description: "Explore revenue-sharing models where we develop your land and share the proceeds." 
+  },
 ];
 
+// Testimonials
 const testimonials = [
-  { name: "Venkat Reddy", role: "Software Engineer, Microsoft", rating: 5, text: "Bought 300 sq.yd HMDA plot in Shadnagar in 2020 at ₹12,000/sq.yd. Today it's valued at ₹22,000! Dream Home's guidance was invaluable.", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150" },
-  { name: "Sravanthi Sharma", role: "Doctor, Apollo Hospital", rating: 5, text: "The transparency in dealings impressed me. Every document was verified, and the registration was hassle-free. Highly recommend!", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150" },
-  { name: "Abdul Rahman", role: "NRI, United States", rating: 5, text: "Being in the US, I was skeptical about buying land in India. But Dream Home's professional approach and regular updates gave me confidence. Now I own 2 plots!", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150" },
+  { 
+    name: "Ramesh Goud", 
+    role: "Land Owner, Shadnagar", 
+    rating: 5, 
+    content: "I had 10 acres of agricultural land that I didn't know what to do with. Dream Home converted it into 45 HMDA-approved plots. The value increased 4x and they handled everything from approvals to roads!" 
+  },
+  { 
+    name: "Lakshmi Prasad", 
+    role: "NRI, United States", 
+    rating: 5, 
+    content: "Being in the US, I was worried about developing my inherited land. Dream Home managed the entire HMDA approval and development process. I received regular updates and all documentation was perfect." 
+  },
+  { 
+    name: "Sudhakar Reddy", 
+    role: "Developer, Medchal", 
+    rating: 5, 
+    content: "We partnered with Dream Home for infrastructure development on our 25-acre project. Their quality of work and adherence to HMDA norms was impressive. All approvals came through smoothly." 
+  },
+];
+
+// FAQs - Focused on Development Services
+const faqs = [
+  { 
+    question: "What is HMDA layout development and how does it work?", 
+    answer: "HMDA layout development involves converting raw land into approved residential or commercial plots with proper infrastructure. The process includes land survey, layout planning, HMDA approval, infrastructure construction (roads, drainage, electricity), and individual plot demarcation. We handle this entire process for landowners who want to develop their land professionally." 
+  },
+  { 
+    question: "What type of land can be developed into HMDA layout?", 
+    answer: "Agricultural land, vacant land, and non-agricultural land within HMDA jurisdiction can be developed. The land should be clear of encumbrances, have proper access, and meet minimum area requirements (typically 2-3 acres for residential layouts). We assess your land's development potential during our initial site visit." 
+  },
+  { 
+    question: "How long does the HMDA layout development process take?", 
+    answer: "The complete development process typically takes 8-12 months. HMDA approval takes around 30-60 days once documents are complete. Infrastructure development (roads, drainage, utilities) takes 3-4 months depending on layout size. We provide a detailed timeline during project planning." 
+  },
+  { 
+    question: "What are the costs involved in HMDA layout development?", 
+    answer: "Development costs include HMDA fees, surveyor charges, infrastructure construction (roads, drainage, electricity), and documentation expenses. Costs vary based on land size, location, and specifications. We provide a detailed cost estimate after site inspection. Many landowners find the investment worthwhile as developed land values are 3-5x higher than raw land." 
+  },
+  { 
+    question: "Can you help NRIs develop their land in Hyderabad?", 
+    answer: "Yes! We have extensive experience working with NRI landowners. We handle the entire process through Power of Attorney and provide regular video/photo updates. All documentation is shared digitally, and critical decisions are made with your approval. Many of our clients are NRIs developing inherited or invested land." 
+  },
+  { 
+    question: "What is the revenue-sharing or joint venture model?", 
+    answer: "For landowners who don't want to invest in development costs upfront, we offer joint venture models. We invest in the development, and proceeds from plot sales are shared as per agreed terms. This is ideal for landowners with prime land but limited capital. Contact us to discuss your specific situation." 
+  },
 ];
 
 export default function HMDAPage() {
@@ -107,100 +260,170 @@ export default function HMDAPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+        {/* Video Background */}
         <div className="absolute inset-0 z-0">
-          <video autoPlay loop muted playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            preload="auto" 
+            className="absolute inset-0 w-full h-full object-cover"
+          >
             <source src="/videos/Indian_Luxury_Real_Estate_Video.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-transparent dark:from-dark/80 dark:via-dark/60 dark:to-dark/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-transparent dark:from-dark/70 dark:via-transparent dark:to-dark/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-dark/80 via-dark/60 to-dark/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-dark/30" />
         </div>
+
         <div className="container-custom relative z-10 py-20">
-          <Link href="/services/plotting-venture" className="inline-flex items-center gap-2 text-secondary hover:text-white mb-6 transition-colors group">
-            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+          {/* Breadcrumb */}
+          <Link 
+            href="/services/plotting-venture" 
+            className="inline-flex items-center gap-2 text-secondary hover:text-primary mb-6 transition-colors duration-200 group"
+          >
+            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform duration-200" />
             <span>Back to Plotting Services</span>
           </Link>
-          
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-              <div className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-sm border border-primary/30 rounded-full px-4 py-2 mb-6">
-                <Landmark size={18} className="text-primary" />
-                <span className="text-primary text-sm font-medium">HMDA Approved Plots</span>
-              </div>
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                <span className="text-primary">HMDA Approved</span> Plots in Hyderabad
-              </h1>
-              <p className="text-xl text-white/80 mb-6 leading-relaxed">
-                100% legal, bank loan ready plots from ₹15,000/sq.yd. Free site visit with complimentary pick-up from Hyderabad.
-              </p>
-              
-              {/* Key Highlights */}
-              <div className="grid grid-cols-2 gap-3 mb-8">
-                {[
-                  "HMDA LP Number",
-                  "Clear Legal Title",
-                  "Bank Loan Approved",
-                  "Developed Infrastructure"
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg px-3 py-2">
-                    <CheckCircle size={16} className="text-primary" />
-                    <span className="text-white text-sm">{item}</span>
-                  </div>
-                ))}
-              </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/contact">
-                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-white">
-                    Book Free Site Visit <ArrowRight size={18} className="ml-2" />
-                  </Button>
-                </Link>
-                <a href="tel:+918008044008">
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-tertiary">
-                    <Phone size={18} className="mr-2" /> Call: +91 8008044008
-                  </Button>
-                </a>
-              </div>
-            </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.6 }} 
+            className="max-w-3xl"
+          >
+            {/* Service Badge */}
+            <div className="trust-badge mb-6">
+              <Landmark size={18} className="text-primary" />
+              <span className="text-white text-sm font-medium">HMDA Layout Development Services in Hyderabad</span>
+            </div>
 
-            {/* Price Card */}
-            <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="hidden lg:block">
-              <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
-                <div className="text-center mb-6">
-                  <p className="text-white/70 mb-2">HMDA Plots Starting From</p>
-                  <div className="font-heading text-5xl font-bold text-primary">₹15,000<span className="text-2xl text-white/70">/sq.yd</span></div>
+            {/* Main Headline - SEO Optimized */}
+            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              <span className="text-primary">HMDA Layout</span> Development & Approval Services
+            </h1>
+
+            {/* Subheadline */}
+            <p className="text-xl text-white/80 mb-8 leading-relaxed">
+              Transform your land into HMDA-approved, infrastructure-ready plots. We handle everything 
+              from layout planning and government approvals to roads, drainage, and utilities. 
+              Hyderabad's trusted land development partner with 50+ successful layouts.
+            </p>
+
+            {/* Key Highlights */}
+            <div className="grid grid-cols-2 gap-3 mb-8">
+              {[
+                "Complete HMDA Approval",
+                "Infrastructure Development",
+                "LP Number Registration",
+                "Turnkey Handover"
+              ].map((item) => (
+                <div key={item} className="flex items-center gap-2 text-white/70">
+                  <CheckCircle size={18} className="text-primary" />
+                  <span className="text-sm">{item}</span>
                 </div>
-                <div className="space-y-3 mb-6">
-                  {["100% Legal & Clear Title", "All Major Bank Loans Approved", "Developed Roads & Infrastructure", "Immediate Registration Available", "EMI Options Available"].map((item) => (
-                    <div key={item} className="flex items-center gap-2 text-white">
-                      <CheckCircle size={18} className="text-secondary" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <Link href="/contact" className="block">
-                  <Button className="w-full bg-secondary hover:bg-secondary/90 text-white" size="lg">
-                    Get Price List <ArrowRight size={16} className="ml-2" />
-                  </Button>
-                </Link>
+              ))}
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/contact">
+                <Button size="lg" className="btn-global-primary">
+                  Get Free Site Assessment 
+                  <ArrowRight size={18} className="ml-2" />
+                </Button>
+              </Link>
+              <a href="tel:+918008044008">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-white/30 text-white hover:bg-white hover:text-dark"
+                >
+                  <Phone size={18} className="mr-2" />
+                  +91 8008 044 008
+                </Button>
+              </a>
+            </div>
+
+            {/* Trust Indicators */}
+            <div className="flex flex-wrap gap-6 mt-10">
+              <div className="flex items-center gap-2 text-white/70">
+                <CheckCircle size={18} className="text-primary" />
+                <span className="text-sm">50+ Layouts Developed</span>
               </div>
-            </motion.div>
-          </div>
+              <div className="flex items-center gap-2 text-white/70">
+                <CheckCircle size={18} className="text-primary" />
+                <span className="text-sm">500+ Acres Converted</span>
+              </div>
+              <div className="flex items-center gap-2 text-white/70">
+                <CheckCircle size={18} className="text-primary" />
+                <span className="text-sm">100% Approval Rate</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 bg-primary/10 border-y border-white/10">
+      <section className="section-gap-sm bg-dark-300 border-y border-white/5">
         <div className="container-custom">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <motion.div key={stat.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }} viewport={{ once: true }} className="flex items-center gap-4 bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
-                <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
-                  <stat.icon size={24} className="text-primary" />
+              <StatCard 
+                key={stat.label} 
+                value={stat.value} 
+                suffix={stat.suffix} 
+                label={stat.label} 
+                index={index} 
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What We Offer Section */}
+      <section className="section-gap bg-tertiary">
+        <div className="container-custom">
+          <SectionHeading 
+            eyebrow="Our Services"
+            title="HMDA Layout Development Services" 
+            subtitle="Comprehensive land development solutions from raw land to approved, infrastructure-ready plots" 
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service, index) => (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group relative h-[280px] rounded-2xl overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-300"
+              >
+                {/* Background Image */}
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/70 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
+                
+                {/* Content */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                  <h3 className="font-heading text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors duration-200">
+                    {service.title}
+                  </h3>
+                  <p className="text-white/70 text-sm line-clamp-2 group-hover:text-white/90 transition-colors duration-300">
+                    {service.description}
+                  </p>
                 </div>
-                <div>
-                  <div className="font-heading text-2xl md:text-3xl font-bold text-primary">{stat.value}</div>
-                  <div className="text-white/70 text-sm">{stat.label}</div>
+                
+                {/* Hover Glow */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-primary/20 rounded-full blur-3xl" />
                 </div>
               </motion.div>
             ))}
@@ -208,138 +431,156 @@ export default function HMDAPage() {
         </div>
       </section>
 
-      {/* Why HMDA */}
-      <section className="section-padding bg-tertiary">
+      {/* Why Choose Us Section */}
+      <section className="section-gap bg-dark-200">
         <div className="container-custom">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} viewport={{ once: true }} className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Why Choose HMDA Approved Plots?</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">HMDA approval is your guarantee of a legal, secure, and valuable investment</p>
-          </motion.div>
+          <SectionHeading 
+            eyebrow="Why Dream Home"
+            title="Why Landowners Trust Us for HMDA Development" 
+            subtitle="15+ years of experience converting land into valuable, approved layouts across Hyderabad" 
+          />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {hmdaBenefits.map((benefit, index) => (
-              <motion.div key={benefit.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }} viewport={{ once: true }} className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-primary/30 transition-all group">
-                <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={benefit.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="card-global p-6 group"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mb-4 group-hover:bg-primary/30 transition-colors duration-300">
                   <benefit.icon size={28} className="text-primary" />
                 </div>
-                <h4 className="font-heading text-lg font-bold text-white mb-2">{benefit.title}</h4>
-                <p className="text-white/60 text-sm">{benefit.description}</p>
+                <h3 className="font-heading text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors duration-200">
+                  {benefit.title}
+                </h3>
+                <p className="text-white/60 text-sm leading-relaxed group-hover:text-white/80 transition-colors duration-300">
+                  {benefit.description}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Plot Categories */}
-      <section className="section-padding bg-dark-200">
+      {/* Who Benefits Section */}
+      <section className="section-gap bg-tertiary">
         <div className="container-custom">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} viewport={{ once: true }} className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Types of HMDA Plots</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">Choose from various plot types based on your requirements</p>
-          </motion.div>
+          <SectionHeading 
+            eyebrow="Who We Serve"
+            title="Who Benefits from Our Layout Development Services" 
+            subtitle="We work with landowners, developers, and investors to maximize land value through professional development" 
+          />
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {plotCategories.map((plot, index) => (
-              <motion.div key={plot.title} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: index * 0.1 }} viewport={{ once: true }} className="group bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-primary/50 transition-all">
-                <div className="relative h-40 overflow-hidden">
-                  <Image src={plot.image} alt={plot.title} fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent" />
+            {useCases.map((useCase, index) => (
+              <motion.div
+                key={useCase.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="card-global p-6 text-center group"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                  <useCase.icon size={28} className="text-primary" />
                 </div>
-                <div className="p-5">
-                  <h3 className="font-heading text-lg font-bold text-white mb-2">{plot.title}</h3>
-                  <p className="text-white/60 text-sm mb-3">{plot.description}</p>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between"><span className="text-white/50">Size:</span><span className="text-white">{plot.size}</span></div>
-                    <div className="flex justify-between"><span className="text-white/50">Price:</span><span className="text-primary font-semibold">{plot.price}</span></div>
-                  </div>
-                </div>
+                <h4 className="font-heading font-bold text-white mb-2 group-hover:text-primary transition-colors duration-200">
+                  {useCase.title}
+                </h4>
+                <p className="text-sm text-white/60 group-hover:text-white/80 transition-colors duration-300">
+                  {useCase.description}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Locations */}
-      <section className="section-padding bg-tertiary">
+      {/* Development Process Section */}
+      <section className="section-gap bg-dark-200">
         <div className="container-custom">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} viewport={{ once: true }} className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Prime HMDA Locations</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">Strategic plots in high-growth areas around Hyderabad</p>
-          </motion.div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {locations.map((location, index) => (
-              <motion.div key={location.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.05 }} viewport={{ once: true }} className={`relative rounded-2xl p-5 border ${location.hot ? 'bg-gradient-to-br from-primary/20 to-secondary/20 border-primary/30' : 'bg-white/5 border-white/10'} hover:border-primary/50 transition-all cursor-pointer group`}>
-                <div className="flex items-start justify-between mb-3">
-                  <h4 className="font-heading text-lg font-bold text-white group-hover:text-primary transition-colors">{location.name}</h4>
-                  {location.hot && <span className="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded">HOT</span>}
-                </div>
-                <div className="space-y-1.5 text-sm">
-                  <div className="flex items-center gap-2 text-white/60"><MapPin size={14} /><span>{location.distance} from Hyderabad</span></div>
-                  <div className="flex items-center gap-2 text-white/60"><Home size={14} /><span>{location.plots} plots available</span></div>
-                  <div className="flex items-center gap-2 text-primary font-semibold"><IndianRupee size={14} /><span>{location.price}/sq.yd</span></div>
-                </div>
-              </motion.div>
-            ))}
+          <SectionHeading 
+            eyebrow="Our Process"
+            title="How We Develop Your HMDA Layout" 
+            subtitle="A transparent, step-by-step process from raw land to developed plots" 
+          />
+          <div className="relative">
+            {/* Connection Line */}
+            <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-secondary to-primary transform -translate-y-1/2" />
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              {processSteps.map((step, index) => (
+                <motion.div
+                  key={step.step}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="card-global p-5 text-center group"
+                >
+                  <div className="w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-3 relative z-10 group-hover:scale-110 transition-transform duration-300">
+                    <step.icon size={24} className="text-white" />
+                  </div>
+                  <div className="font-heading text-2xl font-bold text-primary/30 mb-2">{step.step}</div>
+                  <h4 className="font-heading text-sm font-bold text-white mb-2 group-hover:text-primary transition-colors duration-200">
+                    {step.title}
+                  </h4>
+                  <p className="text-xs text-white/60 group-hover:text-white/80 transition-colors duration-300">
+                    {step.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Amenities */}
+      {/* Infrastructure Section */}
       <section className="py-16 bg-gradient-to-r from-primary/10 to-secondary/10 border-y border-white/10">
         <div className="container-custom">
           <div className="text-center mb-8">
-            <h3 className="font-heading text-2xl font-bold text-white mb-2">Developed Infrastructure</h3>
-            <p className="text-white/60">All HMDA layouts come with ready infrastructure</p>
+            <h3 className="font-heading text-2xl font-bold text-white mb-2">Infrastructure We Develop</h3>
+            <p className="text-white/60">Complete layout infrastructure as per HMDA specifications</p>
           </div>
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-            {amenities.map((amenity, index) => (
-              <motion.div key={amenity.name} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.4, delay: index * 0.05 }} viewport={{ once: true }} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2.5 border border-white/10">
-                <amenity.icon size={18} className="text-primary" />
-                <span className="text-white font-medium">{amenity.name}</span>
+            {infrastructure.map((item, index) => (
+              <motion.div 
+                key={item.name} 
+                initial={{ opacity: 0, scale: 0.9 }} 
+                whileInView={{ opacity: 1, scale: 1 }} 
+                transition={{ duration: 0.4, delay: index * 0.05 }} 
+                viewport={{ once: true }} 
+                className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2.5 border border-white/10 hover:border-primary/30 transition-colors duration-200"
+              >
+                <item.icon size={18} className="text-primary" />
+                <span className="text-white font-medium">{item.name}</span>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Documents */}
-      <section className="section-padding bg-dark-200">
+      {/* Documents Section */}
+      <section className="section-gap bg-tertiary">
         <div className="container-custom">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} viewport={{ once: true }} className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Documents You'll Receive</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">Complete legal documentation for your peace of mind</p>
-          </motion.div>
+          <SectionHeading 
+            eyebrow="Documentation"
+            title="Approvals & Documentation We Handle" 
+            subtitle="Complete end-to-end documentation and government approvals for your HMDA layout" 
+          />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {documents.map((doc, index) => (
-              <motion.div key={doc} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.05 }} viewport={{ once: true }} className="flex items-center gap-3 bg-white/5 rounded-xl p-4 border border-white/10">
-                <FileCheck size={20} className="text-primary flex-shrink-0" />
-                <span className="text-white text-sm">{doc}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="section-padding bg-tertiary">
-        <div className="container-custom">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} viewport={{ once: true }} className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Happy HMDA Plot Owners</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">Join thousands of satisfied customers</p>
-          </motion.div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <motion.div key={testimonial.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.1 }} viewport={{ once: true }} className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (<Star key={i} size={18} className="fill-primary text-primary" />))}
-                </div>
-                <p className="text-white/80 mb-6 italic">&quot;{testimonial.text}&quot;</p>
+              <motion.div 
+                key={doc} 
+                initial={{ opacity: 0, y: 20 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 0.5, delay: index * 0.05 }} 
+                viewport={{ once: true }} 
+                className="card-global p-4 group"
+              >
                 <div className="flex items-center gap-3">
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden">
-                    <Image src={testimonial.image} alt={testimonial.name} fill className="object-cover" />
-                  </div>
-                  <div>
-                    <div className="font-heading font-bold text-white">{testimonial.name}</div>
-                    <div className="text-primary text-sm">{testimonial.role}</div>
-                  </div>
+                  <FileCheck size={20} className="text-primary flex-shrink-0" />
+                  <span className="text-white text-sm group-hover:text-primary transition-colors duration-200">{doc}</span>
                 </div>
               </motion.div>
             ))}
@@ -347,21 +588,65 @@ export default function HMDAPage() {
         </div>
       </section>
 
-      {/* FAQs */}
-      <section className="section-padding bg-dark-200">
+      {/* Testimonials Section */}
+      <section className="section-gap bg-dark-200">
         <div className="container-custom">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} viewport={{ once: true }} className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">Frequently Asked Questions</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">Everything you need to know about HMDA plots</p>
-          </motion.div>
+          <SectionHeading 
+            eyebrow="Client Stories"
+            title="What Landowners Say About Our Development Services" 
+            subtitle="Real feedback from landowners who trusted us to develop their properties" 
+          />
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard key={testimonial.name} {...testimonial} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQs Section */}
+      <section className="section-gap bg-tertiary">
+        <div className="container-custom">
+          <SectionHeading 
+            eyebrow="Common Questions"
+            title="HMDA Layout Development FAQs" 
+            subtitle="Answers to frequently asked questions about our land development services" 
+          />
           <div className="max-w-3xl mx-auto space-y-4">
             {faqs.map((faq, index) => (
-              <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.05 }} viewport={{ once: true }} className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 overflow-hidden">
-                <button onClick={() => setOpenFaq(openFaq === index ? null : index)} className="w-full flex items-center justify-between p-6 text-left">
-                  <span className="font-heading font-bold text-white pr-4">{faq.question}</span>
-                  <ChevronDown size={20} className={`text-primary flex-shrink-0 transition-transform ${openFaq === index ? 'rotate-180' : ''}`} />
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="card-global overflow-hidden"
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  className="w-full flex items-center justify-between p-6 text-left group"
+                >
+                  <span className="font-heading font-bold text-white pr-4 group-hover:text-primary transition-colors duration-200">
+                    {faq.question}
+                  </span>
+                  <ChevronDown 
+                    size={20} 
+                    className={`text-secondary flex-shrink-0 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`} 
+                  />
                 </button>
-                {openFaq === index && (<div className="px-6 pb-6 text-white/70">{faq.answer}</div>)}
+                <motion.div
+                  initial={false}
+                  animate={{ 
+                    height: openFaq === index ? "auto" : 0,
+                    opacity: openFaq === index ? 1 : 0
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className="overflow-hidden"
+                >
+                  <div className="px-6 pb-6 text-white/70 leading-relaxed">
+                    {faq.answer}
+                  </div>
+                </motion.div>
               </motion.div>
             ))}
           </div>
@@ -369,18 +654,60 @@ export default function HMDAPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-primary to-secondary relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-br from-dark via-dark-200 to-dark relative overflow-hidden">
+        {/* Background decorative elements */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }} />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-secondary rounded-full blur-3xl" />
         </div>
+        
         <div className="container-custom relative z-10 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} viewport={{ once: true }}>
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">Ready to Invest in HMDA Plots?</h2>
-            <p className="text-white/90 mb-8 max-w-2xl mx-auto text-lg">Book a free site visit today. We'll pick you up from Hyderabad and show you our best HMDA approved plots.</p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <span className="inline-block text-primary font-semibold text-sm tracking-wider uppercase mb-4">
+              Start Your Land Development
+            </span>
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+              Have Land? Let's Develop It Together
+            </h2>
+            <p className="text-white/80 mb-8 max-w-2xl mx-auto text-lg">
+              Get a free site assessment and development consultation. We'll evaluate your land's potential 
+              and provide a detailed development plan.
+              <span className="block mt-2 text-primary font-semibold">No obligation. Free site visit.</span>
+            </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact"><Button size="lg" className="bg-white text-primary hover:bg-white/90 font-bold">Book Free Site Visit <ArrowRight size={18} className="ml-2" /></Button></Link>
-              <a href="tel:+918008044008"><Button size="lg" variant="outline" className="border-white text-white hover:bg-white/20"><Phone size={18} className="mr-2" /> +91 8008044008</Button></a>
+              <Link href="/contact">
+                <Button size="lg" className="btn-global-primary text-lg">
+                  Book Free Site Assessment 
+                  <ArrowRight size={18} className="ml-2" />
+                </Button>
+              </Link>
+              <a href="tel:+918008044008">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-white/30 text-white hover:bg-white hover:text-dark text-lg"
+                >
+                  <Phone size={18} className="mr-2" />
+                  Call: +91 8008 044 008
+                </Button>
+              </a>
             </div>
+            
+            {/* Urgency element */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="mt-8 text-white/60 text-sm"
+            >
+              🏗️ Joint venture and revenue-sharing options available for landowners.
+            </motion.p>
           </motion.div>
         </div>
       </section>

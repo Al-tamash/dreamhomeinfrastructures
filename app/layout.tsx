@@ -83,7 +83,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className="font-body antialiased bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
+      <body className="font-body antialiased bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300" suppressHydrationWarning>
         <ThemeProvider>
           <Navbar />
           <main>{children}</main>
