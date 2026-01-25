@@ -4,14 +4,14 @@ import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Phone, Building2, Home, Paintbrush, ChevronDown } from "lucide-react";
+import { ArrowRight, Phone, Building, Clock, Users, Heart, ChevronDown } from "lucide-react";
 import { useTheme } from "@/contexts/theme-context";
+import { companyStats } from "@/lib/stats-data";
 
-const services = [
-  { icon: Building2, label: "Commercial", count: "150+" },
-  { icon: Home, label: "Residential", count: "300+" },
-  { icon: Paintbrush, label: "Interior", count: "200+" },
-];
+// Icons mapping for stats
+const statsIcons = [Building, Clock, Heart, Users];
+
+
 
 // Free stock construction/building video from Coverr (reliable CDN)
 const heroVideoUrl = "https://cdn.coverr.co/videos/coverr-aerial-view-of-a-construction-site-2269/1080p.mp4";
@@ -147,23 +147,26 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-wrap gap-4 md:gap-6 justify-center"
           >
-            {services.map((service, index) => (
+            {companyStats.map((stat, index) => {
+              const Icon = statsIcons[index];
+              return (
               <motion.div
-                key={service.label}
+                key={stat.label}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
                 className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl px-5 py-3 hover:bg-white/10 transition-all cursor-pointer group"
               >
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <service.icon size={20} className="text-primary" />
+                  <Icon size={20} className="text-primary" />
                 </div>
                 <div className="text-left">
-                  <div className="font-bold text-white">{service.count}</div>
-                  <div className="text-xs text-white/50">{service.label}</div>
+                  <div className="font-bold text-white">{stat.value}{stat.suffix}</div>
+                  <div className="text-xs text-white/50">{stat.label}</div>
                 </div>
               </motion.div>
-            ))}
+              );
+            })}
           </motion.div>
         </div>
       </div>

@@ -17,7 +17,7 @@ const trustItems = [
   },
   {
     icon: Clock,
-    title: "15+ Years",
+    title: `${new Date().getFullYear() - 2009}+ Years`,
     subtitle: "Experience",
   },
   {

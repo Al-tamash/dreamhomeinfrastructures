@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/section-heading";
 import StatCard from "@/components/stat-card";
 import TestimonialCard from "@/components/testimonial-card";
+import { companyStats } from "@/lib/stats-data";
 import { 
   Video, 
   CheckCircle, 
@@ -164,13 +165,7 @@ const processSteps = [
   },
 ];
 
-// Stats data
-const stats = [
-  { value: 200, suffix: "+", label: "Walkthroughs Created" },
-  { value: 4, suffix: "K/8K", label: "Video Quality" },
-  { value: 60, suffix: "fps", label: "Smooth Animation" },
-  { value: 100, suffix: "%", label: "Client Satisfaction" },
-];
+
 
 // Portfolio samples
 const portfolio = [
@@ -346,7 +341,7 @@ export default function WalkthroughPage() {
       <section className="section-gap-sm bg-dark-300 border-y border-white/5">
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
+            {companyStats.map((stat, index) => (
               <StatCard 
                 key={stat.label} 
                 value={stat.value} 

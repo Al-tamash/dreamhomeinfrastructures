@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/section-heading";
 import StatCard from "@/components/stat-card";
 import TestimonialCard from "@/components/testimonial-card";
+import { companyStats } from "@/lib/stats-data";
 import { 
   Landmark, 
   CheckCircle, 
@@ -150,13 +151,7 @@ const processSteps = [
   },
 ];
 
-// Stats data
-const stats = [
-  { value: 50, suffix: "+", label: "HMDA Layouts Developed" },
-  { value: 500, suffix: "+", label: "Acres Developed" },
-  { value: 15, suffix: "+", label: "Years Experience" },
-  { value: 100, suffix: "%", label: "Approval Success" },
-];
+
 
 // What We Develop (Infrastructure)
 const infrastructure = [
@@ -369,7 +364,7 @@ export default function HMDAPage() {
       <section className="section-gap-sm bg-dark-300 border-y border-white/5">
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
+            {companyStats.map((stat, index) => (
               <StatCard 
                 key={stat.label} 
                 value={stat.value} 

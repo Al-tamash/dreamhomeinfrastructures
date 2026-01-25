@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/section-heading";
 import StatCard from "@/components/stat-card";
 import TestimonialCard from "@/components/testimonial-card";
+import { companyStats } from "@/lib/stats-data";
 import { 
   Home, 
   CheckCircle, 
@@ -162,13 +163,7 @@ const projects = [
   },
 ];
 
-// Stats data
-const stats = [
-  { value: 200, suffix: "+", label: "Homes Built" },
-  { value: new Date().getFullYear() - 2009, suffix: "+", label: "Years Experience" },
-  { value: 100, suffix: "%", label: "Client Satisfaction" },
-  { value: 50, suffix: "+", label: "Expert Team" },
-];
+
 
 // Testimonials
 const testimonials = [
@@ -320,7 +315,7 @@ export default function ResidentialConstructionPage() {
       <section className="section-gap-sm bg-dark-300 border-y border-white/5">
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
+            {companyStats.map((stat, index) => (
               <StatCard 
                 key={stat.label} 
                 value={stat.value} 

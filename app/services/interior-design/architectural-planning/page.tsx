@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/section-heading";
 import StatCard from "@/components/stat-card";
 import TestimonialCard from "@/components/testimonial-card";
+import { companyStats } from "@/lib/stats-data";
 import { 
   Compass, 
   CheckCircle, 
@@ -163,13 +164,7 @@ const portfolioSamples = [
   },
 ];
 
-// Stats data
-const stats = [
-  { value: 500, suffix: "+", label: "Plans Designed" },
-  { value: 100, suffix: "%", label: "GHMC Approval Rate" },
-  { value: new Date().getFullYear() - 2009, suffix: "+", label: "Years Experience" },
-  { value: 50, suffix: "+", label: "Architects & Engineers" },
-];
+
 
 // Testimonials
 const testimonials = [
@@ -321,7 +316,7 @@ export default function ArchitecturalPlanningPage() {
       <section className="section-gap-sm bg-dark-300 border-y border-white/5">
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
+            {companyStats.map((stat, index) => (
               <StatCard 
                 key={stat.label} 
                 value={stat.value} 
