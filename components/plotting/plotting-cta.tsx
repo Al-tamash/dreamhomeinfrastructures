@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export default function PlottingCTA() {
   return (
-    <section className="py-24 bg-gradient-to-r from-primary to-secondary relative overflow-hidden">
+    <section className="py-24 bg-tertiary relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div 
           className="absolute inset-0" 
@@ -30,7 +30,7 @@ export default function PlottingCTA() {
           </Link>
           <Link href="tel:+918008044008">
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/20">
-              <Phone size={18} className="mr-2" /> +91 8008044008
+              <Phone size={18} className="mr-2" /> Call Now
             </Button>
           </Link>
         </div>

@@ -34,16 +34,9 @@ import {
 
 export default function InteriorDesignPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [activeFilter, setActiveFilter] = useState<string>("All");
   const [showVideo, setShowVideo] = useState(false);
   const [expandedService, setExpandedService] = useState<string | null>(null);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
-
-  // Portfolio filter categories
-  const portfolioCategories = ["All", "Planning", "Visualization"];
-  const filteredPortfolio = activeFilter === "All" 
-    ? portfolioData 
-    : portfolioData.filter(item => item.category === activeFilter);
 
   return (
     <>
@@ -111,15 +104,7 @@ export default function InteriorDesignPage() {
               </a>
             </div>
 
-            {/* Trust Indicators */}
-            <div className="flex flex-wrap gap-6 mt-10">
-              {heroData.trustIndicators.map((indicator, index) => (
-                <div key={index} className="flex items-center gap-2 text-white/70">
-                  <indicator.icon size={18} className="text-primary" />
-                  <span className="text-sm">{indicator.text}</span>
-                </div>
-              ))}
-            </div>
+            {/* Trust Indicators - Removed as per request */}
           </motion.div>
         </div>
       </section>
@@ -166,15 +151,9 @@ export default function InteriorDesignPage() {
                 <div className="relative h-48 overflow-hidden">
                   <Image src={service.image} alt={service.title} fill className="object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent" />
-                  {service.badge && (
-                    <div className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full">
-                      {service.badge}
-                    </div>
-                  )}
                   <div className="absolute bottom-4 left-4 right-4">
                     <div>
                       <h3 className="font-heading text-xl font-bold text-white">{service.title}</h3>
-                      <p className="text-secondary text-xs">{service.subtitle}</p>
                     </div>
                   </div>
                 </div>
@@ -300,71 +279,38 @@ export default function InteriorDesignPage() {
           
           {/* Timeline Container */}
           <div className="relative mt-16">
-            {/* Dashed Connecting Line - Desktop Only */}
-            <div className="hidden lg:block absolute top-[60px] left-[10%] right-[10%] border-t-2 border-dashed border-white/20" />
+            {/* Connecting Line (Desktop) */}
+            <div className="hidden md:block absolute top-[22px] left-0 w-full h-[2px] bg-gradient-to-r from-white/5 via-white/20 to-white/5" />
             
             {/* Steps Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 lg:gap-4">
+            <div className="grid md:grid-cols-5 gap-8 relative">
               {processData.map((step, index) => (
-                <motion.div
-                  key={step.step}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.15 }}
-                  viewport={{ once: true }}
-                  className="flex flex-col items-center text-center group"
-                >
-                  {/* Icon Circle with Step Number */}
-                  <div className="relative mb-8 overflow-visible">
-                    {/* Main Icon Circle */}
-                    <div className="w-20 h-20 rounded-full bg-dark-300 border-2 border-white/10 flex items-center justify-center group-hover:border-primary/50 group-hover:bg-tertiary transition-all duration-300">
-                      <step.icon size={32} className="text-primary" />
-                    </div>
+                <div key={step.step} className="group relative flex flex-col items-center text-center">
+                  
+                  {/* Number Circle */}
+                  <div className="w-12 h-12 rounded-full bg-dark-200 border border-white/10 group-hover:border-primary/50 text-white font-bold text-lg flex items-center justify-center z-10 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-white mb-6 relative shadow-lg shadow-black/50">
+                    {step.step}
                     
-                    {/* Step Number Badge - Positioned below icon */}
-                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-primary text-white text-sm font-bold flex items-center justify-center shadow-lg shadow-primary/30 z-20 border-2 border-dark-200">
-                      {step.step}
-                    </div>
+                    {/* Pulsing BG Effect on Hover */}
+                    <div className="absolute inset-0 rounded-full bg-primary/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+
+                  {/* Content */}
+                  <div className="px-2">
+                    <h4 className="font-heading text-lg font-bold text-white mb-3 group-hover:text-primary transition-colors duration-300">
+                      {step.title}
+                    </h4>
+                    <p className="text-white/60 text-xs sm:text-sm leading-relaxed">
+                      {step.description}
+                    </p>
                   </div>
                   
-                  {/* Title */}
-                  <h4 className="font-heading text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300">
-                    {step.title}
-                  </h4>
-                  
-                  {/* Description */}
-                  <p className="text-sm text-white/60 leading-relaxed max-w-[200px] group-hover:text-white/80 transition-colors duration-300">
-                    {step.description}
-                  </p>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
 
-          {/* Bottom CTA Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="mt-16 bg-dark-300/50 backdrop-blur-sm border border-white/10 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4"
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center">
-                <CheckCircle size={24} className="text-secondary" />
-              </div>
-              <div className="text-center md:text-left">
-                <h5 className="font-heading font-bold text-white">Need a custom timeline?</h5>
-                <p className="text-sm text-white/60">Every project is unique. Contact us for a personalized schedule.</p>
-              </div>
-            </div>
-            <Link href="/contact">
-              <Button className="btn-global-primary whitespace-nowrap">
-                Talk to an Architect
-                <ArrowRight size={16} className="ml-2" />
-              </Button>
-            </Link>
-          </motion.div>
+
         </div>
       </section>
 
@@ -423,27 +369,7 @@ export default function InteriorDesignPage() {
             ))}
           </div>
 
-          {/* Format Support Info + CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="mt-16 flex flex-col md:flex-row items-center justify-between gap-8"
-          >
-            {/* Format Support Box */}
-            <div className="border-l-2 border-white/20 pl-6">
-              <p className="text-xs font-semibold tracking-wider text-primary uppercase mb-1">Format Support</p>
-              <p className="text-white/80 italic">Provided in DWG, PDF & High-Res JPEG.</p>
-            </div>
-            
-            {/* CTA Button */}
-            <Link href="/contact">
-              <Button size="lg" className="btn-global-primary px-10 uppercase tracking-wider">
-                Download Detailed Specs
-              </Button>
-            </Link>
-          </motion.div>
+
         </div>
       </section>
 
@@ -458,25 +384,9 @@ export default function InteriorDesignPage() {
             subtitle="Explore examples of our architectural work and 3D visualizations" 
           />
 
-          {/* Filter Tabs */}
-          <div className="flex justify-center gap-4 mb-10">
-            {portfolioCategories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveFilter(category)}
-                className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
-                  activeFilter === category
-                    ? 'bg-primary text-white'
-                    : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
+          
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredPortfolio.map((sample, index) => (
+            {portfolioData.map((sample, index) => (
               <motion.div
                 key={sample.title}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -492,14 +402,6 @@ export default function InteriorDesignPage() {
                     fill 
                     className="object-cover transition-transform duration-500 group-hover:scale-110" 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                  <div className="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
-                    {sample.type}
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <h3 className="font-heading text-lg font-bold text-white mb-1">{sample.title}</h3>
-                    <p className="text-secondary text-sm">{sample.category}</p>
-                  </div>
                 </div>
               </motion.div>
             ))}

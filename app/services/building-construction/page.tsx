@@ -54,7 +54,7 @@ export default function BuildingConstructionPage() {
             {subServices.map((service, index) => (
               <motion.div key={service.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} viewport={{ once: true }} className={`grid lg:grid-cols-2 gap-12 items-center`}>
                 <div className={`${index % 2 === 1 ? "lg:order-2" : ""}`}>
-                  <div className="relative rounded-2xl overflow-hidden aspect-[4/3]"><Image src={service.image} alt={service.title} fill className="object-cover" /><div className="absolute top-4 left-4 bg-white/10 backdrop-blur-sm rounded-xl p-3"><service.icon size={28} className="text-primary" /></div></div>
+                  <div className="relative rounded-2xl overflow-hidden aspect-[4/3]"><Image src={service.image} alt={service.title} fill className="object-cover" /></div>
                 </div>
                 <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
                   <h3 className="font-heading text-2xl md:text-3xl font-bold text-white mb-4">{service.title}</h3>

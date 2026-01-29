@@ -295,21 +295,7 @@ export default function ResidentialConstructionPage() {
               </a>
             </div>
 
-            {/* Trust Indicators */}
-            <div className="flex flex-wrap gap-6 mt-10">
-              <div className="flex items-center gap-2 text-white/70">
-                <CheckCircle size={18} className="text-primary" />
-                <span className="text-sm">GHMC Licensed</span>
-              </div>
-              <div className="flex items-center gap-2 text-white/70">
-                <CheckCircle size={18} className="text-primary" />
-                <span className="text-sm">10-Year Warranty</span>
-              </div>
-              <div className="flex items-center gap-2 text-white/70">
-                <CheckCircle size={18} className="text-primary" />
-                <span className="text-sm">200+ Homes Built</span>
-              </div>
-            </div>
+
           </motion.div>
         </div>
       </section>
@@ -508,14 +494,6 @@ export default function ResidentialConstructionPage() {
                     fill 
                     className="object-cover transition-transform duration-500 group-hover:scale-110" 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                  <div className="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
-                    {project.type}
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <h3 className="font-heading text-lg font-bold text-white mb-1">{project.title}</h3>
-                    <p className="text-secondary text-sm">{project.sqft} sq.ft • {project.location}</p>
-                  </div>
                 </div>
               </motion.div>
             ))}
@@ -734,7 +712,7 @@ export default function ResidentialConstructionPage() {
                   className="border-white/30 text-white hover:bg-white hover:text-dark text-lg"
                 >
                   <Phone size={18} className="mr-2" />
-                  Call: +91 8008 044 008
+                  Call Now
                 </Button>
               </a>
             </div>

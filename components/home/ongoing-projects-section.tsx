@@ -21,69 +21,80 @@ interface OngoingProject {
   startDate: string;
   projectType: string;
   category: string; // For the badge
+  brochureUrl?: string;
+  status?: 'active' | 'upcoming';
 }
 
 // Ongoing projects with progress
 const ongoingProjects: OngoingProject[] = [
   { 
-    image: "/porject-images/e10.png", 
-    title: "Skyline Residency", 
-    location: "Financial District",
+    image: "/images/DHI-Towers.jpeg", 
+    title: "DHI Towers", 
+    location: "Diamond Hills",
     progress: 75,
-    expectedCompletion: "March 2026",
-    units: "24 Units",
-    description: "Premium residential apartments with modern amenities, offering breathtaking views of the city skyline. Features include smart home automation, luxury finishes, and world-class facilities.",
-    features: ["Swimming Pool", "Gym", "24/7 Security", "Club House", "Children's Play Area", "Power Backup"],
+    expectedCompletion: "Dec 2026",
+    units: "High-Rise Apts",
+    description: "Premium residential towers offering panoramic views of Diamond Hills. Designed for modern living with state-of-the-art amenities and connectivity.",
+    features: ["Sky Lounge", "Infinity Pool", "24/7 Security", "Club House", "Smart Home Ready", "EV Charging"],
     startDate: "January 2025",
-    projectType: "Residential Apartments",
-    category: "Apartments"
+    projectType: "High-Rise Residential",
+    category: "Apartments",
+    status: 'active',
+    brochureUrl: "/mr-omair-brochure .pdf"
   },
   { 
     image: "/porject-images/e11.png", 
-    title: "Green Valley Villas", 
-    location: "Kompally",
+    title: "DHI Kohinoor", 
+    location: "Kohinoor Enclave",
     progress: 45,
-    expectedCompletion: "June 2026",
-    units: "12 Villas",
-    description: "Exclusive gated community featuring independent villas with private gardens. Each villa is designed with eco-friendly materials and sustainable living in mind.",
-    features: ["Private Garden", "Home Automation", "Solar Panels", "Rainwater Harvesting", "Security Gates", "Landscaped Roads"],
+    expectedCompletion: "June 2027",
+    units: "Luxury Villas",
+    description: "An exclusive enclave of luxury villas designed for the elite. Experience privacy, space, and opulence in the heart of Kohinoor Enclave.",
+    features: ["Private Gardens", "Home Theater", "Solar Powered", "Double Height Living", "Concierge Service"],
     startDate: "May 2025",
-    projectType: "Independent Villas",
-    category: "Villas"
+    projectType: "Gated Community",
+    category: "Villas",
+    status: 'active'
   },
   { 
     image: "/porject-images/e12.png", 
-    title: "Business Hub Tower", 
-    location: "HITEC City",
-    progress: 60,
-    expectedCompletion: "April 2026",
-    units: "Commercial",
-    description: "State-of-the-art commercial complex designed for modern businesses. Prime location in IT corridor with excellent connectivity and premium office spaces.",
-    features: ["High-speed Elevators", "Central AC", "Cafeteria", "Conference Rooms", "Parking", "Fire Safety Systems"],
-    startDate: "March 2025",
-    projectType: "Commercial Complex",
-    category: "Commercial"
+    title: "DHI Luxe Crest", 
+    location: "Narsingi, Kokapet",
+    progress: 0,
+    expectedCompletion: "Coming Soon",
+    units: "Ultra-Luxury",
+    description: "Upcoming ultra-luxury project in the prime location of Narsingi, Kokapet. Redefining skyline living.",
+    features: ["Coming Soon"],
+    startDate: "Coming Soon",
+    projectType: "Ultra-Luxury",
+    category: "Upcoming",
+    status: 'upcoming'
   },
   { 
     image: "/porject-images/e13.png", 
-    title: "Lakeside Apartments", 
-    location: "Kukatpally",
-    progress: 30,
-    expectedCompletion: "August 2026",
-    units: "36 Units",
-    description: "Serene lakeside living with premium 2 and 3 BHK apartments. Wake up to stunning lake views and enjoy resort-style amenities at affordable prices.",
-    features: ["Lake View", "Jogging Track", "Multi-purpose Hall", "Indoor Games", "Visitor Parking", "Intercom Facility"],
-    startDate: "July 2025",
-    projectType: "Residential Apartments",
-    category: "Apartments"
+    title: "DTCP / Farm Plots", 
+    location: "Govindapur, Zaheerabad",
+    progress: 0,
+    expectedCompletion: "Coming Soon",
+    units: "Premium Plots",
+    description: "Premium investment opportunity in Govindapur, Zaheerabad. DTCP approved farm plots perfect for your weekend getaway or long-term investment.",
+    features: ["Coming Soon"],
+    startDate: "Coming Soon",
+    projectType: "Farm Plots",
+    category: "Plots",
+    status: 'upcoming'
   },
 ];
 
-export default function OngoingProjectsSection() {
+interface OngoingProjectsSectionProps {
+  className?: string;
+}
+
+export default function OngoingProjectsSection({ className = "" }: OngoingProjectsSectionProps) {
   const [selectedProject, setSelectedProject] = useState<OngoingProject | null>(null);
 
   return (
-    <section className="section-gap bg-tertiary">
+    <section className={`section-gap bg-tertiary ${className}`}>
       <div className="container-custom">
         {/* Section Heading */}
         <motion.div
@@ -122,37 +133,58 @@ export default function OngoingProjectsSection() {
                   src={project.image} 
                   alt={project.title} 
                   fill 
-                  className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                  className={`object-cover transition-transform duration-700 ${project.status === 'upcoming' ? 'grayscale opacity-60' : 'group-hover:scale-110'}`} 
                 />
                 
                 {/* Gradient overlay */}
+                {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90" />
                 
-                {/* Category badge - Top Right */}
-                <div className="absolute top-4 right-4 bg-[#D21515] text-white text-xs sm:text-sm font-bold px-3 py-1.5 rounded-full shadow-lg z-10">
-                  {project.category}
-                </div>
-
                 {/* Bottom content */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-7 z-10">
-                  <div className="flex flex-col gap-1 mb-4">
+                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-7 z-10 flex flex-col items-center text-center">
+                  <div className="flex flex-col items-center gap-1 mb-3">
                     <h4 className="text-white font-heading font-bold text-xl sm:text-2xl md:text-3xl leading-tight">
                       {project.title}
                     </h4>
                     <p className="text-blue-400 font-medium text-xs sm:text-sm flex items-center gap-1.5">
-                      <span>{project.units}</span>
-                      <span className="w-1 h-1 rounded-full bg-blue-400" />
+                      <MapPin size={14} />
                       <span>{project.location}</span>
                     </p>
                   </div>
                   
-                  <button 
-                    onClick={() => setSelectedProject(project)}
-                    className="w-full bg-white/10 hover:bg-primary/90 text-white border border-white/20 hover:border-primary/90 backdrop-blur-md text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 group/btn mt-2"
-                  >
-                    View Details
-                    <ArrowRight size={14} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
-                  </button>
+                  {project.brochureUrl ? (
+                    <a 
+                      href={project.brochureUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-auto backdrop-blur-md text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full transition-all duration-300 flex items-center justify-center gap-2 group/btn mt-1 bg-white/10 hover:bg-primary/90 text-white border border-white/20 hover:border-primary/90"
+                    >
+                      View Details
+                      <ArrowRight size={12} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
+                    </a>
+                  ) : (
+                    <button 
+                      onClick={() => project.status !== 'upcoming' && setSelectedProject(project)}
+                      disabled={project.status === 'upcoming'}
+                      className={`w-auto backdrop-blur-md text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full transition-all duration-300 flex items-center justify-center gap-2 group/btn mt-1 ${
+                        project.status === 'upcoming' 
+                          ? 'bg-white/5 text-white/40 cursor-not-allowed border-white/5' 
+                          : 'bg-white/10 hover:bg-primary/90 text-white border border-white/20 hover:border-primary/90'
+                      }`}
+                    >
+                      {project.status === 'upcoming' ? (
+                        <>
+                          <Clock size={12} />
+                          Loading...
+                        </>
+                      ) : (
+                        <>
+                          View Details
+                          <ArrowRight size={12} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
+                        </>
+                      )}
+                    </button>
+                  )}
                 </div>
               </div>
             </motion.div>

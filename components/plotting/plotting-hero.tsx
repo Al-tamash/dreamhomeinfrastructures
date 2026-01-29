@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 export default function PlottingHero() {
   return (
-    <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-tertiary">
       <div className="absolute inset-0 z-0">
         <video autoPlay loop muted playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover">
           <source src="/videos/plotting_land_development.mp4" type="video/mp4" />
@@ -51,21 +51,7 @@ export default function PlottingHero() {
             </Link>
           </div>
 
-          {/* Trust Indicators - Compact */}
-          <div className="flex flex-wrap gap-4 mt-8">
-            <div className="flex items-center gap-2 text-white/70">
-              <BadgeCheck size={18} className="text-primary" />
-              <span className="text-sm">GHMC Licensed</span>
-            </div>
-            <div className="flex items-center gap-2 text-white/70">
-              <Shield size={18} className="text-primary" />
-              <span className="text-sm">100+ Layouts Delivered</span>
-            </div>
-            <div className="flex items-center gap-2 text-white/70">
-              <Users size={18} className="text-primary" />
-              <span className="text-sm">5000+ Happy Families</span>
-            </div>
-          </div>
+          {/* Trust Indicators - Removed as per request */}
         </motion.div>
       </div>
     </section>

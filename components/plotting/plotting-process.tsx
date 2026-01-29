@@ -4,27 +4,39 @@ import SectionHeading from "@/components/section-heading";
 
 export default function PlottingProcess() {
   return (
-    <section className="section-padding bg-tertiary">
+    <section className="section-padding bg-tertiary border-t border-white/5">
       <div className="container-custom">
         <SectionHeading 
           title="Our Development Process" 
           subtitle="From land evaluation to plot handover - a streamlined 5-step journey" 
         />
         
-        <div className="relative">
-          <div className="hidden lg:block absolute top-16 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-secondary to-primary" />
-          <div className="grid lg:grid-cols-5 gap-6">
-            {developmentProcessData.map((step) => (
-              <div
-                key={step.step}
-                className="relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center"
-              >
-                <div className="w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4 relative z-10">
-                  <step.icon size={24} className="text-white" />
+        <div className="relative mt-16">
+          {/* Connecting Line (Desktop) */}
+          <div className="hidden md:block absolute top-[22px] left-0 w-full h-[2px] bg-gradient-to-r from-white/5 via-white/20 to-white/5" />
+
+          <div className="grid md:grid-cols-5 gap-8 relative">
+            {developmentProcessData.map((step, index) => (
+              <div key={step.step} className="group relative flex flex-col items-center text-center">
+                
+                {/* Number Circle */}
+                <div className="w-12 h-12 rounded-full bg-dark-200 border border-white/10 group-hover:border-primary/50 text-white font-bold text-lg flex items-center justify-center z-10 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-white mb-6 relative shadow-lg shadow-black/50">
+                  {step.step}
+                  
+                  {/* Pulsing BG Effect on Hover */}
+                  <div className="absolute inset-0 rounded-full bg-primary/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <div className="font-heading text-3xl font-bold text-primary/30 mb-2">{step.step}</div>
-                <h4 className="font-heading font-bold text-white mb-2">{step.title}</h4>
-                <p className="text-white/60 text-sm">{step.description}</p>
+
+                {/* Content */}
+                <div className="px-2">
+                  <h3 className="font-heading text-lg font-bold text-white mb-3 group-hover:text-primary transition-colors duration-300">
+                    {step.title}
+                  </h3>
+                  <p className="text-white/60 text-xs sm:text-sm leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+
               </div>
             ))}
           </div>

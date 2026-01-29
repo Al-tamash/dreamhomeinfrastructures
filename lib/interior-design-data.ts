@@ -89,7 +89,7 @@ export const heroData = {
     { icon: CheckCircle, text: "GHMC Licensed" },
   ],
   ctaPrimary: "Get Free Consultation",
-  ctaSecondary: "+91 8008 044 008",
+  ctaSecondary: "Call Now",
   videoSrc: "/videos/architechturalvideoherosection.mp4"
 };
 
@@ -427,6 +427,6 @@ export const ctaData = {
   subtitle: "Get professional architectural plans and stunning 3D visualizations that make decision-making easy.",
   highlight: "Free consultation. No obligation.",
   ctaPrimary: "Get Free Consultation",
-  ctaSecondary: "Call: +91 8008 044 008",
+  ctaSecondary: "Call Now",
   footerNote: "📐 Fast turnaround: Plans in 2-3 weeks. 3D renders in 5-7 days."
 };

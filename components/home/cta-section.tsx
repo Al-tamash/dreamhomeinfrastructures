@@ -50,7 +50,7 @@ export default function CtaSection() {
                 className="border-white/30 text-white hover:bg-white hover:text-dark text-lg"
               >
                 <Phone size={20} className="mr-2" />
-                +91 8008 044 008
+                Call Now
               </Button>
             </a>
           </div>

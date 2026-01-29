@@ -4,7 +4,7 @@ import SectionHeading from "@/components/section-heading";
 
 export default function PlottingWhyChoose() {
   return (
-    <section className="section-padding bg-dark-200">
+    <section className="section-padding bg-tertiary">
       <div className="container-custom">
         <SectionHeading 
           title="Why Landowners Trust Us" 

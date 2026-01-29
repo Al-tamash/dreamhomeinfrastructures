@@ -135,7 +135,7 @@ export default function Hero() {
                 className="border-white/20 bg-white/5 backdrop-blur-sm text-white hover:bg-white hover:text-dark px-8 py-6 text-lg rounded-xl"
               >
                 <Phone size={20} className="mr-2" />
-                +91 8008 044 008
+                Call Now
               </Button>
             </a>
           </motion.div>

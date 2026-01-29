@@ -34,14 +34,10 @@ export default function PlottingServices() {
               <div className="relative h-48 overflow-hidden">
                 <Image src={service.image} alt={service.title} fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent" />
-                <div className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full">
-                  {service.badge}
-                </div>
+
                 <div className="absolute bottom-4 left-4 right-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-primary/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                      <service.icon size={24} className="text-primary" />
-                    </div>
+
                     <h3 className="font-heading text-xl font-bold text-white">{service.title}</h3>
                   </div>
                 </div>

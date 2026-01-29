@@ -131,20 +131,9 @@ export default function ProjectsPreviewSection() {
                       {/* Gradient overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-tertiary/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       
-                      {/* Completed badge */}
-                      <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-green-500/90 backdrop-blur-sm text-white text-[10px] sm:text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full flex items-center gap-0.5 sm:gap-1">
-                        <CheckCircle2 size={10} className="sm:w-3 sm:h-3" />
-                        <span>Completed</span>
-                      </div>
 
-                      {/* Project info on hover */}
-                      <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        <h4 className="text-white font-semibold text-xs sm:text-sm">{project.title}</h4>
-                        <p className="text-white/70 text-[10px] sm:text-xs flex items-center gap-1 mt-0.5 sm:mt-1">
-                          <MapPin size={10} className="sm:w-3 sm:h-3" />
-                          {project.location}
-                        </p>
-                      </div>
+
+
                     </div>
                   </motion.div>
                 ))}

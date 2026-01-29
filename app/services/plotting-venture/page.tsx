@@ -13,12 +13,31 @@ import {
   PlottingFAQ,
   PlottingCTA,
 } from "@/components/plotting";
+import StatCard from "@/components/stat-card";
+import { companyStats } from "@/lib/stats-data";
 
 export default function PlottingVenturePage() {
   return (
     <>
       {/* Section 1: Hero */}
       <PlottingHero />
+
+      {/* Stats Section */}
+      <section className="section-gap-sm bg-tertiary border-y border-white/5">
+        <div className="container-custom">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {companyStats.map((stat, index) => (
+              <StatCard 
+                key={stat.label} 
+                value={stat.value} 
+                suffix={stat.suffix} 
+                label={stat.label} 
+                index={index} 
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Section 2: Development Services with Learn More */}
       <PlottingServices />
@@ -33,10 +52,10 @@ export default function PlottingVenturePage() {
       <PlottingProjects />
 
       {/* Section 6: Infrastructure We Build */}
-      <PlottingInfrastructure />
+      {/* <PlottingInfrastructure /> */}
 
       {/* Section 7: Investment Comparison */}
-      <PlottingComparison />
+      {/* <PlottingComparison /> */}
 
       {/* Section 8: Testimonials */}
       <PlottingTestimonials />
