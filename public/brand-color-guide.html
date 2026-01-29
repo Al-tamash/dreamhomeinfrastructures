@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHI Brand Color Guide - Why Colors Matter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #D00E15, #27738F);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+        }
+        
+        /* Logo Section */
+        .logo-section {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: #121212;
+            border-radius: 20px;
+            border: 1px solid #2a2a2a;
+        }
+        
+        .logo-section h2 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        
+        .logo-colors {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .color-box {
+            text-align: center;
+        }
+        
+        .color-swatch {
+            width: 100px;
+            height: 100px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .red-swatch {
+            background: #D00E15;
+            color: white;
+        }
+        
+        .teal-swatch {
+            background: #27738F;
+            color: white;
+        }
+        
+        .grey-swatch {
+            background: #808080;
+            color: white;
+        }
+        
+        .beige-swatch {
+            background: #C8B89A;
+            color: #333;
+        }
+        
+        .color-name {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        /* Comparison Section */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .comparison-card {
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .correct {
+            background: linear-gradient(135deg, rgba(0, 200, 83, 0.1), rgba(0, 200, 83, 0.05));
+            border: 2px solid #00C853;
+        }
+        
+        .wrong {
+            background: linear-gradient(135deg, rgba(255, 82, 82, 0.1), rgba(255, 82, 82, 0.05));
+            border: 2px solid #FF5252;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .correct .icon {
+            background: #00C853;
+        }
+        
+        .wrong .icon {
+            background: #FF5252;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+        
+        .correct .card-title {
+            color: #00C853;
+        }
+        
+        .wrong .card-title {
+            color: #FF5252;
+        }
+        
+        /* Mock Website */
+        .mock-website {
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .mock-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 15px;
+        }
+        
+        .mock-logo-placeholder {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #D00E15, #27738F);
+            border-radius: 8px;
+        }
+        
+        .mock-nav {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .mock-nav span {
+            font-size: 0.8rem;
+            color: #888;
+        }
+        
+        .mock-content {
+            padding: 20px 0;
+        }
+        
+        .mock-heading {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .correct .mock-heading {
+            color: #D00E15;
+        }
+        
+        .wrong .mock-heading {
+            color: #808080;
+        }
+        
+        .mock-text {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+        
+        .mock-button {
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .correct .mock-button {
+            background: #D00E15;
+            color: white;
+        }
+        
+        .wrong .mock-button {
+            background: #808080;
+            color: white;
+        }
+        
+        /* Result Labels */
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .correct .result {
+            background: rgba(0, 200, 83, 0.15);
+        }
+        
+        .wrong .result {
+            background: rgba(255, 82, 82, 0.15);
+        }
+        
+        .result-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .result-text {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Points Section */
+        .points-section {
+            background: #121212;
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid #2a2a2a;
+        }
+        
+        .points-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+        
+        .points-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .point {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        
+        .point-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #D00E15, #27738F);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .point-content h4 {
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        
+        .point-content p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #2a2a2a;
+            color: #666;
+        }
+        
+        .recommendation {
+            background: linear-gradient(135deg, rgba(208, 14, 21, 0.2), rgba(39, 115, 143, 0.2));
+            border: 2px solid #D00E15;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .recommendation h3 {
+            color: #D00E15;
+            margin-bottom: 10px;
+        }
+        
+        .recommendation p {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏗️ DHI Brand Color Guide</h1>
+        <p class="subtitle">Why Website Colors Must Match Your Logo</p>
+        
+        <!-- Logo Colors Section -->
+        <div class="logo-section">
+            <h2>Your Logo Colors</h2>
+            <p style="color: #888; margin-bottom: 20px;">These are the official colors from your DHI logo</p>
+            <div class="logo-colors">
+                <div class="color-box">
+                    <div class="color-swatch red-swatch">PRIMARY</div>
+                    <div class="color-name">Red<br>#D00E15</div>
+                </div>
+                <div class="color-box">
+                    <div class="color-swatch teal-swatch">SECONDARY</div>
+                    <div class="color-name">Teal<br>#27738F</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Comparison -->
+        <div class="comparison">
+            <!-- Correct Option -->
+            <div class="comparison-card correct">
+                <div class="card-header">
+                    <div class="icon">✓</div>
+                    <div class="card-title">CORRECT: Brand Consistent</div>
+                </div>
+                
+                <div class="mock-website">
+                    <div class="mock-header">
+                        <div class="mock-logo-placeholder"></div>
+                        <div class="mock-nav">
+                            <span>Home</span>
+                            <span>Services</span>
+                            <span>About</span>
+                            <span>Contact</span>
+                        </div>
+                    </div>
+                    <div class="mock-content">
+                        <h3 class="mock-heading">Build Your Dream Home</h3>
+                        <p class="mock-text">Professional construction services in Hyderabad</p>
+                        <span class="mock-button">Get Started →</span>
+                    </div>
+                </div>
+                
+                <div class="result">
+                    <div class="result-title" style="color: #00C853;">Logo + Website = Same Colors ✓</div>
+                    <div class="result-text">Professional, Trustworthy, Strong Brand Identity</div>
+                </div>
+            </div>
+            
+            <!-- Wrong Option -->
+            <div class="comparison-card wrong">
+                <div class="card-header">
+                    <div class="icon">✗</div>
+                    <div class="card-title">WRONG: Brand Mismatch</div>
+                </div>
+                
+                <div class="mock-website">
+                    <div class="mock-header">
+                        <div class="mock-logo-placeholder"></div>
+                        <div class="mock-nav">
+                            <span>Home</span>
+                            <span>Services</span>
+                            <span>About</span>
+                            <span>Contact</span>
+                        </div>
+                    </div>
+                    <div class="mock-content">
+                        <h3 class="mock-heading">Build Your Dream Home</h3>
+                        <p class="mock-text">Professional construction services in Hyderabad</p>
+                        <span class="mock-button">Get Started →</span>
+                    </div>
+                </div>
+                
+                <div class="result">
+                    <div class="result-title" style="color: #FF5252;">Logo ≠ Website Colors ✗</div>
+                    <div class="result-text">Confusing, Unprofessional, Weak Brand Identity</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Why It Matters -->
+        <div class="points-section">
+            <h2>Why Brand Consistency Matters</h2>
+            <div class="points-grid">
+                <div class="point">
+                    <div class="point-icon">🎯</div>
+                    <div class="point-content">
+                        <h4>Brand Recognition</h4>
+                        <p>Same colors = instant recognition. Visitors immediately connect your website to your brand.</p>
+                    </div>
+                </div>
+                <div class="point">
+                    <div class="point-icon">🤝</div>
+                    <div class="point-content">
+                        <h4>Trust Building</h4>
+                        <p>Consistent branding shows professionalism and builds customer confidence.</p>
+                    </div>
+                </div>
+                <div class="point">
+                    <div class="point-icon">💼</div>
+                    <div class="point-content">
+                        <h4>Professional Image</h4>
+                        <p>Mismatched colors look unprofessional and can scare away potential customers.</p>
+                    </div>
+                </div>
+                <div class="point">
+                    <div class="point-icon">📈</div>
+                    <div class="point-content">
+                        <h4>Better Conversions</h4>
+                        <p>Strong brand identity leads to more trust and higher conversion rates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Final Recommendation -->
+        <div class="recommendation">
+            <h3>🎯 Final Recommendation</h3>
+            <p>Keep using <strong style="color: #D00E15;">Red (#D00E15)</strong> and <strong style="color: #27738F;">Teal (#27738F)</strong> as your website colors to maintain brand consistency with your logo.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">If you want to use Grey/Beige colors, consider redesigning the logo first to match.</p>
+        </div>
+        
+        <div class="footer">
+            <p>Dream Home Infrastructures - Build Your Vision</p>
+        </div>
+    </div>
+</body>
+</html>

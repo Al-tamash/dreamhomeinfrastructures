@@ -6,7 +6,8 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ThemeToggle from "@/components/theme-toggle";
+
+
 
 const services = [
   { 
@@ -19,24 +20,17 @@ const services = [
     ] 
   },
   { 
-    title: "Interior Design", 
-    href: "/services/interior-design", 
-    items: [
-      { name: "Architectural Planning", href: "/services/interior-design/architectural-planning" },
-      { name: "3D Perspective", href: "/services/interior-design/3d-perspective" },
-      { name: "3D Walkthrough", href: "/services/interior-design/3d-walkthrough" }
-    ] 
+    title: "Architectural & Design", 
+    href: "/services/interior-design/architectural-planning",
+    items: [] 
   },
   { 
     title: "Plotting & Venture", 
-    href: "/services/plotting-venture", 
-    items: [
-      { name: "HMDA Plots", href: "/services/plotting-venture/hmda" },
-      { name: "DTCP Plots", href: "/services/plotting-venture/dtcp" },
-      { name: "Farm Plots", href: "/services/plotting-venture/farm-plots" }
-    ] 
+    href: "/services/plotting-venture",
+    items: [] 
   },
 ];
+
 
 const navLinks = [
   { title: "Home", href: "/" },
@@ -71,21 +65,12 @@ export default function Navbar() {
         <div className="container-custom">
           <div className="flex items-center justify-between h-20">
             <Link href="/" className="flex items-center">
-                {/* Dark Mode Logo (Visible by default, hidden in light mode) */}
                 <Image
                   src="/images/finalDHI-logo.png"
                   alt="Dream Home Infrastructures Logo"
                   width={130}
                   height={50}
-                  className="object-contain [.light_&]:hidden"
-                />
-                {/* Light Mode Logo (Hidden by default, visible in light mode) */}
-                <Image
-                  src="/images/finaldhilogo.png"
-                  alt="Dream Home Infrastructures Logo"
-                  width={130}
-                  height={50}
-                  className="object-contain hidden [.light_&]:block"
+                  className="object-contain"
                 />
             </Link>
 
@@ -123,7 +108,6 @@ export default function Navbar() {
             </div>
 
             <div className="hidden lg:flex items-center gap-4">
-              <ThemeToggle />
               <Link href="/contact"><Button size="lg">Get Free Quote</Button></Link>
             </div>
 
@@ -166,7 +150,6 @@ export default function Navbar() {
                   </div>
                 ))}
                 <div className="pt-4 flex items-center gap-4">
-                  <ThemeToggle />
                   <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="flex-1"><Button className="w-full" size="lg">Get Free Quote</Button></Link>
                 </div>
               </div>

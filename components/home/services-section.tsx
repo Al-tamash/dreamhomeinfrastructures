@@ -18,67 +18,25 @@ import {
 // Services data with SEO-friendly descriptions
 const services = [
   { 
-    title: "Residential Construction", 
-    description: "Build your dream home in Hyderabad with GHMC-licensed contractors. Quality materials, transparent pricing, on-time delivery.", 
+    title: "Building Construction", 
+    description: "Expert residential, commercial, and villa construction services. We build high-quality structures with transparent pricing and on-time delivery.", 
     icon: Home, 
-    href: "/services/building-construction/residential", 
+    href: "/services/building-construction", 
     image: "/services-image/residentialconstruction.png" 
   },
   { 
-    title: "Commercial Construction", 
-    description: "Professional commercial building solutions for offices, retail spaces, and industrial facilities across Telangana.", 
-    icon: Building2, 
-    href: "/services/building-construction/commercial", 
-    image: "/services-image/commercialconstruction.png" 
-  },
-  { 
-    title: "Villa & Farm House", 
-    description: "Premium villa and farmhouse construction with contemporary designs. Perfect for weekend retreats near Hyderabad.", 
-    icon: Building, 
-    href: "/services/building-construction/villa", 
-    image: "/services-image/villafarmhouse.png" 
-  },
-  { 
-    title: "Architectural Planning", 
-    description: "Complete architectural services including floor plans, structural designs, and GHMC approval documentation.", 
+    title: "Interior Design", 
+    description: "Transform your space with our comprehensive interior design services, including architectural planning, 3D perspectives, and immersive walkthroughs.", 
     icon: PenTool, 
-    href: "/services/interior-design/architectural-planning", 
-    image: "/services-image/Architecturalplanning.png" 
-  },
-  { 
-    title: "3D Perspective", 
-    description: "Visualize your future home with photorealistic 3D renderings before construction begins.", 
-    icon: Box, 
-    href: "/services/interior-design/3d-perspective", 
+    href: "/services/interior-design", 
     image: "/services-image/3DPerspective.png" 
   },
   { 
-    title: "3D Walkthrough", 
-    description: "Experience immersive virtual tours of your future space with cutting-edge visualization technology.", 
-    icon: Video, 
-    href: "/services/interior-design/3d-walkthrough", 
-    image: "/services-image/3DWalkthrough.png" 
-  },
-  { 
-    title: "HMDA Plots", 
-    description: "Government approved HMDA plots in prime Hyderabad locations. 100% legal titles, bank loan eligible.", 
+    title: "Plotting Venture", 
+    description: "Secure your future with our premium HMDA, DTCP, and Farm plots in prime locations. Legal titles and excellent appreciation potential guaranteed.", 
     icon: MapPin, 
-    href: "/services/plotting-venture/hmda", 
+    href: "/services/plotting-venture", 
     image: "/services-image/HMDAPlots.png" 
-  },
-  { 
-    title: "DTCP Plots", 
-    description: "Affordable DTCP approved plots in emerging areas with high appreciation potential for smart investors.", 
-    icon: FileCheck, 
-    href: "/services/plotting-venture/dtcp", 
-    image: "/services-image/DTCPPlots.png" 
-  },
-  { 
-    title: "Farm Plots", 
-    description: "Premium agricultural land near Hyderabad. Ideal for farm houses, weekend getaways, and long-term investment.", 
-    icon: TreePine, 
-    href: "/services/plotting-venture/farm-plots", 
-    image: "/services-image/FarmPlots.png" 
   },
 ];
 

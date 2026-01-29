@@ -57,7 +57,7 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: typeof testimoni
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.4, delay: index * 0.1 }}
-    className="group bg-[#1a2234] hover:bg-[#1e2840] border border-white/5 hover:border-primary/30 rounded-2xl p-5 sm:p-6 transition-all duration-300 relative h-full flex flex-col"
+    className="group bg-white/5 hover:bg-white/10 border border-white/5 hover:border-primary/30 rounded-2xl p-5 sm:p-6 transition-all duration-300 relative h-full flex flex-col"
   >
     {/* Quote Icon */}
     <div className="absolute top-3 right-3 sm:top-4 sm:right-4 text-primary/20">

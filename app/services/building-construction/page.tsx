@@ -29,7 +29,7 @@ export default function BuildingConstructionPage() {
         {/* Video Background */}
         <div className="absolute inset-0 z-0">
           <video autoPlay loop muted playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover">
-            <source src="/videos/Indian_Luxury_Real_Estate_Video.mp4" type="video/mp4" />
+            <source src="/videos/Premium_Construction_Company_Portfolio_Montage.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-transparent dark:from-dark/70 dark:via-dark/50 dark:to-dark/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent dark:from-dark/60 dark:via-transparent dark:to-dark/20" />
@@ -70,7 +70,7 @@ export default function BuildingConstructionPage() {
         </div>
       </section>
 
-      <section className="section-padding bg-dark-200">
+      <section className="section-padding bg-tertiary">
         <div className="container-custom">
           <SectionHeading title="Our Construction Process" subtitle="A systematic approach to delivering quality projects" />
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -87,7 +87,7 @@ export default function BuildingConstructionPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-dark">
+      <section className="py-20 bg-tertiary">
         <div className="container-custom text-center">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-6">Ready to Build Your Dream Structure?</h2>
           <Link href="/contact"><Button size="lg" className="bg-white text-secondary hover:bg-white/90">Get Started <ArrowRight size={18} className="ml-2" /></Button></Link>

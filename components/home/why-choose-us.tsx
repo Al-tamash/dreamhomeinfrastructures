@@ -42,7 +42,7 @@ const whyChooseUs = [
 
 export default function WhyChooseUsSection() {
   return (
-    <section className="section-gap bg-dark-200">
+    <section className="section-gap bg-tertiary">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Image Side */}

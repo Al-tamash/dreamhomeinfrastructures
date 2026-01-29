@@ -50,12 +50,16 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="relative">
               <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
-                <Image src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=870" alt="Team meeting" fill className="object-cover" />
+                <Image src="/porject-images/e1.png" alt="Modern Villa Project" fill className="object-cover" />
               </div>
-              <div className="absolute -bottom-8 -right-8 bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 hidden md:block">
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center"><Award size={28} className="text-white" /></div>
-                  <div><div className="font-heading text-2xl font-bold text-white">{new Date().getFullYear() - 2009}+ Years</div><div className="text-white/60">Of Excellence</div></div>
+              <div className="absolute -bottom-8 -right-8 bg-primary p-8 rounded-[2rem] shadow-2xl hidden md:block">
+                <div className="flex flex-col">
+                  <span className="font-heading text-5xl font-bold text-white leading-none">
+                    {new Date().getFullYear() - 2009}+
+                  </span>
+                  <span className="text-white font-medium text-lg mt-1">
+                    Years Experience
+                  </span>
                 </div>
               </div>
             </motion.div>

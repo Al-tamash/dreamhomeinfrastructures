@@ -17,31 +17,24 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     setMounted(true);
-    // Check localStorage for saved theme preference
-    const savedTheme = localStorage.getItem('theme') as Theme | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-    }
-    // Default is dark theme - no need to change if not saved
+    // Force dark theme
+    setTheme('dark');
   }, []);
 
   useEffect(() => {
     if (mounted) {
-      // Update document class
-      if (theme === 'light') {
-        document.documentElement.classList.add('light');
-        document.documentElement.classList.remove('dark');
-      } else {
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.remove('light');
-      }
-      // Save to localStorage
-      localStorage.setItem('theme', theme);
+      // Create/Update document class to always be dark
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+      
+      // Save to localStorage just in case, or we can skip it
+      localStorage.setItem('theme', 'dark');
     }
   }, [theme, mounted]);
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+    // Disabled toggling
+    setTheme('dark');
   };
 
   // Prevent flash of wrong theme

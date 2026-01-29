@@ -141,33 +141,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Service Quick Stats - Centered */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-wrap gap-4 md:gap-6 justify-center"
-          >
-            {companyStats.map((stat, index) => {
-              const Icon = statsIcons[index];
-              return (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl px-5 py-3 hover:bg-white/10 transition-all cursor-pointer group"
-              >
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Icon size={20} className="text-primary" />
-                </div>
-                <div className="text-left">
-                  <div className="font-bold text-white">{stat.value}{stat.suffix}</div>
-                  <div className="text-xs text-white/50">{stat.label}</div>
-                </div>
-              </motion.div>
-              );
-            })}
-          </motion.div>
+{/* Service Quick Stats - Removed to simplify Hero section */}
         </div>
       </div>
 
