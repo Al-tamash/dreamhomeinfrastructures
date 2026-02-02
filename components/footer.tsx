@@ -18,7 +18,7 @@ const services = [
 ];
 
 const socialLinks = [
-  { icon: Facebook, href: "#", label: "Facebook" },
+  { icon: Facebook, href: "https://www.facebook.com/share/1AaDesPz3Y/?mibextid=wwXIfr", label: "Facebook" },
   { icon: Instagram, href: "#", label: "Instagram" },
   { icon: Twitter, href: "#", label: "Twitter" },
   { icon: Linkedin, href: "#", label: "LinkedIn" },

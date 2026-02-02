@@ -23,6 +23,7 @@ interface OngoingProject {
   category: string; // For the badge
   brochureUrl?: string;
   status?: 'active' | 'upcoming';
+  hideButton?: boolean;
 }
 
 // Ongoing projects with progress
@@ -40,10 +41,10 @@ const ongoingProjects: OngoingProject[] = [
     projectType: "High-Rise Residential",
     category: "Apartments",
     status: 'active',
-    brochureUrl: "/mr-omair-brochure .pdf"
+    hideButton: true
   },
   { 
-    image: "/porject-images/e11.png", 
+    image: "/images/dhi-kohinoor.jpeg", 
     title: "DHI Kohinoor", 
     location: "Kohinoor Enclave",
     progress: 45,
@@ -54,10 +55,11 @@ const ongoingProjects: OngoingProject[] = [
     startDate: "May 2025",
     projectType: "Gated Community",
     category: "Villas",
-    status: 'active'
+    status: 'active',
+    brochureUrl: "/mr-omair-brochure .pdf"
   },
   { 
-    image: "/porject-images/e12.png", 
+    image: "/residential/ultra_realistic_photograph_of_a_modern_apartment.jpeg", 
     title: "DHI Luxe Crest", 
     location: "Narsingi, Kokapet",
     progress: 0,
@@ -71,7 +73,7 @@ const ongoingProjects: OngoingProject[] = [
     status: 'upcoming'
   },
   { 
-    image: "/porject-images/e13.png", 
+    image: "/services-image/FarmPlots.png", 
     title: "DTCP / Farm Plots", 
     location: "Govindapur, Zaheerabad",
     progress: 0,
@@ -82,7 +84,8 @@ const ongoingProjects: OngoingProject[] = [
     startDate: "Coming Soon",
     projectType: "Farm Plots",
     category: "Plots",
-    status: 'upcoming'
+    status: 'upcoming',
+    hideButton: true
   },
 ];
 
@@ -116,8 +119,8 @@ export default function OngoingProjectsSection({ className = "" }: OngoingProjec
           </p>
         </motion.div>
 
-        {/* Projects Grid - All 4 at once */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        {/* Projects Grid - All 4 in one row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
           {ongoingProjects.map((project, index) => (
             <motion.div 
               key={index} 
@@ -128,7 +131,7 @@ export default function OngoingProjectsSection({ className = "" }: OngoingProjec
               className="group relative overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 hover:border-primary/50 transition-all duration-300 shadow-2xl shadow-black/50"
             >
               {/* Image Only Card */}
-              <div className="relative aspect-[4/3] sm:aspect-[16/10]">
+              <div className="relative aspect-[3/4]">
                 <Image 
                   src={project.image} 
                   alt={project.title} 
@@ -137,53 +140,56 @@ export default function OngoingProjectsSection({ className = "" }: OngoingProjec
                 />
                 
                 {/* Gradient overlay */}
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent\" />
                 
                 {/* Bottom content */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-7 z-10 flex flex-col items-center text-center">
-                  <div className="flex flex-col items-center gap-1 mb-3">
-                    <h4 className="text-white font-heading font-bold text-xl sm:text-2xl md:text-3xl leading-tight">
+                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-5 z-10 flex flex-col items-center text-center">
+                  <div className="flex flex-col items-center gap-1 mb-2">
+                    <h4 className="text-white font-heading font-bold text-base sm:text-lg md:text-xl leading-tight">
                       {project.title}
                     </h4>
-                    <p className="text-blue-400 font-medium text-xs sm:text-sm flex items-center gap-1.5">
-                      <MapPin size={14} />
+                    <p className="text-blue-400 font-medium text-[10px] sm:text-xs flex items-center gap-1">
+                      <MapPin size={12} />
                       <span>{project.location}</span>
                     </p>
                   </div>
                   
-                  {project.brochureUrl ? (
-                    <a 
-                      href={project.brochureUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-auto backdrop-blur-md text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full transition-all duration-300 flex items-center justify-center gap-2 group/btn mt-1 bg-white/10 hover:bg-primary/90 text-white border border-white/20 hover:border-primary/90"
-                    >
-                      View Details
-                      <ArrowRight size={12} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
-                    </a>
-                  ) : (
-                    <button 
-                      onClick={() => project.status !== 'upcoming' && setSelectedProject(project)}
-                      disabled={project.status === 'upcoming'}
-                      className={`w-auto backdrop-blur-md text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full transition-all duration-300 flex items-center justify-center gap-2 group/btn mt-1 ${
-                        project.status === 'upcoming' 
-                          ? 'bg-white/5 text-white/40 cursor-not-allowed border-white/5' 
-                          : 'bg-white/10 hover:bg-primary/90 text-white border border-white/20 hover:border-primary/90'
-                      }`}
-                    >
-                      {project.status === 'upcoming' ? (
-                        <>
-                          <Clock size={12} />
-                          Loading...
-                        </>
-                      ) : (
-                        <>
+                  {!project.hideButton && (
+                    <>
+                      {project.brochureUrl ? (
+                        <a 
+                          href={project.brochureUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-auto backdrop-blur-md text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full transition-all duration-300 flex items-center justify-center gap-2 group/btn mt-1 bg-white/10 hover:bg-primary/90 text-white border border-white/20 hover:border-primary/90"
+                        >
                           View Details
                           <ArrowRight size={12} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
-                        </>
+                        </a>
+                      ) : (
+                        <button 
+                          onClick={() => project.status !== 'upcoming' && setSelectedProject(project)}
+                          disabled={project.status === 'upcoming'}
+                          className={`w-auto backdrop-blur-md text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full transition-all duration-300 flex items-center justify-center gap-2 group/btn mt-1 ${
+                            project.status === 'upcoming' 
+                              ? 'bg-white/5 text-white/40 cursor-not-allowed border-white/5' 
+                              : 'bg-white/10 hover:bg-primary/90 text-white border border-white/20 hover:border-primary/90'
+                          }`}
+                        >
+                          {project.status === 'upcoming' ? (
+                            <>
+                              <Clock size={12} />
+                              Coming Soon Loading...
+                            </>
+                          ) : (
+                            <>
+                              View Details
+                              <ArrowRight size={12} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
+                            </>
+                          )}
+                        </button>
                       )}
-                    </button>
+                    </>
                   )}
                 </div>
               </div>
